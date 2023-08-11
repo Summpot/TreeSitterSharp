@@ -31,7 +31,7 @@ jobs:
           path: |
             tree-sitter/cmake_build/**/libtree-sitter.so
             tree-sitter/cmake_build/**/libtree-sitter.dylib
-            tree-sitter/cmake_build/**/libtree-sitter.dll
+            tree-sitter/cmake_build/**/tree-sitter.dll
 
             
           
