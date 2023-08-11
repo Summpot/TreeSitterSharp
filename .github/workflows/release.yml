@@ -29,9 +29,9 @@ jobs:
         with:
           name: tree-sitter-${{ matrix.os }}
           path: |
-            tree-sitter/cmake_build/**/libtree-sitter.so
-            tree-sitter/cmake_build/**/libtree-sitter.dylib
-            tree-sitter/cmake_build/**/tree-sitter.dll
+            tree-sitter/cmake_build/libtree-sitter.so
+            tree-sitter/cmake_build/libtree-sitter.dylib
+            tree-sitter/cmake_build/Debug/tree-sitter.dll
 
             
           
