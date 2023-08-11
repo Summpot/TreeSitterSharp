@@ -51,22 +51,22 @@ jobs:
         with:
           global-json-file: global.json
 
-      - name: Download tree-sitter for ubuntu-latest
+      - name: Download tree-sitter for linux-x64
         uses: actions/download-artifact@v3
         with:
-          name: tree-sitter-ubuntu-latest
+          name: tree-sitter-linux-x64
           path: src/TreeSitterSharp/native/linux-x64
-
-      - name: Download tree-sitter for macos-latest
+  
+      - name: Download tree-sitter for osx-x64
         uses: actions/download-artifact@v3
         with:
-          name: tree-sitter-macos-latest
+          name: tree-sitter-osx-x64
           path: src/TreeSitterSharp/native/osx-x64
 
-      - name: Download tree-sitter for windows-latest
+      - name: Download tree-sitter for win-x64
         uses: actions/download-artifact@v3
         with:
-          name: tree-sitter-windows-latest
+          name: tree-sitter-win-x64
           path: src/TreeSitterSharp/native/win-x64
       
       - name: Do release
