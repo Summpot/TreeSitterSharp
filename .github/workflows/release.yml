@@ -10,9 +10,9 @@ jobs:
       matrix:
         runtime: [ linux-x64, win-x64, osx-x64 ]
         include:
-          - { runtime: linux-x64, os: ubuntu-latest, compiler: gcc }
-          - { runtime: osx-x64, os: macos-latest, compiler: clang }
-          - { runtime: win-x64, os: windows-latest, compiler: cl }
+          - { runtime: linux-x64, os: ubuntu-latest, lib-path: libtree-sitter.so }
+          - { runtime: osx-x64, os: macos-latest, lib-path: libtree-sitter.dylib }
+          - { runtime: win-x64, os: windows-latest, lib-path: Debug/tree-sitter.dll }
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -20,25 +20,22 @@ jobs:
         with:
           submodules: 'true'
 
-      - name: Install ninja
-        run: pip3 install ninja
-
       - name: build tree-sitter
         working-directory: tree-sitter
         run: |
           mkdir cmake_build
           cd cmake_build
-          cmake -GNinja -DCMAKE_C_COMPILER=${{ matrix.compiler }} ..
+          cmake ..
           cmake --build . -j 4
+          mkdir output
+          cp ${{ matrix.lib-path }} output
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: tree-sitter-${{ matrix.runtime }}
           path: |
-            tree-sitter/cmake_build/libtree-sitter.so
-            tree-sitter/cmake_build/libtree-sitter.dylib
-            tree-sitter/cmake_build/tree-sitter.dll
+            tree-sitter/cmake_build/output/*
 
   build-managed:
     needs: build-native
