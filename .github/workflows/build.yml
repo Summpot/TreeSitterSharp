@@ -21,7 +21,11 @@ jobs:
       
       - name: Install ninja
         run: pip install ninja
-        
+
+      - name: Remove mingw if windows
+        if: ${{ matrix.os == 'windows-latest' }} 
+        run: choco uninstall mingw
+
       - name: build tree-sitter
         working-directory: tree-sitter
         run: |
