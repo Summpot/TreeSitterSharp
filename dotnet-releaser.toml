@@ -1,0 +1,6 @@
+[msbuild]
+project = "TreeSitterSharp.sln"
+[github]
+user = "Summpot"
+repo = "TreeSitterSharp"
+version_prefix = "v"
