@@ -20,7 +20,7 @@ jobs:
           submodules: 'true'
       
       - name: Install ninja
-        run: pip install ninja
+        run: pip3 install ninja
 
       - name: Remove mingw if windows
         if: ${{ matrix.os == 'windows-latest' }} 
