@@ -12,19 +12,19 @@
       <Visible>false</Visible>
       <Link>%(FileName)%(Extension)</Link>
       <Pack>true</Pack>
-      <PackagePath>native\win-x64\libtree-sitter.dll</PackagePath>
+      <PackagePath>runtimes/win-x64/native/libtree-sitter.dll</PackagePath>
     </None>
     <None Include="native\linux-x64\libtree-sitter.so">
       <Visible>false</Visible>
       <Link>%(FileName)%(Extension)</Link>
       <Pack>true</Pack>
-      <PackagePath>native\linux-x64\libtree-sitter.so</PackagePath>
+      <PackagePath>/runtimes/linux-x64/native/libtree-sitter.so</PackagePath>
     </None>
     <None Include="native\osx-x64\libtree-sitter.dylib">
       <Visible>false</Visible>
       <Link>%(FileName)%(Extension)</Link>
       <Pack>true</Pack>
-      <PackagePath>native\osx-x64\libtree-sitter.dylib</PackagePath>
+      <PackagePath>/runtimes/osx-x64/native/libtree-sitter.dylib</PackagePath>
     </None>
   </ItemGroup>
 </Project>
