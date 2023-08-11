@@ -16,12 +16,15 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: Install ninja
+        run: pip install ninja
+          
       - name: build tree-sitter
         working-directory: tree-sitter
         run: |
           mkdir cmake_build
           cd cmake_build
-          cmake ..
+          cmake -GNinja ..
           cmake --build . -j 4
 
       - name: Upload Artifacts
@@ -31,7 +34,7 @@ jobs:
           path: |
             tree-sitter/cmake_build/libtree-sitter.so
             tree-sitter/cmake_build/libtree-sitter.dylib
-            tree-sitter/cmake_build/Debug/tree-sitter.dll
+            tree-sitter/cmake_build/tree-sitter.dll
 
             
           
