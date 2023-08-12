@@ -38,7 +38,7 @@ jobs:
 
       - name: Build tree-sitter
         run: |
-          build-native.ps1 -RID ${{ matrix.rid }}
+          ./build-native.ps1 -RID ${{ matrix.rid }}
         shell: pwsh
 
       - name: Run nuget pack
