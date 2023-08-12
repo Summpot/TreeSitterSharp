@@ -30,5 +30,5 @@ jobs:
       - name: Build tree-sitter
         working-directory: tree-sitter
         run: |
-          ./build-native.ps1 -RID ${{ matrix.rid }}
+          & ./build-native.ps1 -RID ${{ matrix.rid }}
         shell: pwsh
