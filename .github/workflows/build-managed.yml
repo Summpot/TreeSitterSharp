@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [ "*" ]
+    tags-ignore: [ "v*" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+          fetch-depth: 0
+
+      - name: Install .NET Sdk
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
+      
+      - name: Do release
+        run: |
+          dotnet tool install --global dotnet-releaser
+          dotnet-releaser build ./dotnet-releaser.toml
+  
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Artifacts
+          path: "artifacts-dotnet-releaser"

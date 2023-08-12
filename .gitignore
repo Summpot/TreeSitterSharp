@@ -365,3 +365,5 @@ FodyWeavers.xsd
 .idea
 
 artifacts-dotnet-releaser
+
+/cmake*/

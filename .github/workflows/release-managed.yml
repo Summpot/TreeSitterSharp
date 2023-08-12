@@ -38,7 +38,6 @@ jobs:
             tree-sitter/cmake_build/output/*
 
   build-managed:
-    needs: build-native
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
