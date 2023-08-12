@@ -46,4 +46,8 @@ jobs:
           nuget pack nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
           nuget push nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nupkg
 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Nuget Package
+          path: "*.nupkg"
       

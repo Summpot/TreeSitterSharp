@@ -49,4 +49,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Nuget Package
-          path: nupkgs/**/*.nupkg
+          path: "*.nupkg"
