@@ -27,6 +27,7 @@ jobs:
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           nuget-version: 'latest'
+          nuget-api-key-source: "https://api.nuget.org/v3/index.json"
 
       - name: Install ninja
         run: pip3 install ninja
@@ -44,7 +45,7 @@ jobs:
       - name: Run nuget pack
         run: |
           nuget pack nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
-          nuget push nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nupkg -Source nuget.org
+          nuget push nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nupkg
 
       - uses: actions/upload-artifact@v3
         with:

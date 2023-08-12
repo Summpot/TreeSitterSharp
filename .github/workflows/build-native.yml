@@ -28,6 +28,7 @@ jobs:
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           nuget-version: 'latest'
+          nuget-api-key-source: "https://api.nuget.org/v3/index.json"
 
       - name: Install ninja
         run: pip3 install ninja
