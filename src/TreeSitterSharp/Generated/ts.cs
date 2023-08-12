@@ -2,7 +2,9 @@ using System.Runtime.InteropServices;
 
 namespace TreeSitterSharp.Native
 {
+#pragma warning disable CS8981
     public static unsafe partial class ts
+#pragma warning restore CS8981
     {
         [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_new", ExactSpelling = true)]
         public static extern TSParser* parser_new();
