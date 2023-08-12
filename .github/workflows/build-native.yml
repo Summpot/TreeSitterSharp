@@ -3,10 +3,10 @@ name: Build Native
 on:
   push:
     paths:
-      - tree-sitter
-      - nupkgs/
-      - .github\workflows\build-native.yml
-      - .github\workflows\release-native.yml
+      - ./tree-sitter
+      - ./nupkgs/
+      - ./.github/workflows/build-native.yml
+      - ./.github/workflows/release-native.yml
     branches: [ "*" ]
     tags-ignore: [ "v*" ]
   workflow_dispatch: 
