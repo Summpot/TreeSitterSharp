@@ -44,10 +44,31 @@ jobs:
       - name: Run nuget pack
         run: |
           nuget pack nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
-          nuget push *.nupkg -Source https://api.nuget.org/v3/index.json
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Nupkgs
+          path: "*.nupkg"
+  push:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: Nupkgs
+
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          nuget-version: 'latest'
+      
+      - name: Run nuget pack
+        run: nuget pack nupkgs/libtree-sitter/libtree-sitter.nuspec
 
       - uses: actions/upload-artifact@v3
         with:
-          name: Nuget Package
+          name: Nupkgs
           path: "*.nupkg"
+      
+      - name: Run nuget push
+        run: nuget push *.nupkg -Source https://api.nuget.org/v3/index.json
       
