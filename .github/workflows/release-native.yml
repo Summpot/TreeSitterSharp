@@ -64,5 +64,6 @@ jobs:
           nuget-version: 'latest'
       
       - name: Run nuget push
-        run: nuget push *.nupkg -Source https://api.nuget.org/v3/index.json
+        run: gci -Filter *.nupkg |%{ nuget push $_.FullName -Source https://api.nuget.org/v3/index.json}
+        shell: pwsh
       
