@@ -3,7 +3,7 @@
   <metadata minClientVersion="2.12">
     <id>libtree-sitter</id>
     <version>0.20.8</version>
-    <authors>Max Brunsfeld</authors>
+    <authors>Summpot</authors>
     <owners>Summpot</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
