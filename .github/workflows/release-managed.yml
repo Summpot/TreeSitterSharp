@@ -1,43 +1,11 @@
-name: Release-Managed
+name: Release Managed
 
 on:
   push:
     tags: [ "v*" ]
 
 jobs:
-  build-native:
-    strategy:
-      matrix:
-        runtime: [ linux-x64, win-x64, osx-x64 ]
-        include:
-          - { runtime: linux-x64, os: ubuntu-latest, lib-path: libtree-sitter.so }
-          - { runtime: osx-x64, os: macos-latest, lib-path: libtree-sitter.dylib }
-          - { runtime: win-x64, os: windows-latest, lib-path: Debug/tree-sitter.dll }
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: 'true'
-
-      - name: build tree-sitter
-        working-directory: tree-sitter
-        run: |
-          mkdir cmake_build
-          cd cmake_build
-          cmake ..
-          cmake --build . -j 4
-          mkdir output
-          cp ${{ matrix.lib-path }} output
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: tree-sitter-${{ matrix.runtime }}
-          path: |
-            tree-sitter/cmake_build/output/*
-
-  build-managed:
+  build:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -49,24 +17,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           global-json-file: global.json
-
-      - name: Download tree-sitter for linux-x64
-        uses: actions/download-artifact@v3
-        with:
-          name: tree-sitter-linux-x64
-          path: src/TreeSitterSharp/native/linux-x64
-  
-      - name: Download tree-sitter for osx-x64
-        uses: actions/download-artifact@v3
-        with:
-          name: tree-sitter-osx-x64
-          path: src/TreeSitterSharp/native/osx-x64
-
-      - name: Download tree-sitter for win-x64
-        uses: actions/download-artifact@v3
-        with:
-          name: tree-sitter-win-x64
-          path: src/TreeSitterSharp/native/win-x64
       
       - name: Do release
         run: |

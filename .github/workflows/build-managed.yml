@@ -1,4 +1,4 @@
-name: Build-Managed
+name: Build Managed
 
 on:
   push:

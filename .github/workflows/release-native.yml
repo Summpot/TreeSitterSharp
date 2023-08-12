@@ -1,10 +1,10 @@
-name: Release-Native
+name: Release Native
 
 on:
   workflow_dispatch: 
 
 jobs:
-  build-native:
+  build:
     strategy:
       matrix:
         rid: [ linux-arm64, linux-x64, win-x64, win-x86, win-arm64 , osx-x64, osx-arm64 ]
@@ -50,6 +50,7 @@ jobs:
           name: Nupkgs
           path: "*.nupkg"
   push:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3

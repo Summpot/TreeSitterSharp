@@ -1,4 +1,4 @@
-name: Build-Native
+name: Build Native
 
 on:
   push:
