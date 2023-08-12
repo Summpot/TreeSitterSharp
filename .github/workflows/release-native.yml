@@ -50,7 +50,7 @@ jobs:
           name: Nupkgs
           path: "*.nupkg"
   push:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
         with:
