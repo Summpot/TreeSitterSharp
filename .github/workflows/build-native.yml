@@ -3,6 +3,8 @@ name: Build Native
 on:
   push:
     paths: tree-sitter
+    branches: [ "*" ]
+    tags-ignore: [ "v*" ]
   workflow_dispatch: 
 
 jobs:
@@ -46,7 +48,7 @@ jobs:
       - name: Run nuget pack
         run: |
           nuget pack nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
-          nuget pack nupkgs/libtree-sitter/libtree-sitter.nuspec
+          nuget pack nupkgs/libtree-sitter/libtree-sitter/libtree-sitter.nuspec
 
       - uses: actions/upload-artifact@v3
         with:
