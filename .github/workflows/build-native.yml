@@ -2,6 +2,7 @@ name: Build-Native
 
 on:
   push:
+    paths: tree-sitter
   workflow_dispatch: 
 
 jobs:
