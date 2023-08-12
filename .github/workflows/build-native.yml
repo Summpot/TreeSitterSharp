@@ -14,9 +14,9 @@ jobs:
           - { rid: linux-x64, os: ubuntu-latest }
           - { rid: osx-x64, os: macos-latest }
           - { rid: osx-arm64, os: macos-latest }
-          - { rid: win-x64, os: windows-latest }
-          - { rid: win-x86, os: windows-latest }
-          - { rid: win-arm64, os: windows-latest }
+          - { rid: win-x64, os: windows-latest, cross-arch: x64 }
+          - { rid: win-x86, os: windows-latest, cross-arch: amd64_x86 }
+          - { rid: win-arm64, os: windows-latest, cross-arch: amd64_arm64 }
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -29,6 +29,8 @@ jobs:
 
       - uses: ilammy/msvc-dev-cmd@v1
         if: ${{ matrix.os == 'windows-latest' }}
+        with:
+          arch: ${{ matrix.cross-arch }}
       
       - name: Build tree-sitter
         run: |
