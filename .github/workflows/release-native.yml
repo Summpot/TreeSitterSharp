@@ -43,7 +43,7 @@ jobs:
 
       - name: Run nuget pack
         run: |
-          nuget pack nupkgs\libtree-sitter\libtree-sitter.runtime.${{ matrix.rid }}\libtree-sitter.runtime.${{ matrix.rid }}.nuspec
-          nuget push nupkgs\libtree-sitter\libtree-sitter.runtime.${{ matrix.rid }}\libtree-sitter.runtime.${{ matrix.rid }}.nupkg
+          nuget pack nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
+          nuget push nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nupkg
 
       
