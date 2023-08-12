@@ -63,7 +63,7 @@ jobs:
           nuget-version: 'latest'
       
       - name: Run nuget pack
-        run: nuget pack nupkgs/libtree-sitter/libtree-sitter.nuspec
+        run: nuget pack nupkgs/libtree-sitter/libtree-sitter/libtree-sitter.nuspec
 
       - uses: actions/upload-artifact@v3
         with:
