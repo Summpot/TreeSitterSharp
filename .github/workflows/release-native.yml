@@ -27,6 +27,6 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
       
       - name: Build tree-sitter
-        working-directory: tree-sitter
         run: |
-          pwsh ./build-native.ps1 -RID ${{ matrix.rid }}
+          build-native.ps1 -RID ${{ matrix.rid }}
+        shell: pwsh
