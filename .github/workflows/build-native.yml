@@ -24,6 +24,9 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: Install ninja
+        run: pip3 install ninja
+
       - uses: ilammy/msvc-dev-cmd@master
         if: ${{ matrix.os == 'windows-latest' }}
       
