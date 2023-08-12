@@ -367,3 +367,8 @@ FodyWeavers.xsd
 artifacts-dotnet-releaser
 
 /cmake*/
+
+/nupkgs/**/libtree-sitter.dll
+/nupkgs/**/libtree-sitter.dylib
+/nupkgs/**/libtree-sitter.so
+/nupkgs/**/*.nupkg

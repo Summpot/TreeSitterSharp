@@ -1,0 +1,39 @@
+{
+  "runtimes": {
+    "linux-arm64": {
+      "libtree-sitter": {
+        "libtree-sitter.runtime.linux-arm64": "0.20.8"
+      }
+    },
+    "linux-x64": {
+      "libtree-sitter": {
+        "libtree-sitter.runtime.linux-x64": "0.20.8"
+      }
+    },
+    "osx-arm64": {
+      "libtree-sitter": {
+        "libtree-sitter.runtime.osx-arm64": "0.20.8"
+      }
+    },
+    "osx-x64": {
+      "libtree-sitter": {
+        "libtree-sitter.runtime.osx-x64": "0.20.8"
+      }
+    },
+    "win-arm64": {
+      "libtree-sitter": {
+        "libtree-sitter.runtime.win-arm64": "0.20.8"
+      }
+    },
+    "win-x64": {
+      "libtree-sitter": {
+        "libtree-sitter.runtime.win-x64": "0.20.8"
+      }
+    },
+    "win-x86": {
+      "libtree-sitter": {
+        "libtree-sitter.runtime.win-x86": "0.20.8"
+      }
+    }
+  }
+}

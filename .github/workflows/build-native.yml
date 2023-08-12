@@ -24,6 +24,11 @@ jobs:
         with:
           submodules: 'true'
 
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          nuget-version: 'latest'
+
       - name: Install ninja
         run: pip3 install ninja
 
@@ -36,3 +41,8 @@ jobs:
         run: |
           ./build-native.ps1 -RID ${{ matrix.rid }}
         shell: pwsh
+      
+      - name: Run nuget pack
+        run: |
+          nuget pack nupkgs\libtree-sitter\libtree-sitter.runtime.${{ matrix.rid }}\libtree-sitter.runtime.${{ matrix.rid }}.nuspec
+          nuget push nupkgs\libtree-sitter\libtree-sitter.runtime.${{ matrix.rid }}\libtree-sitter.runtime.${{ matrix.rid }}.nupkg
