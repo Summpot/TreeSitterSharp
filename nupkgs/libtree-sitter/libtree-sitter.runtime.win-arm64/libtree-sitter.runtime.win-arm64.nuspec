@@ -9,7 +9,7 @@
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/Summpot/tree-sitter</projectUrl>
     <description>win arm64 native library for libtree-sitter.</description>
-    <copyright>Copyright (c) 2018-2023 Max Brunsfeld</copyright>
+    <copyright>Copyright (c) 2023 Summpot</copyright>
     <repository type="git" url="https://github.com/tree-sitter/tree-sitter" branch="master" />
   </metadata>
   <files>

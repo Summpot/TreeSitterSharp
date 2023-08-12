@@ -9,6 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="libtree-sitter" Version="0.20.8" />
+    <PackageReference Include="libtree-sitter" Version="0.20.8"/>
   </ItemGroup>
 </Project>
