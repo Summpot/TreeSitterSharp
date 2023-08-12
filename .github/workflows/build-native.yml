@@ -1,6 +1,7 @@
-name: Build
+name: Build-Native
 
 on:
+  push:
   workflow_dispatch: 
 
 jobs:
