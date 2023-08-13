@@ -371,4 +371,4 @@ artifacts-dotnet-releaser
 /pkgs/**/libtree-sitter.dll
 /pkgs/**/libtree-sitter.dylib
 /pkgs/**/libtree-sitter.so
-/nupkgs
+/nupkgs/*.nupkg
