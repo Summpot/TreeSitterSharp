@@ -63,6 +63,7 @@ jobs:
           path: "*.nupkg"
 
   build-managed:
+    needs: build-native
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
