@@ -26,6 +26,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
+          fetch-depth: 0
+
+      - name: Run gitversion
+        run: |
+          dotnet tool install --global GitVersion.Tool
+          dotnet-gitversion
 
       - uses: nuget/setup-nuget@v1
         with:
@@ -42,13 +48,14 @@ jobs:
       
       - name: Build tree-sitter
         run: |
-          ./build-native.ps1 -RID ${{ matrix.rid }}
+          ./scripts/build-native.ps1 -RID ${{ matrix.rid }}
+          ./scripts/generate-nuspecs.ps1 -MainNuspec -RID ${{ matrix.rid }}
         shell: pwsh
       
       - name: Run nuget pack
         run: |
-          nuget pack pkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
-          nuget pack pkgs/libtree-sitter/libtree-sitter/libtree-sitter.nuspec
+          nuget pack nupkgs/nuspecs/.runtime.${{ matrix.rid }}.nuspec
+          nuget pack nupkgs/nuspecs/libtree-sitter.nuspec
 
       - uses: actions/upload-artifact@v3
         with:

@@ -39,13 +39,14 @@ jobs:
 
       - name: Build tree-sitter
         run: |
-          ./build-native.ps1 -RID ${{ matrix.rid }}
+          ./scripts/build-native.ps1 -RID ${{ matrix.rid }}
+          ./scripts/generate-nuspecs.ps1 -MainNuspec -RID ${{ matrix.rid }}
         shell: pwsh
 
       - name: Run nuget pack
         run: |
-          nuget pack nupkgs/libtree-sitter/libtree-sitter.runtime.${{ matrix.rid }}/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
-          nuget pack nupkgs/libtree-sitter/libtree-sitter/libtree-sitter.nuspec
+          nuget pack nupkgs/nuspecs/.runtime.${{ matrix.rid }}.nuspec
+          nuget pack nupkgs/nuspecs/libtree-sitter.nuspec
           
       - uses: actions/upload-artifact@v3
         with:
