@@ -368,7 +368,7 @@ artifacts-dotnet-releaser
 
 /cmake*/
 
-/nupkgs/**/libtree-sitter.dll
-/nupkgs/**/libtree-sitter.dylib
-/nupkgs/**/libtree-sitter.so
-/nupkgs/**/*.nupkg
+/pkgs/**/libtree-sitter.dll
+/pkgs/**/libtree-sitter.dylib
+/pkgs/**/libtree-sitter.so
+/nupkgs

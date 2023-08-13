@@ -26,8 +26,8 @@ Push-Location $CMakeBuildDir
 & cmake --build .
 Pop-Location
 switch ($OS) {
-    "linux" { Copy-Item "$CMakeBuildDir/libtree-sitter.so" "nupkgs/libtree-sitter/libtree-sitter.runtime.$RID/libtree-sitter.so" }
-    "osx" { Copy-Item "$CMakeBuildDir/libtree-sitter.dylib" "nupkgs/libtree-sitter/libtree-sitter.runtime.$RID/libtree-sitter.dylib" }
-    "win" { Copy-Item "$CMakeBuildDir/tree-sitter.dll" "nupkgs/libtree-sitter/libtree-sitter.runtime.$RID/libtree-sitter.dll" }
+    "linux" { Copy-Item "$CMakeBuildDir/libtree-sitter.so" "pkgs/libtree-sitter/libtree-sitter.runtime.$RID/libtree-sitter.so" }
+    "osx" { Copy-Item "$CMakeBuildDir/libtree-sitter.dylib" "pkgs/libtree-sitter/libtree-sitter.runtime.$RID/libtree-sitter.dylib" }
+    "win" { Copy-Item "$CMakeBuildDir/tree-sitter.dll" "pkgs/libtree-sitter/libtree-sitter.runtime.$RID/libtree-sitter.dll" }
     Default {}
 }

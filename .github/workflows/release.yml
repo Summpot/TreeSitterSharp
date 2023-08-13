@@ -1,10 +1,11 @@
-name: Release Native
+name: Release
 
 on:
-  workflow_dispatch: 
+  push:
+    tags: [ "v*" ]
 
 jobs:
-  build:
+  build-native:
     strategy:
       matrix:
         rid: [ linux-arm64, linux-x64, win-x64, win-x86, win-arm64 , osx-x64, osx-arm64 ]
@@ -50,8 +51,38 @@ jobs:
         with:
           name: Nupkgs
           path: "*.nupkg"
+
+  build-managed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+          fetch-depth: 0
+      
+      - uses: actions/download-artifact@v3
+        with:
+          name: Nupkgs
+          path: ./nupkgs
+
+      - name: Install .NET Sdk
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
+      
+      - name: Do release
+        run: |
+          dotnet tool install --global dotnet-releaser
+          dotnet-releaser run --nuget-token "${{secrets.NUGET_API_KEY}}" --github-token "${{secrets.GITHUB_TOKEN}}" ./dotnet-releaser.toml
+  
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Artifacts
+          path: "artifacts-dotnet-releaser"
+
   push:
-    needs: build
+    needs: build-managed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
@@ -66,4 +97,3 @@ jobs:
       - name: Run nuget push
         run: gci -Filter *.nupkg |%{ nuget push $_.FullName -Source https://api.nuget.org/v3/index.json}
         shell: pwsh
-      
