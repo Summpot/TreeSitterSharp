@@ -7,6 +7,7 @@ Param(
 )
 $ProjectDir = Resolve-Path (Join-Path $PWD $ProjectDir)
 $Version = . "$PSScriptRoot/Get-GitVersion.ps1"
+$Version
 $NuspecsDir = Join-Path $BuildDir "nuspecs"
 $CMakeBuildDir = Join-Path $BuildDir "cmake-build"
 . "$PSScriptRoot/Build-Native.ps1" -RID $RID -CMakeBuildDir $CMakeBuildDir -OutputDir $NuspecsDir -ProjectDir $ProjectDir
