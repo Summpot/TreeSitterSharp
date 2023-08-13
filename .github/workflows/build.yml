@@ -27,11 +27,15 @@ jobs:
         with:
           submodules: 'true'
           fetch-depth: 0
+      
+      - name: Install .NET Sdk
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
 
-      - name: Run gitversion
+      - name: Install gitversions
         run: |
           dotnet tool install --global GitVersion.Tool
-          dotnet-gitversion
 
       - uses: nuget/setup-nuget@v1
         with:

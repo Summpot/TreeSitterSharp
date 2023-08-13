@@ -24,6 +24,15 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: Install .NET Sdk
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
+  
+      - name: Install gitversions
+        run: |
+          dotnet tool install --global GitVersion.Tool
+          
       - uses: nuget/setup-nuget@v1
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
