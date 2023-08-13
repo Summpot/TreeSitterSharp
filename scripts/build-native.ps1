@@ -24,6 +24,7 @@ Push-Location $CMakeBuildDir
 & cmake -GNinja -DCMAKE_SYSTEM_NAME="$SystemName" -DCMAKE_SYSTEM_PROCESSOR="$SystemProcessor" "../tree-sitter"
 & cmake --build .
 Pop-Location
+New-Item -Path "nupkgs/nuspecs/$RID" -ItemType Directory -Force
 switch ($OS) {
     "linux" { Copy-Item "$CMakeBuildDir/libtree-sitter.so" "nupkgs/nuspecs/$RID/libtree-sitter.so" }
     "osx" { Copy-Item "$CMakeBuildDir/libtree-sitter.dylib" "nupkgs/nuspecs/$RID/libtree-sitter.dylib" }
