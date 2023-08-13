@@ -11,10 +11,10 @@ if (-not (Test-Path $OutputDir)) {
 
 Copy-Item -Path "LICENSE.txt" -Destination $OutputDir
 
-if ($MainNuspec) {
-    $NuspecName = "$LibraryName.nuspec"
-    $NuspecPath = Join-Path $OutputDir $NuspecName
-    $Nuspec = @"
+
+$NuspecName = "$LibraryName.nuspec"
+$NuspecPath = Join-Path $OutputDir $NuspecName
+$Nuspec = @"
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata minClientVersion="2.12">
@@ -44,5 +44,4 @@ if ($MainNuspec) {
   </files>
 </package>
 "@
-    Out-File -InputObject $Nuspec -FilePath $NuspecPath
-}
+Out-File -InputObject $Nuspec -FilePath $NuspecPath
