@@ -61,7 +61,7 @@ if ($RID) {
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata minClientVersion="2.12">
     <id>libtree-sitter.runtime.$RID</id>
-    <version>$version$</version>
+    <version>$version</version>
     <authors>Summpot</authors>
     <owners>Summpot</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
