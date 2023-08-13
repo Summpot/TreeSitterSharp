@@ -368,5 +368,5 @@ artifacts-dotnet-releaser
 
 /cmake*/
 
-/nupkgs
-!/nupkgs/nuspecs/placeholder.md
+/nupkgs/*
+!/nupkgs/placeholder.md
