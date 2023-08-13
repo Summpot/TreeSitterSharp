@@ -52,7 +52,7 @@ jobs:
       
       - name: Build tree-sitter
         run: |
-          ./script/build.ps1 -ProjectDir tree-sitter -RID ${{ matrix.rid }} -BuildDir ./build -LibraryName libtree-sitter
+          ./scripts/build.ps1 -ProjectDir tree-sitter -RID ${{ matrix.rid }} -BuildDir ./build -LibraryName libtree-sitter
         shell: pwsh
       
       - name: Run nuget pack
