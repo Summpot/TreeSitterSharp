@@ -58,7 +58,7 @@ jobs:
       
       - name: Run nuget pack
         run: |
-          nuget pack nupkgs/nuspecs/.runtime.${{ matrix.rid }}.nuspec
+          nuget pack nupkgs/nuspecs/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
           nuget pack nupkgs/nuspecs/libtree-sitter.nuspec
 
       - uses: actions/upload-artifact@v3

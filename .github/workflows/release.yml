@@ -32,7 +32,7 @@ jobs:
       - name: Install gitversions
         run: |
           dotnet tool install --global GitVersion.Tool
-          
+
       - uses: nuget/setup-nuget@v1
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
@@ -54,7 +54,7 @@ jobs:
 
       - name: Run nuget pack
         run: |
-          nuget pack nupkgs/nuspecs/.runtime.${{ matrix.rid }}.nuspec
+          nuget pack nupkgs/nuspecs/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
           nuget pack nupkgs/nuspecs/libtree-sitter.nuspec
           
       - uses: actions/upload-artifact@v3
