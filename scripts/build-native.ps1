@@ -1,11 +1,13 @@
 [CmdletBinding(PositionalBinding = $false)]
 Param(
-    [string] $RID = ""
+    [string] $RID,
+    [string] $ProjectDir,
+    [string] $CMakeBuildDir,
+    [string] $OutputDir
 )
 
-$ErrorActionPreference = "Continue"
-$CMakeBuildDir = "cmake-build-$RID"
-New-Item -Path $CMakeBuildDir -ItemType Directory -Force
+$BuildDir = Join-Path $CMakeBuildDir "build-$RID"
+New-Item -Path $BuildDir -ItemType Directory -Force | Out-Null
 $OS, $Arch = $RID -split "-"
 $SystemName = switch ($OS) {
     "linux" { "Linux" }
@@ -20,14 +22,13 @@ $SystemProcessor = switch ($Arch) {
     "arm64" { "aarch64" }
     Default {}
 }
-Push-Location $CMakeBuildDir
-& cmake -GNinja -DCMAKE_SYSTEM_NAME="$SystemName" -DCMAKE_SYSTEM_PROCESSOR="$SystemProcessor" "../tree-sitter"
+Push-Location $BuildDir
+& cmake -GNinja -DCMAKE_SYSTEM_NAME="$SystemName" -DCMAKE_SYSTEM_PROCESSOR="$SystemProcessor" "$ProjectDir"
 & cmake --build .
 Pop-Location
-New-Item -Path "nupkgs/nuspecs/$RID" -ItemType Directory -Force
 switch ($OS) {
-    "linux" { Copy-Item "$CMakeBuildDir/libtree-sitter.so" "nupkgs/nuspecs/$RID/libtree-sitter.so" }
-    "osx" { Copy-Item "$CMakeBuildDir/libtree-sitter.dylib" "nupkgs/nuspecs/$RID/libtree-sitter.dylib" }
-    "win" { Copy-Item "$CMakeBuildDir/tree-sitter.dll" "nupkgs/nuspecs/$RID/libtree-sitter.dll" }
+    "linux" { Copy-Item "$BuildDir/libtree-sitter.so" "$OutputDir/libtree-sitter.so" }
+    "osx" { Copy-Item "$BuildDir/libtree-sitter.dylib" "$OutputDir/libtree-sitter.dylib" }
+    "win" { Copy-Item "$BuildDir/tree-sitter.dll" "$OutputDir/libtree-sitter.dll" }
     Default {}
 }

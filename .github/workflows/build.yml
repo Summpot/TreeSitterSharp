@@ -52,8 +52,7 @@ jobs:
       
       - name: Build tree-sitter
         run: |
-          ./scripts/build-native.ps1 -RID ${{ matrix.rid }}
-          ./scripts/generate-nuspecs.ps1 -MainNuspec -RID ${{ matrix.rid }}
+          ./script/build.ps1 -ProjectDir tree-sitter -RID ${{ matrix.rid }} -BuildDir ./build -LibraryName libtree-sitter
         shell: pwsh
       
       - name: Run nuget pack
