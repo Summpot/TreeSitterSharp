@@ -154,10 +154,10 @@ function Build-NodeGypProject {
         [string] $RID
     )
     $OS, $Arch = $RID -split "-"
-    $extension = switch ($OS) {
-        "linux" { ".so" }
-        "osx" { ".dylib" }
-        "win" { ".dll" }
+    $TargetName = switch ($OS) {
+        "linux" { "lib$($ProjectDir.Name).so" }
+        "osx" { "lib$($ProjectDir.Name).dylib" }
+        "win" { "$($ProjectDir.Name).dll" }
         Default {}
     }
     $RIDDir = Join-Path $OutputDir $RID
@@ -169,8 +169,7 @@ function Build-NodeGypProject {
     & node-gyp build
     $Lib = Get-ChildItem -Recurse -Filter *.node -File | Select-Object -First 1
     $Lib | Format-Table -Property Name
-    $TargetPath = Join-Path $RIDDir "lib$($ProjectDir.Name)$extension"
-    Copy-Item -Path $Lib.FullName -Destination $TargetPath
-    Get-Item -Path $TargetPath
+    $TargetPath = Join-Path $RIDDir $TargetName
+    Copy-Item -Path $Lib -Destination $TargetPath
     Pop-Location
 }
