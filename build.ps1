@@ -11,4 +11,8 @@ $ParsersDir = Join-Path $NativeDir "parsers"
 New-MainNuspec -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
 New-Nuspec -RID $RID -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
 Build-CMakeProject -RID $RID -CMakeBuildDir $CMakeBuildDir -OutputDir $NuspecsDir -ProjectDir $TreeSitterDir
-Get-ChildItem $ParsersDir | ForEach-Object { Build-NodeGypProject -ProjectDir $_ -OutputDir $NuspecsDir -RID $RID}
+Get-ChildItem $ParsersDir | ForEach-Object { 
+    Build-NodeGypProject -ProjectDir $_ -OutputDir $NuspecsDir -RID $RID 
+    New-MainNuspec -OutputDir $NuspecsDir -Version $Version -ProjectName $_.Name
+    New-Nuspec -RID $RID -OutputDir $NuspecsDir -Version $Version -ProjectName $_.Name
+}
