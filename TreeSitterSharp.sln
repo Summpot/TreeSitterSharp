@@ -18,6 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.C", "src\TreeSitterSharp.C\TreeSitterSharp.C.csproj", "{4612E944-9A22-4D15-8065-3B65E707698F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Cpp", "src\TreeSitterSharp.Cpp\TreeSitterSharp.Cpp.csproj", "{1D6EF250-CDDF-47BB-AD6C-FA6CD5E683CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Lua", "src\TreeSitterSharp.Lua\TreeSitterSharp.Lua.csproj", "{4C839950-8118-4958-A0AE-1569A71D4A11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +34,18 @@ Global
 		{C794DAB1-EF44-4236-BD00-46CF8738B17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C794DAB1-EF44-4236-BD00-46CF8738B17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C794DAB1-EF44-4236-BD00-46CF8738B17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4612E944-9A22-4D15-8065-3B65E707698F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4612E944-9A22-4D15-8065-3B65E707698F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4612E944-9A22-4D15-8065-3B65E707698F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4612E944-9A22-4D15-8065-3B65E707698F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D6EF250-CDDF-47BB-AD6C-FA6CD5E683CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6EF250-CDDF-47BB-AD6C-FA6CD5E683CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6EF250-CDDF-47BB-AD6C-FA6CD5E683CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6EF250-CDDF-47BB-AD6C-FA6CD5E683CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C839950-8118-4958-A0AE-1569A71D4A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C839950-8118-4958-A0AE-1569A71D4A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C839950-8118-4958-A0AE-1569A71D4A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C839950-8118-4958-A0AE-1569A71D4A11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
