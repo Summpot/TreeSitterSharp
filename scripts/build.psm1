@@ -146,5 +146,18 @@ function Build-CMakeProject {
 }
 
 function Build-NodeGypProject {
-    
+    Param(
+        [string] $ProjectDir,
+        [string] $OutputDir,
+        [string] $RID
+    )
+    $RIDDir = Join-Path $OutputDir $RID
+    New-Directory $RIDDir
+    Push-Location $ProjectDir
+    & pnpm install
+    & tree-sitter generate
+    & node-gyp configure
+    & node-gyp build
+    Get-ChildItem -Recurse -Filter *.node | ForEach-Object { Copy-Item $_ (Join-Path $RIDDir "$($_.BaseName).$($_.Extension)") }
+    Pop-Location
 }
