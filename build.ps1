@@ -8,7 +8,6 @@ $CMakeBuildDir = Join-Path $BuildDir "cmake-build"
 $NativeDir = Join-Path $PSScriptRoot "native"
 $TreeSitterDir = Join-Path $NativeDir "tree-sitter"
 $ParsersDir = Join-Path $NativeDir "parsers"
-$ParsersDir
 New-MainNuspec -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
 New-Nuspec -RID $RID -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
 Build-CMakeProject -RID $RID -CMakeBuildDir $CMakeBuildDir -OutputDir $NuspecsDir -ProjectDir $TreeSitterDir
