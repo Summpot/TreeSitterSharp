@@ -50,6 +50,9 @@ jobs:
         with:
           arch: ${{ matrix.cross-arch }}
       
+      - name: Install pnpm tree-sitter
+        run: npm install pnpm tree-sitter -g  
+          
       - name: Build tree-sitter
         env:
           RID: ${{ matrix.rid }}
