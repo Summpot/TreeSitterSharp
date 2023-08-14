@@ -158,6 +158,8 @@ function Build-NodeGypProject {
     & tree-sitter generate
     & node-gyp configure
     & node-gyp build
-    Get-ChildItem -Recurse -Filter *.node | Select-Object -First 1 | ForEach-Object { Copy-Item -Path $_.FullName -Destination (Join-Path $RIDDir "$($ProjectDir.Name).$($_.Extension)")}
+    $Lib = Get-ChildItem -Recurse -Filter *.node | Select-Object -First 1
+    $Lib
+    Copy-Item -Path $_.FullName -Destination (Join-Path $RIDDir "$($ProjectDir.Name).$($_.Extension)")
     Pop-Location
 }
