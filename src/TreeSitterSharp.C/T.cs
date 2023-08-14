@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TreeSitterSharp.C
 {
-    internal class TS
+    internal class Ts
     {
     }
 }
