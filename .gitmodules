@@ -7,9 +7,6 @@
 [submodule "native/parsers/tree-sitter-cpp"]
 	path = native/parsers/tree-sitter-cpp
 	url = https://github.com/tree-sitter/tree-sitter-cpp
-[submodule "native/parsers/tree-sitter-c-sharp"]
-	path = native/parsers/tree-sitter-c-sharp
-	url = https://github.com/tree-sitter/tree-sitter-c-sharp
 [submodule "native/parsers/tree-sitter-javascript"]
 	path = native/parsers/tree-sitter-javascript
 	url = https://github.com/tree-sitter/tree-sitter-javascript
