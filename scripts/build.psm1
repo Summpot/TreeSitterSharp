@@ -160,6 +160,6 @@ function Build-NodeGypProject {
     & node-gyp build
     $Lib = Get-ChildItem -Recurse -Filter *.node -File | Select-Object -First 1
     $Lib
-    Copy-Item -Path $_.FullName -Destination (Join-Path $RIDDir "$($ProjectDir.Name).$($_.Extension)")
+    Copy-Item -Path $Lib.FullName -Destination (Join-Path $RIDDir "$($ProjectDir.Name).$($Lib.Extension)")
     Pop-Location
 }
