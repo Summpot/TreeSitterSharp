@@ -50,8 +50,8 @@ jobs:
         with:
           arch: ${{ matrix.cross-arch }}
       
-      - name: Install pnpm tree-sitter
-        run: npm install pnpm tree-sitter-cli -g  
+      - name: Install pnpm tree-sitter-cli node-gyp
+        run: npm install pnpm tree-sitter-cli node-gyp -g  
 
       - name: Build tree-sitter
         env:
