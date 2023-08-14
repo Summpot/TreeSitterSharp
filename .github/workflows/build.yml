@@ -54,7 +54,7 @@ jobs:
         env:
           RID: ${{ matrix.rid }}
         run: |
-          .build.ps1
+          ./build.ps1
         shell: pwsh
       
       - name: Run nuget pack
