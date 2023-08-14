@@ -48,16 +48,17 @@ jobs:
           arch: ${{ matrix.cross-arch }}
 
       - name: Build tree-sitter
+        env:
+          RID: ${{ matrix.rid }}
         run: |
-          ./scripts/build-native.ps1 -RID ${{ matrix.rid }}
-          ./scripts/generate-nuspecs.ps1 -MainNuspec -RID ${{ matrix.rid }}
+          ./build.ps1
         shell: pwsh
-
+    
       - name: Run nuget pack
         run: |
-          nuget pack nupkgs/nuspecs/libtree-sitter.runtime.${{ matrix.rid }}.nuspec
-          nuget pack nupkgs/nuspecs/libtree-sitter.nuspec
-          
+          Get-ChildItem -Recurse -Filter *.nuspec | Foreach-Object { nuget pack $_.FullName }
+        shell: pwsh
+
       - uses: actions/upload-artifact@v3
         with:
           name: Nupkgs
@@ -107,5 +108,5 @@ jobs:
           nuget-version: 'latest'
       
       - name: Run nuget push
-        run: gci -Filter *.nupkg |%{ nuget push $_.FullName -Source https://api.nuget.org/v3/index.json}
+        run: Get-ChildItem -Filter *.nupkg | Foreach-Object { nuget push $_.FullName -Source https://api.nuget.org/v3/index.json}
         shell: pwsh
