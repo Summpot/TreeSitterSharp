@@ -92,7 +92,7 @@ function New-Nuspec {
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/Summpot/tree-sitter</projectUrl>
-    <description>linux arm64 native library for libtree-sitter.</description>
+    <description>linux arm64 native library for lib$ProjectName.</description>
     <copyright>Copyright (c) 2023 Summpot</copyright>
     <repository type="git" url="https://github.com/Summpot/tree-sitter" branch="master" />
   </metadata>
@@ -158,6 +158,6 @@ function Build-NodeGypProject {
     & tree-sitter generate
     & node-gyp configure
     & node-gyp build
-    Get-ChildItem -Recurse -Filter *.node | ForEach-Object { Copy-Item $_ (Join-Path $RIDDir "$($_.BaseName).$($_.Extension)") }
+    Get-ChildItem -Recurse -Filter *.node | Select-Object -First | Copy-Item $_ (Join-Path $RIDDir "$($ProjectDir.Name).$($_.Extension)")
     Pop-Location
 }
