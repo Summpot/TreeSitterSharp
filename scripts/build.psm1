@@ -53,6 +53,7 @@ function New-MainNuspec {
 </package>
 "@
     Out-File -InputObject $Nuspec -FilePath $NuspecPath -Force
+    Get-Item -Path $NuspecPath
 }
 
 function New-Nuspec {
@@ -103,7 +104,7 @@ function New-Nuspec {
 </package>
 "@
     Out-File -InputObject $Nuspec -FilePath $NuspecPath -Force
-    Write-Output "Created $NuspecPath"
+    Get-Item -Path $NuspecPath
 }
 
 function Build-CMakeProject {
@@ -161,6 +162,8 @@ function Build-NodeGypProject {
     & node-gyp build
     $Lib = Get-ChildItem -Recurse -Filter *.node -File | Select-Object -First 1
     $Lib
-    Copy-Item -Path $Lib.FullName -Destination (Join-Path $RIDDir "$($ProjectDir.Name).$($Lib.Extension)")
+    $TargetPath = Join-Path $RIDDir "$($ProjectDir.Name).$($Lib.Extension)"
+    Copy-Item -Path $Lib.FullName -Destination ()
+    Get-Item -Path $TargetPath
     Pop-Location
 }

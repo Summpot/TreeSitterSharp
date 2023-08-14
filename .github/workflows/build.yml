@@ -71,7 +71,9 @@ jobs:
 
       - name: Run nuget pack
         run: |
-          Get-ChildItem -Recurse -Filter *.nuspec | Foreach-Object { $_; nuget pack $_.FullName }
+          $Nuspecs = Get-ChildItem -Recurse -Filter *.nuspec
+          $Nuspecs
+          $Nuspecs | Foreach-Object { $_; nuget pack $_.FullName }
         shell: pwsh
 
       - uses: actions/upload-artifact@v3
