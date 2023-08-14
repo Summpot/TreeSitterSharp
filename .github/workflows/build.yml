@@ -62,7 +62,7 @@ jobs:
       
       - name: Run nuget pack
         run: |
-          nuget pack build/nuspecs/*.nuspec
+          nuget pack build/nuspecs/**/*.nuspec
 
       - uses: actions/upload-artifact@v3
         with:
