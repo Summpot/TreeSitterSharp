@@ -73,6 +73,7 @@ jobs:
         run: |
           $Nuspecs = Get-ChildItem -Recurse -Filter *.nuspec -File
           $Nuspecs | Format-Table -Property Name
+          Get-ChildItem -Recurse -File| Format-Table -Property Name,FullName
           $Nuspecs | Foreach-Object { $_; nuget pack $_.FullName }
         shell: pwsh
 
