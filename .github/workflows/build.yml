@@ -51,8 +51,10 @@ jobs:
           arch: ${{ matrix.cross-arch }}
       
       - name: Build tree-sitter
+        env:
+          RID: ${{ matrix.rid }}
         run: |
-          ./scripts/build.ps1 -ProjectDir tree-sitter -RID ${{ matrix.rid }} -BuildDir ./build -LibraryName libtree-sitter
+          .build.ps1
         shell: pwsh
       
       - name: Run nuget pack
