@@ -71,8 +71,8 @@ jobs:
 
       - name: Run nuget pack
         run: |
-          $Nuspecs = Get-ChildItem -Recurse -Filter *.nuspec
-          $Nuspecs
+          $Nuspecs = Get-ChildItem -Recurse -Filter *.nuspec -File
+          $Nuspecs | Format-Table -Property Name
           $Nuspecs | Foreach-Object { $_; nuget pack $_.FullName }
         shell: pwsh
 

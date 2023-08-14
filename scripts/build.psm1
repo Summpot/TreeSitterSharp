@@ -161,7 +161,7 @@ function Build-NodeGypProject {
     & node-gyp configure
     & node-gyp build
     $Lib = Get-ChildItem -Recurse -Filter *.node -File | Select-Object -First 1
-    $Lib
+    $Lib | Format-Table -Property Name
     $TargetPath = Join-Path $RIDDir "$($ProjectDir.Name).$($Lib.Extension)"
     Copy-Item -Path $Lib.FullName -Destination $TargetPath
     Get-Item -Path $TargetPath
