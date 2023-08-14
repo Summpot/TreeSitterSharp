@@ -1,14 +1,14 @@
 namespace TreeSitterSharp.Native
 {
-    public partial struct TSSymbolMetadata
+    public partial struct TsSymbolMetadata
     {
         [NativeTypeName("bool")]
-        public byte visible;
+        public byte Visible;
 
         [NativeTypeName("bool")]
-        public byte named;
+        public byte Named;
 
         [NativeTypeName("bool")]
-        public byte supertype;
+        public byte Supertype;
     }
 }

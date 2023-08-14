@@ -1,17 +1,17 @@
 namespace TreeSitterSharp.Native
 {
-    public unsafe partial struct TSQueryMatch
+    public unsafe partial struct TsQueryMatch
     {
         [NativeTypeName("uint32_t")]
-        public uint id;
+        public uint Id;
 
         [NativeTypeName("uint16_t")]
-        public ushort pattern_index;
+        public ushort PatternIndex;
 
         [NativeTypeName("uint16_t")]
-        public ushort capture_count;
+        public ushort CaptureCount;
 
         [NativeTypeName("const TSQueryCapture *")]
-        public TSQueryCapture* captures;
+        public TsQueryCapture* Captures;
     }
 }

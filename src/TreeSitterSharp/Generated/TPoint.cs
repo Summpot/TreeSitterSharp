@@ -1,11 +1,11 @@
 namespace TreeSitterSharp.Native
 {
-    public partial struct TSPoint
+    public partial struct TsPoint
     {
         [NativeTypeName("uint32_t")]
-        public uint row;
+        public uint Row;
 
         [NativeTypeName("uint32_t")]
-        public uint column;
+        public uint Column;
     }
 }

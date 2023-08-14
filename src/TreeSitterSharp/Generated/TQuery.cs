@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native
 {
-    public partial struct TSQueryCursor
+    public partial struct TsQuery
     {
     }
 }

@@ -7,4 +7,12 @@
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="libtree-sitter-c" Version="0.3.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TreeSitterSharp\TreeSitterSharp.csproj" />
+  </ItemGroup>
+
 </Project>
