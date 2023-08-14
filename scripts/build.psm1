@@ -144,3 +144,7 @@ function Build-CMakeProject {
         Default {}
     }
 }
+
+function Build-NodeGypProject {
+    
+}

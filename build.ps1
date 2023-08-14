@@ -11,3 +11,11 @@ $ParsersDir = Join-Path $NativeDir "parsers"
 New-MainNuspec -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
 New-Nuspec -RID $RID -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
 Build-CMakeProject -RID $RID -CMakeBuildDir $CMakeBuildDir -OutputDir $NuspecsDir -ProjectDir $TreeSitterDir
+foreach($parserDir in Get-ChildItem $ParsersDir){
+    Push-Location $parserDir
+    & pnpm install
+    & tree-sitter generate
+    & node-gyp configure
+    & node-gyp build
+    Pop-Location
+}
