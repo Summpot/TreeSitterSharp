@@ -103,6 +103,7 @@ function New-Nuspec {
 </package>
 "@
     Out-File -InputObject $Nuspec -FilePath $NuspecPath -Force
+    Write-Output "Created $NuspecPath"
 }
 
 function Build-CMakeProject {
