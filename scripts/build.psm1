@@ -147,7 +147,7 @@ function Build-CMakeProject {
 
 function Build-NodeGypProject {
     Param(
-        [string] $ProjectDir,
+        $ProjectDir,
         [string] $OutputDir,
         [string] $RID
     )
