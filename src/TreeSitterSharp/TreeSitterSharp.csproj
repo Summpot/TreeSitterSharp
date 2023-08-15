@@ -8,6 +8,6 @@
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="libtree-sitter" Version="0.3.8" />
+    <PackageReference Include="libtree-sitter" Version="*" />
   </ItemGroup>
 </Project>
