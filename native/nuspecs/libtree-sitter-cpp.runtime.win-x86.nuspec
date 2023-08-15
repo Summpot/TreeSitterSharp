@@ -14,6 +14,6 @@
   </metadata>
   <files>
     <file src="LICENSE.TXT" target="LICENSE.TXT" />
-    <file src="win-x86/libtree-sitter-cpp.dll" target="runtimes\win-x86\native\liblibtree-sitter-cpp.dll" />
+    <file src="win-x86/tree-sitter-cpp.dll" target="runtimes\win-x86\native\liblibtree-sitter-cpp.dll" />
   </files>
 </package>
