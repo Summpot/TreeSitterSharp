@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
-  <metadata minClientVersion="2.12">
+  <metadata minClientVersion="3.3">
     <id>libtree-sitter-c.runtime.win-x64</id>
-    <version>0.3.8</version>
+    <version>0.3.9+7</version>
     <authors>Summpot</authors>
     <owners>Summpot</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -14,6 +14,6 @@
   </metadata>
   <files>
     <file src="LICENSE.TXT" target="LICENSE.TXT" />
-    <file src="win-x64/tree-sitter-c.dll" target="runtimes\win-x64\native\libtree-sitter-c.dll" />
+    <file src="win-x64/libtree-sitter-c.dll" target="runtimes\win-x64\native\liblibtree-sitter-c.dll" />
   </files>
 </package>
