@@ -4,6 +4,7 @@ namespace TreeSitterSharp.C.Tests;
 
 public class UnitTest1
 {
+    [Fact]
     public unsafe void Test1()
     {
         TSParser* parser = Ts.parser_new();

@@ -1,12 +1,12 @@
-[submodule "native/tree-sitter"]
-	path = native/tree-sitter
-	url = https://github.com/Summpot/tree-sitter.git
-[submodule "native/parsers/tree-sitter-c"]
-	path = native/parsers/tree-sitter-c
+[submodule "native/sources/tree-sitter"]
+	path = native/sources/tree-sitter
+	url = https://github.com/Summpot/tree-sitter
+[submodule "native/sources/tree-sitter-c"]
+	path = native/sources/tree-sitter-c
 	url = https://github.com/tree-sitter/tree-sitter-c
-[submodule "native/parsers/tree-sitter-cpp"]
-	path = native/parsers/tree-sitter-cpp
+[submodule "native/sources/tree-sitter-cpp"]
+	path = native/sources/tree-sitter-cpp
 	url = https://github.com/tree-sitter/tree-sitter-cpp
-[submodule "native/parsers/tree-sitter-lua"]
-	path = native/parsers/tree-sitter-lua
+[submodule "native/sources/tree-sitter-lua"]
+	path = native/sources/tree-sitter-lua
 	url = https://github.com/Azganoth/tree-sitter-lua

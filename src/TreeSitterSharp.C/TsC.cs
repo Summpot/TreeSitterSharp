@@ -10,7 +10,7 @@ namespace TreeSitterSharp.C
 {
     public partial class TsC
     {
-        [DllImport("libtree-sitter-c", EntryPoint = "tree_sitter_c", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern unsafe TSLanguage* tree_sitter_c();
+        [DllImport("libtree-sitter-c", EntryPoint = "tree_sitter_c", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true,SetLastError = true)]
+        public static extern unsafe void* tree_sitter_c();
     }
 }
