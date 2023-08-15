@@ -8,5 +8,9 @@
     <PackageVersion Include="libtree-sitter-cpp" Version="0.3.15" />
     <PackageVersion Include="libtree-sitter-lua" Version="0.3.15" />
     <PackageVersion Include="GitVersion.MsBuild" Version="5.12.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageVersion Include="xunit" Version="2.4.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
   </ItemGroup>
 </Project>
