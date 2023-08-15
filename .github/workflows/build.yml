@@ -35,7 +35,7 @@ jobs:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           nuget-version: "latest"
 
-      - name: Install ninja
+      - name: Install ninja meson
         run: pip3 install ninja meson
 
       - uses: ilammy/msvc-dev-cmd@v1
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: Nupkgs
-          path: ./nupkgs
+          path: ./native/nupkgs
 
       - name: Install .NET Sdk
         uses: actions/setup-dotnet@v3

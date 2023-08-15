@@ -8,14 +8,8 @@ jobs:
   build-native:
     strategy:
       matrix:
-        rid: [ linux-arm64, linux-x64, win-x64, win-x86, osx-x64, osx-arm64 ]
-        include:
-          - { rid: linux-arm64, os: ubuntu-latest }
-          - { rid: linux-x64, os: ubuntu-latest }
-          - { rid: osx-x64, os: macos-latest }
-          - { rid: osx-arm64, os: macos-latest }
-          - { rid: win-x64, os: windows-latest, cross-arch: x64 }
-          - { rid: win-x86, os: windows-latest, cross-arch: amd64_x86 }
+        os:
+          [ ubuntu-latest, macos-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -38,27 +32,16 @@ jobs:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           nuget-version: 'latest'
 
-      - name: Install ninja
-        run: pip3 install ninja
+      - name: Install ninja meson
+        run: pip3 install ninja meson
 
       - uses: ilammy/msvc-dev-cmd@v1
         if: ${{ matrix.os == 'windows-latest' }}
-        with:
-          arch: ${{ matrix.cross-arch }}
 
-      - name: Install pnpm tree-sitter-cli node-gyp
-        run: npm install pnpm tree-sitter-cli node-gyp -g  
 
       - name: Build tree-sitter
-        env:
-          RID: ${{ matrix.rid }}
         run: |
-          ./build.ps1
-        shell: pwsh
-    
-      - name: Run nuget pack
-        run: |
-          Get-ChildItem -Recurse -Filter *.nuspec -File | Foreach-Object { nuget pack $_.FullName }
+          ./build.ps1 -Pack
         shell: pwsh
 
       - uses: actions/upload-artifact@v3
@@ -78,7 +61,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: Nupkgs
-          path: ./nupkgs
+          path: ./native/nupkgs
 
       - name: Install .NET Sdk
         uses: actions/setup-dotnet@v3
