@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 namespace TreeSitterSharp.Native
 {
     [StructLayout(LayoutKind.Explicit)]
-    public partial struct TSParseAction
+    public partial struct TsParseAction
     {
         [FieldOffset(0)]
         [NativeTypeName("__AnonymousRecord_parser_L60_C3")]

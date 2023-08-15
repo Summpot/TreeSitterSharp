@@ -11,7 +11,7 @@ namespace TreeSitterSharp.Native
         [NativeTypeName("uint16_t")]
         public ushort CaptureCount;
 
-        [NativeTypeName("const TSQueryCapture *")]
+        [NativeTypeName("const TsQueryCapture *")]
         public TsQueryCapture* Captures;
     }
 }

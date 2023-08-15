@@ -41,8 +41,8 @@ namespace TreeSitterSharp.Native
         [NativeTypeName("const uint32_t *")]
         public uint* small_parse_table_map;
 
-        [NativeTypeName("const TSParseActionEntry *")]
-        public TSParseActionEntry* parse_actions;
+        [NativeTypeName("const TsParseActionEntry *")]
+        public TsParseActionEntry* parse_actions;
 
         [NativeTypeName("const char *const *")]
         public sbyte** symbol_names;
@@ -57,7 +57,7 @@ namespace TreeSitterSharp.Native
         public TSFieldMapEntry* field_map_entries;
 
         [NativeTypeName("const TSSymbolMetadata *")]
-        public TSSymbolMetadata* symbol_metadata;
+        public TsSymbolMetadata* symbol_metadata;
 
         [NativeTypeName("const TSSymbol *")]
         public ushort* public_symbol_map;

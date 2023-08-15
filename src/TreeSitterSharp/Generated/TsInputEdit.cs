@@ -11,10 +11,10 @@ namespace TreeSitterSharp.Native
         [NativeTypeName("uint32_t")]
         public uint new_end_byte;
 
-        public TSPoint start_point;
+        public TsPoint start_point;
 
-        public TSPoint old_end_point;
+        public TsPoint old_end_point;
 
-        public TSPoint new_end_point;
+        public TsPoint new_end_point;
     }
 }

@@ -160,12 +160,18 @@ function Build-NodeGypProject {
         "win" { "$($ProjectDir.Name).dll" }
         Default {}
     }
+    $TargetArch = switch ($Arch) {
+        "arm64" { "arm64" }
+        "x64" { "x64" }
+        "x86" { "ia32" }
+        Default {}
+    }
     $RIDDir = Join-Path $OutputDir $RID
     New-Directory $RIDDir
     Push-Location $ProjectDir
     & pnpm install
     & tree-sitter generate
-    & node-gyp configure
+    & node-gyp configure "--arch=$TargetArch"
     & node-gyp build
     $Lib = Get-ChildItem -Recurse -Filter *.node -File | Select-Object -First 1
     $Lib | Format-Table -Property Name
