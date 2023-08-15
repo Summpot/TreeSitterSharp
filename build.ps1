@@ -19,7 +19,9 @@ function Build-MesonProject {
     & meson setup --cross-file "$CrossfilePath" "$BuildDir" "$SourceDir"
     & meson compile -C $BuildDir
     $TargetItem = Get-ChildItem -Path $BuildDir -Filter "*$Extensin" -File
-    $TargetPath = Join-Path $NuspecsDir $RID "$($TargetItem.Name)"
+    $TargetDir = Join-Path $NuspecsDir $RID
+    $TargetPath = Join-Path $TargetDir "$($TargetItem.Name)"
+    New-Item -Path $TargetDir -ItemType Directory -ErrorAction Continue
     Copy-Item $TargetItem $TargetPath
     $NuspecPath = Join-Path $NuspecsDir "lib$ProjectName.runtime.$RID.nuspec"
     & nuget pack $NuspecPath
