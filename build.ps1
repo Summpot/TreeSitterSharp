@@ -47,7 +47,7 @@ elseif ($IsMacOS) {
 else {
     Write-Error "System is not supported."
 }
-$GitVersionInfo = & dotnet-gitversion.exe | ConvertFrom-Json
+$GitVersionInfo = & dotnet-gitversion | ConvertFrom-Json
 $Version = $GitVersionInfo.FullSemVer
 $Nuspecs = Get-ChildItem -Path "native/nuspecs" -Filter "*.nuspec"  -File
 foreach ($Nuspec in $Nuspecs) {
