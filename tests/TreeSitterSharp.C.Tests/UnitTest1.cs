@@ -4,11 +4,12 @@ namespace TreeSitterSharp.C.Tests;
 
 public class UnitTest1
 {
+    [Fact]
     public unsafe void Test1()
     {
         TSParser* parser = Ts.parser_new();
         var language = TsC.tree_sitter_c();
-        //Ts.parser_set_language(parser, language);
+        Ts.parser_set_language(parser, language);
         string code = """
             #include <stdio.h>
             
