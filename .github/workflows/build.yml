@@ -43,7 +43,7 @@ jobs:
 
       - name: Build tree-sitter
         run: |
-          ./build.ps1
+          ./build.ps1 -Pack
         shell: pwsh
 
       - uses: actions/upload-artifact@v3
