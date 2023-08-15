@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="2.12">
+    <id>libtree-sitter-c.runtime.win-arm64</id>
+    <version>0.3.8</version>
+    <authors>Summpot</authors>
+    <owners>Summpot</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/Summpot/tree-sitter</projectUrl>
+    <description>linux arm64 native library for libtree-sitter-c.</description>
+    <copyright>Copyright (c) 2023 Summpot</copyright>
+    <repository type="git" url="https://github.com/Summpot/tree-sitter" branch="master" />
+  </metadata>
+  <files>
+    <file src="LICENSE.TXT" target="LICENSE.TXT" />
+    <file src="win-arm64/tree-sitter-c.dll" target="runtimes\win-arm64\native\libtree-sitter-c.dll" />
+  </files>
+</package>

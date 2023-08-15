@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="2.12">
+    <id>libtree-sitter</id>
+    <version>0.3.8</version>
+    <authors>Summpot</authors>
+    <owners>Summpot</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/Summpot/tree-sitter</projectUrl>
+    <description>Multi-platform native library for libtree-sitter.</description>
+    <copyright>Copyright (c) 2023 Summpot</copyright>
+    <repository type="git" url="https://github.com/tree-sitter/tree-sitter" branch="master" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" >
+        <dependency id="libtree-sitter.runtime.linux-arm64" version="0.3.8" />
+        <dependency id="libtree-sitter.runtime.linux-x64" version="0.3.8" />
+        <dependency id="libtree-sitter.runtime.osx-arm64" version="0.3.8" />
+        <dependency id="libtree-sitter.runtime.osx-x64" version="0.3.8" />
+        <dependency id="libtree-sitter.runtime.win-x64" version="0.3.8" />
+        <dependency id="libtree-sitter.runtime.win-x86" version="0.3.8" />
+        <dependency id="libtree-sitter.runtime.win-arm64" version="0.3.8" />
+      </group>
+    </dependencies>
+  </metadata><files>
+    <file src="LICENSE.TXT" target="LICENSE.TXT" />
+  </files>
+</package>
