@@ -1,3 +1,5 @@
 [target_machine]
 system = 'windows'
-cpu = 'x86'
+cpu_family = 'x86_64'
+cpu = 'x86_64'
+endian = 'little'

@@ -1,0 +1,12 @@
+[submodule "native/sources/tree-sitter/src"]
+	path = native/sources/tree-sitter/src
+	url = https://github.com/Summpot/tree-sitter
+[submodule "native/sources/tree-sitter-lua/src"]
+	path = native/sources/tree-sitter-lua/src
+	url = https://github.com/Azganoth/tree-sitter-lua
+[submodule "native/sources/tree-sitter-cpp/src"]
+	path = native/sources/tree-sitter-cpp/src
+	url = https://github.com/tree-sitter/tree-sitter-cpp
+[submodule "native/sources/tree-sitter-c/src"]
+	path = native/sources/tree-sitter-c/src
+	url = https://github.com/tree-sitter/tree-sitter-c

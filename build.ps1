@@ -1,18 +1,37 @@
-Import-Module "$PSScriptRoot/scripts/build.psm1" -Force
-$Version = Get-GitVersion
-$Version
-$RID = if ($env:RID) { $env:RID } else { "win-x64" }
-$BuildDir = Join-Path $PSScriptRoot "build"
-$NuspecsDir = Join-Path $BuildDir "nuspecs"
-$CMakeBuildDir = Join-Path $BuildDir "cmake-build"
-$NativeDir = Join-Path $PSScriptRoot "native"
-$TreeSitterDir = Join-Path $NativeDir "tree-sitter"
-$ParsersDir = Join-Path $NativeDir "parsers"
-New-MainNuspec -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
-New-Nuspec -RID $RID -OutputDir $NuspecsDir -Version $Version -ProjectName "tree-sitter"
-Build-CMakeProject -RID $RID -CMakeBuildDir $CMakeBuildDir -OutputDir $NuspecsDir -ProjectDir $TreeSitterDir
-Get-ChildItem -Path $ParsersDir | ForEach-Object { 
-    Build-NodeGypProject -ProjectDir $_ -OutputDir $NuspecsDir -RID $RID 
-    New-MainNuspec -OutputDir $NuspecsDir -Version $Version -ProjectName $_.Name
-    New-Nuspec -RID $RID -OutputDir $NuspecsDir -Version $Version -ProjectName $_.Name
+function Build-MesonProject {
+    Param(
+        $RID,
+        $ProjectName
+    )
+    $SourceDir = "native/sources/$ProjectName"
+    $BuildDir = "$SourceDir/build-$RID"
+    $CrossfilePath = "native/crossfiles/$RID.txt"
+    
+    & meson setup --cross-file "$CrossfilePath" "$BuildDir" "$SourceDir"
+    & meson compile -C $BuildDir
 }
+
+$ErrorActionPreference = "Stop"
+
+$ProjectNames = @("tree-sitter", "tree-sitter-c", "tree-sitter-cpp", "tree-sitter-lua")
+if ($IsWindows) {
+    $RIDS = @("win-x86", "win-x64", "win-arm64")
+}
+elseif ($IsLinux) {
+    $RIDS = @("linux-x64", "linux-arm64")
+}
+elseif ($IsMacOS) {
+    $RIDS = @("osx-x64", "osx-arm64")
+}
+else {
+    Write-Error "System is not supported."
+}
+
+foreach ($RID in $RIDS) {
+    foreach ($ProjectName in $ProjectNames) {
+        Build-MesonProject -RID $RID -ProjectName $ProjectName
+    }
+}
+
+
+

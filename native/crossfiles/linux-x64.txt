@@ -1,0 +1,5 @@
+[target_machine]
+system = 'linux'
+cpu_family = 'amd64'
+cpu = 'amd64'
+endian = 'little'
