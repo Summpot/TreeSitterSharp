@@ -42,7 +42,6 @@ function New-MainNuspec {
         <dependency id="lib$ProjectName.runtime.linux-x64" version="$Version" />
         <dependency id="lib$ProjectName.runtime.osx-arm64" version="$Version" />
         <dependency id="lib$ProjectName.runtime.osx-x64" version="$Version" />
-        <dependency id="lib$ProjectName.runtime.win-arm64" version="$Version" />
         <dependency id="lib$ProjectName.runtime.win-x64" version="$Version" />
         <dependency id="lib$ProjectName.runtime.win-x86" version="$Version" />
       </group>
