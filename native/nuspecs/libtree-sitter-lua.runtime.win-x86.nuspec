@@ -14,6 +14,6 @@
   </metadata>
   <files>
     <file src="LICENSE.TXT" target="LICENSE.TXT" />
-    <file src="win-x86/tree-sitter-lua.dll" target="runtimes\win-x86\native\liblibtree-sitter-lua.dll" />
+    <file src="win-x86/tree-sitter-lua.dll" target="runtimes\win-x86\native\libtree-sitter-lua.dll" />
   </files>
 </package>

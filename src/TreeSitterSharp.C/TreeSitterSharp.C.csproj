@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="libtree-sitter-c" Version="0.3.13" />
-    <PackageReference Include="libtree-sitter" Version="0.3.13" IncludeAssets="all" />
+    <PackageReference Include="libtree-sitter-c" />
   </ItemGroup>
 
   <ItemGroup>

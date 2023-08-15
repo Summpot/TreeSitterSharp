@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="libtree-sitter" Version="0.3.13" />
-    <PackageReference Include="libtree-sitter-lua" Version="0.3.13" />
+    <PackageReference Include="libtree-sitter-lua" />
   </ItemGroup>
 
   <ItemGroup>
