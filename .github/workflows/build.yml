@@ -36,7 +36,7 @@ jobs:
           nuget-version: "latest"
 
       - name: Install ninja
-        run: pip3 install ninja
+        run: pip3 install ninja meson
 
       - uses: ilammy/msvc-dev-cmd@v1
         if: ${{ matrix.os == 'windows-latest' }}
