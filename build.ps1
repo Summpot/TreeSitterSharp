@@ -1,17 +1,32 @@
+
 function Build-MesonProject {
     Param(
-        $RID,
-        $ProjectName
+        [string] $RID,
+        [string] $ProjectName
     )
-    $SourceDir = "native/sources/$ProjectName"
-    $BuildDir = "$SourceDir/build-$RID"
+    $OS, $Arch = $RID -split "-"
+    $Extensin = switch ($OS) {
+        "win" { ".dll" }
+        "osx" { ".dylib" }
+        "linux" { ".so" }
+        Default {}
+    }
+    $SourceDir = Join-Path "native/sources" $ProjectName
+    $BuildDir = Join-Path $SourceDir "build-$RID"
     $CrossfilePath = "native/crossfiles/$RID.txt"
+    $NuspecsDir = Join-Path $PSScriptRoot "native/nuspecs"
     
     & meson setup --cross-file "$CrossfilePath" "$BuildDir" "$SourceDir"
     & meson compile -C $BuildDir
+    $TargetItem = Get-ChildItem -Path $BuildDir -Filter "*$Extensin" -File
+    $TargetPath = Join-Path $NuspecsDir $RID "$($TargetItem.Name)"
+    Copy-Item $TargetItem $TargetPath
+    $NuspecPath = Join-Path $NuspecsDir "lib$ProjectName.runtime.$RID.nuspec"
+    & nuget pack $NuspecPath
 }
 
 $ErrorActionPreference = "Stop"
+
 
 $ProjectNames = @("tree-sitter", "tree-sitter-c", "tree-sitter-cpp", "tree-sitter-lua")
 if ($IsWindows) {
@@ -26,12 +41,13 @@ elseif ($IsMacOS) {
 else {
     Write-Error "System is not supported."
 }
-
-foreach ($RID in $RIDS) {
-    foreach ($ProjectName in $ProjectNames) {
+foreach ($ProjectName in $ProjectNames) {
+    foreach ($RID in $RIDS) {
         Build-MesonProject -RID $RID -ProjectName $ProjectName
-    }
+        & nuget pack "native/nuspecs/lib$ProjectName.nuspec"
+    }  
 }
+
 
 
 
