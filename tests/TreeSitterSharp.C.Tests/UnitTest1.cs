@@ -1,14 +1,15 @@
+using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp.C.Tests;
 
 public class UnitTest1
 {
+    [Fact]
     public unsafe void Test1()
     {
-        TSParser* parser = Ts.parser_new();
-        var language = TsC.tree_sitter_c();
-        Ts.parser_set_language(parser, language);
+        var parser = Parser.Create(CLanguageProvider.GetLanguage());
         string code = """
             #include <stdio.h>
             
@@ -22,11 +23,8 @@ public class UnitTest1
                 }
             }
             """;
-        TSTree* tree = Ts.parser_parse_string(
-            parser,
-            null,
-            code,
-            (uint)code.Length
-        );
+        var tree = parser.Parse(code);
+        Node rootNode = tree.Root;
+        Node child = rootNode.GetChild(0);
     }
 }

@@ -34,7 +34,7 @@ function Build-MesonProject {
 }
 
 $ErrorActionPreference = "Stop"
-$ProjectNames = @("tree-sitter", "tree-sitter-c", "tree-sitter-cpp", "tree-sitter-lua")
+$ProjectNames = @("tree-sitter", "tree-sitter-c", "tree-sitter-cpp", "tree-sitter-json", "tree-sitter-lua")
 if ($IsWindows) {
     $RIDS = @("win-x86", "win-x64", "win-arm64")
 }

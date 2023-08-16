@@ -10,3 +10,6 @@
 [submodule "native/sources/tree-sitter-c/src"]
 	path = native/sources/tree-sitter-c/src
 	url = https://github.com/tree-sitter/tree-sitter-c
+[submodule "native/sources/tree-sitter-json/src"]
+	path = native/sources/tree-sitter-json/src
+	url = https://github.com/tree-sitter/tree-sitter-json
