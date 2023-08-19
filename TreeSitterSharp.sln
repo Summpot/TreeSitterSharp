@@ -18,13 +18,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决�
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.C", "src\TreeSitterSharp.C\TreeSitterSharp.C.csproj", "{4612E944-9A22-4D15-8065-3B65E707698F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.C", "src\TreeSitterSharp.C\TreeSitterSharp.C.csproj", "{4612E944-9A22-4D15-8065-3B65E707698F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Cpp", "src\TreeSitterSharp.Cpp\TreeSitterSharp.Cpp.csproj", "{1D6EF250-CDDF-47BB-AD6C-FA6CD5E683CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Cpp", "src\TreeSitterSharp.Cpp\TreeSitterSharp.Cpp.csproj", "{1D6EF250-CDDF-47BB-AD6C-FA6CD5E683CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Lua", "src\TreeSitterSharp.Lua\TreeSitterSharp.Lua.csproj", "{4C839950-8118-4958-A0AE-1569A71D4A11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Lua", "src\TreeSitterSharp.Lua\TreeSitterSharp.Lua.csproj", "{4C839950-8118-4958-A0AE-1569A71D4A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.C.Tests", "tests\TreeSitterSharp.C.Tests\TreeSitterSharp.C.Tests.csproj", "{2109968E-BA8C-45CF-9A5F-582A9214E7A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.C.Tests", "tests\TreeSitterSharp.C.Tests\TreeSitterSharp.C.Tests.csproj", "{2109968E-BA8C-45CF-9A5F-582A9214E7A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Json", "src\TreeSitterSharp.Json\TreeSitterSharp.Json.csproj", "{D58314E0-74AD-41D6-8FF1-A653E6BBDB98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Json.Tests", "tests\TreeSitterSharp.Json.Tests\TreeSitterSharp.Json.Tests.csproj", "{9CD39ADD-A840-48AF-8A16-5CF16631DE00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +56,14 @@ Global
 		{2109968E-BA8C-45CF-9A5F-582A9214E7A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2109968E-BA8C-45CF-9A5F-582A9214E7A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2109968E-BA8C-45CF-9A5F-582A9214E7A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D58314E0-74AD-41D6-8FF1-A653E6BBDB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D58314E0-74AD-41D6-8FF1-A653E6BBDB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D58314E0-74AD-41D6-8FF1-A653E6BBDB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D58314E0-74AD-41D6-8FF1-A653E6BBDB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD39ADD-A840-48AF-8A16-5CF16631DE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD39ADD-A840-48AF-8A16-5CF16631DE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD39ADD-A840-48AF-8A16-5CF16631DE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD39ADD-A840-48AF-8A16-5CF16631DE00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

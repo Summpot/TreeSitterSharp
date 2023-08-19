@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace TreeSitterSharp.Native;
 
@@ -33,7 +34,7 @@ public static unsafe partial class Ts
     public static extern TsTree* parser_parse_string(TsParser* self, TsTree* old_tree, string code, uint length);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_parse_string_encoding", ExactSpelling = true)]
-    public static extern TsTree* parser_parse_string_encoding(TsParser* self, [NativeTypeName("const TsTree *")] TsTree* old_tree, [NativeTypeName("const char *")] sbyte* @string, [NativeTypeName("uint32_t")] uint length, TsInputEncoding encoding);
+    public static extern TsTree* parser_parse_string_encoding(TsParser* self, [NativeTypeName("const TsTree *")] TsTree* old_tree, [NativeTypeName("const char *")] string @string, [NativeTypeName("uint32_t")] uint length, TsInputEncoding encoding);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_reset", ExactSpelling = true)]
     public static extern void parser_reset(TsParser* self);
@@ -89,9 +90,8 @@ public static unsafe partial class Ts
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_print_dot_graph", ExactSpelling = true)]
     public static extern void tree_print_dot_graph([NativeTypeName("const TsTree *")] TsTree* self, int file_descriptor);
 
-    [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_type", ExactSpelling = true)]
-    [return: NativeTypeName("const char *")]
-    public static extern sbyte* node_type(TsNode self);
+    [LibraryImport("libtree-sitter", EntryPoint = "ts_node_type",StringMarshalling = StringMarshalling.Utf8)]
+    public static partial string node_type(TsNode self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_symbol", ExactSpelling = true)]
     [return: NativeTypeName("TSSymbol")]
@@ -103,7 +103,7 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_grammar_type", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* node_grammar_type(TsNode self);
+    public static extern string node_grammar_type(TsNode self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_grammar_symbol", ExactSpelling = true)]
     [return: NativeTypeName("TSSymbol")]
@@ -125,7 +125,7 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_string", ExactSpelling = true)]
     [return: NativeTypeName("char *")]
-    public static extern sbyte* node_string(TsNode self);
+    public static extern char* node_string(TsNode self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_is_null", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
@@ -171,7 +171,7 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_field_name_for_child", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* node_field_name_for_child(TsNode self, [NativeTypeName("uint32_t")] uint child_index);
+    public static extern string node_field_name_for_child(TsNode self, [NativeTypeName("uint32_t")] uint child_index);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_child_count", ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
@@ -185,7 +185,7 @@ public static unsafe partial class Ts
     public static extern uint node_named_child_count(TsNode self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_child_by_field_name", ExactSpelling = true)]
-    public static extern TsNode node_child_by_field_name(TsNode self, [NativeTypeName("const char *")] sbyte* name, [NativeTypeName("uint32_t")] uint name_length);
+    public static extern TsNode node_child_by_field_name(TsNode self, [NativeTypeName("const char *")] string name, [NativeTypeName("uint32_t")] uint name_length);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_child_by_field_id", ExactSpelling = true)]
     public static extern TsNode node_child_by_field_id(TsNode self, [NativeTypeName("TSFieldId")] ushort field_id);
@@ -248,7 +248,7 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_current_field_name", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* tree_cursor_current_field_name([NativeTypeName("const TsTreeCursor *")] TsTreeCursor* self);
+    public static extern string tree_cursor_current_field_name([NativeTypeName("const TsTreeCursor *")] TsTreeCursor* self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_current_field_id", ExactSpelling = true)]
     [return: NativeTypeName("TSFieldId")]
@@ -297,7 +297,7 @@ public static unsafe partial class Ts
     public static extern TsTreeCursor tree_cursor_copy([NativeTypeName("const TsTreeCursor *")] TsTreeCursor* cursor);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_new", ExactSpelling = true)]
-    public static extern TsQuery* query_new([NativeTypeName("const TsLanguage *")] TsLanguage* language, [NativeTypeName("const char *")] sbyte* source, [NativeTypeName("uint32_t")] uint source_len, [NativeTypeName("uint32_t *")] uint* error_offset, TsQueryError* error_type);
+    public static extern TsQuery* query_new([NativeTypeName("const TsLanguage *")] TsLanguage* language, [NativeTypeName("const char *")] string source, [NativeTypeName("uint32_t")] uint source_len, [NativeTypeName("uint32_t *")] uint* error_offset, TsQueryError* error_type);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_delete", ExactSpelling = true)]
     public static extern void query_delete(TsQuery* self);
@@ -336,17 +336,17 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_capture_name_for_id", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* query_capture_name_for_id([NativeTypeName("const TsQuery *")] TsQuery* self, [NativeTypeName("uint32_t")] uint index, [NativeTypeName("uint32_t *")] uint* length);
+    public static extern string query_capture_name_for_id([NativeTypeName("const TsQuery *")] TsQuery* self, [NativeTypeName("uint32_t")] uint index, [NativeTypeName("uint32_t *")] uint* length);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_capture_quantifier_for_id", ExactSpelling = true)]
     public static extern TsQuantifier query_capture_quantifier_for_id([NativeTypeName("const TsQuery *")] TsQuery* self, [NativeTypeName("uint32_t")] uint pattern_index, [NativeTypeName("uint32_t")] uint capture_index);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_string_value_for_id", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* query_string_value_for_id([NativeTypeName("const TsQuery *")] TsQuery* self, [NativeTypeName("uint32_t")] uint index, [NativeTypeName("uint32_t *")] uint* length);
+    public static extern string query_string_value_for_id([NativeTypeName("const TsQuery *")] TsQuery* self, [NativeTypeName("uint32_t")] uint index, [NativeTypeName("uint32_t *")] uint* length);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_disable_capture", ExactSpelling = true)]
-    public static extern void query_disable_capture(TsQuery* self, [NativeTypeName("const char *")] sbyte* name, [NativeTypeName("uint32_t")] uint length);
+    public static extern void query_disable_capture(TsQuery* self, [NativeTypeName("const char *")] string name, [NativeTypeName("uint32_t")] uint length);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_disable_pattern", ExactSpelling = true)]
     public static extern void query_disable_pattern(TsQuery* self, [NativeTypeName("uint32_t")] uint pattern_index);
@@ -401,11 +401,11 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_language_symbol_name", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* language_symbol_name([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("TSSymbol")] ushort symbol);
+    public static extern string language_symbol_name([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("TSSymbol")] ushort symbol);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_language_symbol_for_name", ExactSpelling = true)]
     [return: NativeTypeName("TSSymbol")]
-    public static extern ushort language_symbol_for_name([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("const char *")] sbyte* @string, [NativeTypeName("uint32_t")] uint length, [NativeTypeName("bool")] byte is_named);
+    public static extern ushort language_symbol_for_name([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("const char *")] string @string, [NativeTypeName("uint32_t")] uint length, [NativeTypeName("bool")] byte is_named);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_language_field_count", ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
@@ -413,11 +413,11 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_language_field_name_for_id", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* language_field_name_for_id([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("TSFieldId")] ushort id);
+    public static extern string language_field_name_for_id([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("TSFieldId")] ushort id);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_language_field_id_for_name", ExactSpelling = true)]
     [return: NativeTypeName("TSFieldId")]
-    public static extern ushort language_field_id_for_name([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("const char *")] sbyte* name, [NativeTypeName("uint32_t")] uint name_length);
+    public static extern ushort language_field_id_for_name([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("const char *")] string name, [NativeTypeName("uint32_t")] uint name_length);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_language_symbol_type", ExactSpelling = true)]
     public static extern TsSymbolType language_symbol_type([NativeTypeName("const TsLanguage *")] TsLanguage* self, [NativeTypeName("TSSymbol")] ushort symbol);
@@ -458,7 +458,7 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_lookahead_iterator_current_symbol_name", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern sbyte* lookahead_iterator_current_symbol_name([NativeTypeName("const TsLookaheadIterator *")] TsLookaheadIterator* self);
+    public static extern string lookahead_iterator_current_symbol_name([NativeTypeName("const TsLookaheadIterator *")] TsLookaheadIterator* self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_set_allocator", ExactSpelling = true)]
     public static extern void set_allocator([NativeTypeName("void *(*)(size_t)")] delegate* unmanaged[Cdecl]<nuint, void*> new_malloc, [NativeTypeName("void *(*)(size_t, size_t)")] delegate* unmanaged[Cdecl]<nuint, nuint, void*> new_calloc, [NativeTypeName("void *(*)(void *, size_t)")] delegate* unmanaged[Cdecl]<void*, nuint, void*> new_realloc, [NativeTypeName("void (*)(void *)")] delegate* unmanaged[Cdecl]<void*, void> new_free);

@@ -10,6 +10,10 @@ public unsafe struct Node
 {
     private TsNode _internalNode;
 
+    public string Type => Ts.node_type(_internalNode);
+    public uint ChildCount => Ts.node_child_count(_internalNode);
+    public uint NamedChildCount => Ts.node_named_child_count(_internalNode);
+
     public Node GetNamedChild(uint index)
     {
         return FromNative(Ts.node_named_child(_internalNode, index));

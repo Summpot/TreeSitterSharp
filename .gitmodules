@@ -1,6 +1,6 @@
 [submodule "native/sources/tree-sitter/src"]
 	path = native/sources/tree-sitter/src
-	url = https://github.com/Summpot/tree-sitter
+	url = https://github.com/tree-sitter/tree-sitter
 [submodule "native/sources/tree-sitter-lua/src"]
 	path = native/sources/tree-sitter-lua/src
 	url = https://github.com/Azganoth/tree-sitter-lua

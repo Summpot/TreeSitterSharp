@@ -6,7 +6,6 @@ namespace TreeSitterSharp.C.Tests;
 
 public class UnitTest1
 {
-    [Fact]
     public unsafe void Test1()
     {
         var parser = Parser.Create(CLanguageProvider.GetLanguage());

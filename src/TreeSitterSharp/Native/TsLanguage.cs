@@ -45,10 +45,10 @@ public unsafe partial struct TsLanguage
     public TsParseActionEntry* parse_actions;
 
     [NativeTypeName("const char *const *")]
-    public sbyte** symbol_names;
+    public string[] symbol_names;
 
     [NativeTypeName("const char *const *")]
-    public sbyte** field_names;
+    public string[] field_names;
 
     [NativeTypeName("const TsFieldMapSlice *")]
     public TsFieldMapSlice* field_map_slices;
@@ -104,9 +104,9 @@ public unsafe partial struct TsLanguage
         public delegate* unmanaged[Cdecl]<void*, TsLexer*, bool*, byte> scan;
 
         [NativeTypeName("unsigned int (*)(void *, char *)")]
-        public delegate* unmanaged[Cdecl]<void*, sbyte*, uint> serialize;
+        public delegate* unmanaged[Cdecl]<void*, string, uint> serialize;
 
         [NativeTypeName("void (*)(void *, const char *, unsigned int)")]
-        public delegate* unmanaged[Cdecl]<void*, sbyte*, uint, void> deserialize;
+        public delegate* unmanaged[Cdecl]<void*, string, uint, void> deserialize;
     }
 }
