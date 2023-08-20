@@ -1,9 +1,11 @@
 using System.Xml.Linq;
+using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp.Json.Tests;
 
 public class JsonParserTests
 {
+    [Fact]
     public void BasicParsing()
     {
         var parser = Parser.Create(JsonLanguageProvider.GetLanguage());
@@ -22,4 +24,20 @@ public class JsonParserTests
         Assert.True(arrayNode.NamedChildCount == 2);
         Assert.True(numberNode.ChildCount == 0);
     }
+
+    [Fact]
+    public void PrintTree()
+    {
+        var parser = Parser.Create(JsonLanguageProvider.GetLanguage());
+        string code = "[1, null]";
+        var tree = parser.Parse(code);
+        Node rootNode = tree.Root;
+
+        string expected = """
+            (document (array (number) (null)))
+            """;
+
+        Assert.Equal(expected, rootNode.ToString());
+    }
+
 }

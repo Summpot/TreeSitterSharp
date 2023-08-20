@@ -3,13 +3,13 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="libtree-sitter" Version="0.3.18" />
-    <PackageVersion Include="libtree-sitter-c" Version="0.3.18" />
-    <PackageVersion Include="libtree-sitter-cpp" Version="0.3.18" />
-    <PackageVersion Include="libtree-sitter-json" Version="0.3.18" />
-    <PackageVersion Include="libtree-sitter-lua" Version="0.3.18" />
+    <PackageVersion Include="libtree-sitter" Version="0.4.1" />
+    <PackageVersion Include="libtree-sitter-c" Version="0.4.1" />
+    <PackageVersion Include="libtree-sitter-cpp" Version="0.4.1" />
+    <PackageVersion Include="libtree-sitter-json" Version="0.4.1" />
+    <PackageVersion Include="libtree-sitter-lua" Version="0.4.1" />
     <PackageVersion Include="GitVersion.MsBuild" Version="5.12.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
     <PackageVersion Include="xunit" Version="2.5.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.0" />

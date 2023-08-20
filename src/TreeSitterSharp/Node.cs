@@ -29,8 +29,10 @@ public unsafe struct Node
         return new Node() { _internalNode = node };
     }
 
-    public TsNode ToNative()
+    public TsNode ToUnmanaged()
     {
         return _internalNode;
     }
+
+    public override string ToString() => Ts.node_string(_internalNode);
 }
