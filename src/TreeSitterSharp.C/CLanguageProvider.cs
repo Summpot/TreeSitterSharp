@@ -14,7 +14,7 @@ public class CLanguageProvider : ILanguageProvider
 
     public static unsafe Language GetLanguage()
     {
-        return Language.FromNative(tree_sitter_c());
+        return Language.FromUnmanaged(tree_sitter_c());
     }
 
 }

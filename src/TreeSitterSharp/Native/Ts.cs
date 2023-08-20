@@ -176,25 +176,21 @@ public static unsafe partial class Ts
         StringMarshallingCustomType = typeof(StringMarshaller))]
     public static partial string node_string(TsNode self);
 
-    [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_is_null",
-        ExactSpelling = true)]
-    [return: NativeTypeName("bool")]
-    public static extern byte node_is_null(TsNode self);
+    [LibraryImport("libtree-sitter", EntryPoint = "ts_node_is_null")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool node_is_null(TsNode self);
 
-    [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_is_named",
-        ExactSpelling = true)]
-    [return: NativeTypeName("bool")]
-    public static extern byte node_is_named(TsNode self);
+    [LibraryImport("libtree-sitter", EntryPoint = "ts_node_is_named")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool node_is_named(TsNode self);
 
-    [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_is_missing",
-        ExactSpelling = true)]
-    [return: NativeTypeName("bool")]
-    public static extern byte node_is_missing(TsNode self);
+    [LibraryImport("libtree-sitter", EntryPoint = "ts_node_is_missing")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool node_is_missing(TsNode self);
 
-    [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_is_extra",
-        ExactSpelling = true)]
-    [return: NativeTypeName("bool")]
-    public static extern byte node_is_extra(TsNode self);
+    [LibraryImport("libtree-sitter", EntryPoint = "ts_node_is_extra")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool node_is_extra(TsNode self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_has_changes",
         ExactSpelling = true)]
@@ -248,10 +244,8 @@ public static unsafe partial class Ts
     [return: NativeTypeName("uint32_t")]
     public static extern uint node_named_child_count(TsNode self);
 
-    [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
-        EntryPoint = "ts_node_child_by_field_name", ExactSpelling = true)]
-    public static extern TsNode node_child_by_field_name(TsNode self, [NativeTypeName("const char *")] string name,
-        [NativeTypeName("uint32_t")] uint name_length);
+    [LibraryImport("libtree-sitter", EntryPoint = "ts_node_child_by_field_name")]
+    public static partial TsNode node_child_by_field_name(TsNode self, [MarshalAs(UnmanagedType.LPStr)] string name, uint name_length);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_child_by_field_id",
         ExactSpelling = true)]

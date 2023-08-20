@@ -13,6 +13,6 @@ namespace TreeSitterSharp.Json
         [DllImport("libtree-sitter-json", EntryPoint = "tree_sitter_json", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         private static extern unsafe TsLanguage* tree_sitter_json();
 
-        public static Language GetLanguage() => Language.FromNative(tree_sitter_json());
+        public static Language GetLanguage() => Language.FromUnmanaged(tree_sitter_json());
     }
 }

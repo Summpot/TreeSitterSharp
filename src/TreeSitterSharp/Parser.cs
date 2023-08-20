@@ -25,14 +25,20 @@ public unsafe class Parser
         }
         return parser;
     }
+    ~Parser()
+    {
+        Ts.parser_delete(_internalParser);
+    }
 
     public void SetLanguage(Language language)
     {
-        Ts.parser_set_language(_internalParser, language.ToNative());
+        Ts.parser_set_language(_internalParser, language.ToUnmanaged());
     }
 
     public Tree Parse(string code)
     {
         return Tree.FromNative(Ts.parser_parse_string(_internalParser, null, code, (uint)code.Length));
     }
+
+
 }

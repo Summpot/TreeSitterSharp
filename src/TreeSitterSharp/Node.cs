@@ -10,29 +10,41 @@ public unsafe struct Node
 {
     private TsNode _internalNode;
 
-    public string Type => Ts.node_type(_internalNode);
-    public uint ChildCount => Ts.node_child_count(_internalNode);
-    public uint NamedChildCount => Ts.node_named_child_count(_internalNode);
+    public readonly string Type => Ts.node_type(_internalNode);
+    public readonly uint ChildCount => Ts.node_child_count(_internalNode);
+    public readonly uint NamedChildCount => Ts.node_named_child_count(_internalNode);
+    public readonly Node PreviousSibling => FromUnmanaged(Ts.node_prev_sibling(_internalNode));
+    public readonly Node NextSibling => FromUnmanaged(Ts.node_next_sibling(_internalNode));
+    public readonly Node PreviousNamedSibling => FromUnmanaged(Ts.node_prev_named_sibling(_internalNode));
+    public readonly Node NextNamedSibling => FromUnmanaged(Ts.node_next_named_sibling(_internalNode));
+    public readonly Node Parent => FromUnmanaged(Ts.node_parent(_internalNode));
+    public readonly bool IsNull => Ts.node_is_null(_internalNode);
+    public readonly bool IsNamed => Ts.node_is_named(_internalNode);
 
-    public Node GetNamedChild(uint index)
+    public readonly Node GetNamedChild(uint index)
     {
-        return FromNative(Ts.node_named_child(_internalNode, index));
+        return FromUnmanaged(Ts.node_named_child(_internalNode, index));
     }
 
-    public Node GetChild(uint index)
+    public readonly Node GetChildByFieldName(string fieldName)
     {
-        return FromNative(Ts.node_child(_internalNode, index));
+        return FromUnmanaged(Ts.node_child_by_field_name(_internalNode, fieldName, (uint)fieldName.Length));
     }
 
-    public static Node FromNative(TsNode node)
+    public readonly Node GetChild(uint index)
+    {
+        return FromUnmanaged(Ts.node_child(_internalNode, index));
+    }
+
+    public static Node FromUnmanaged(TsNode node)
     {
         return new Node() { _internalNode = node };
     }
 
-    public TsNode ToUnmanaged()
+    public readonly TsNode ToUnmanaged()
     {
         return _internalNode;
     }
 
-    public override string ToString() => Ts.node_string(_internalNode);
+    public override readonly string ToString() => Ts.node_string(_internalNode);
 }

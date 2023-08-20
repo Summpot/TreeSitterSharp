@@ -10,12 +10,12 @@ public unsafe class Language
 {
     private TsLanguage* _internalLanguage;
 
-    public static Language FromNative(TsLanguage* language)
+    public static Language FromUnmanaged(TsLanguage* language)
     {
         return new Language() { _internalLanguage = language };
     }
 
-    public TsLanguage* ToNative()
+    public TsLanguage* ToUnmanaged()
     {
         return _internalLanguage;
     }

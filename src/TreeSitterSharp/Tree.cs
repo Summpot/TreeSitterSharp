@@ -14,5 +14,5 @@ public unsafe class Tree
         return new Tree() { _internalTree = tree };
     }
 
-    public Node Root => Node.FromNative(Ts.tree_root_node(_internalTree));
+    public Node Root => Node.FromUnmanaged(Ts.tree_root_node(_internalTree));
 }
