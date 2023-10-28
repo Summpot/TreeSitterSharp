@@ -1,7 +1,5 @@
-using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace TreeSitterSharp.Native;
 
@@ -46,11 +44,8 @@ public static unsafe partial class Ts
         ExactSpelling = true)]
     public static extern TsTree* parser_parse_string(TsParser* self, TsTree* old_tree, string code, uint length);
 
-    [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
-        EntryPoint = "ts_parser_parse_string_encoding", ExactSpelling = true)]
-    public static extern TsTree* parser_parse_string_encoding(TsParser* self,
-        [NativeTypeName("const TsTree *")] TsTree* old_tree, [NativeTypeName("const char *")] string @string,
-        [NativeTypeName("uint32_t")] uint length, TsInputEncoding encoding);
+    [LibraryImport("libtree-sitter", EntryPoint = "ts_parser_parse_string_encoding")]
+    internal static partial TsTree* parser_parse_string_encoding(TsParser* self, TsTree* oldTree, byte[] code, uint length, TsInputEncoding encoding);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_reset",
         ExactSpelling = true)]
@@ -58,7 +53,7 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_parser_set_timeout_micros", ExactSpelling = true)]
-    public static extern void parser_set_timeout_micros(TsParser* self,
+    public static extern void parser_set_timeout_micros(TsParser* self, 
         [NativeTypeName("uint64_t")] ulong timeout_micros);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_timeout_micros",

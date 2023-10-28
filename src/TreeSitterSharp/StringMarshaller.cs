@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TreeSitterSharp;
-[CLSCompliant(false)]
+
 [CustomMarshaller(typeof(string), MarshalMode.ManagedToUnmanagedOut, typeof(StringMarshaller))]
 internal static unsafe class StringMarshaller
 {

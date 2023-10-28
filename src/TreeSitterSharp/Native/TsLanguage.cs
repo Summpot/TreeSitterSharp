@@ -1,5 +1,8 @@
+using System.Runtime.InteropServices;
+
 namespace TreeSitterSharp.Native;
 
+[StructLayout(LayoutKind.Sequential)]
 public unsafe partial struct TsLanguage
 {
     [NativeTypeName("uint32_t")]

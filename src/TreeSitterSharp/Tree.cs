@@ -8,11 +8,23 @@ using TreeSitterSharp.Native;
 namespace TreeSitterSharp;
 public unsafe class Tree
 {
-    private TsTree* _internalTree;
-    public static Tree FromNative(TsTree* tree)
+    private readonly TsTree* _internalTree;
+
+    ~Tree()
     {
-        return new Tree() { _internalTree = tree };
+        Ts.tree_delete(_internalTree);
+    }
+    public Tree(TsTree* tree)
+    {
+        _internalTree = tree;
     }
 
-    public Node Root => Node.FromUnmanaged(Ts.tree_root_node(_internalTree));
+    public Language Language { get; }
+
+    public Tree(TsTree* tree, Language language) : this(tree)
+    {
+        Language = language;
+    }
+
+    public Node Root => new(Ts.tree_root_node(_internalTree));
 }
