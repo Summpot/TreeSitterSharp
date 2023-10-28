@@ -37,7 +37,7 @@ public class JsonParserTests
             (document (array (number) (null)))
             """;
 
-        Assert.Equal(expected, rootNode.ToString());
+        Assert.Equal(expected, rootNode.GetSExpression());
     }
 
 }

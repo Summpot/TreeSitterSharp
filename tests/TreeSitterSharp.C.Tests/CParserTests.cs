@@ -32,6 +32,6 @@ public class CParserTests
         var tree = parser.Parse(code);
         Node rootNode = tree.Root;
 
-        Assert.Equal(expected,rootNode.ToString());
+        Assert.Equal(expected, rootNode.GetSExpression());
     }
 }

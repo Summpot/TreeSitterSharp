@@ -62,5 +62,8 @@ public unsafe struct Node
         return _internalNode;
     }
 
-    public override readonly string ToString() => Ts.node_string(_internalNode);
+    public readonly string GetSExpression()
+    {
+        return Ts.node_string(_internalNode);
+    }
 }
