@@ -363,12 +363,3 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .idea
-
-artifacts-dotnet-releaser
-
-/build
-
-/cmake*/
-
-/nupkgs/*
-!/nupkgs/placeholder.md
