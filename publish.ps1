@@ -1,7 +1,7 @@
 Param(
     [switch]$Push
 )
-$tag = git tag | Select-Object -Last 1
+$tag = git describe --tags --abbrev=0
 Write-Host "Tag: $tag"
 $major, $minor, $patch = $tag -split '\.'
 $patch = [int]$patch + 1
