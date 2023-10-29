@@ -10,7 +10,7 @@ namespace TreeSitterSharp.Json
 {
     internal unsafe class JsonLanguageProvider : ILanguageProvider
     {
-        [DllImport("libtree-sitter-json", EntryPoint = "tree_sitter_json", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        [DllImport("tree-sitter-json", EntryPoint = "tree_sitter_json", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         private static extern unsafe TsLanguage* tree_sitter_json();
 
         public static Language GetLanguage() => new(tree_sitter_json());

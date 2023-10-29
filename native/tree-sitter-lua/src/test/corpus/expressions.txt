@@ -1,0 +1,653 @@
+================================================================================
+booleans and nil
+================================================================================
+
+print(nil)
+print(false)
+print(true)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (nil))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (false))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (true)))))
+
+================================================================================
+integer decimal numbers
+================================================================================
+
+print(0)
+print(99)
+print(-7)
+print(-105)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number)))))
+
+================================================================================
+integer hexadecimal numbers
+================================================================================
+
+print(0x0)
+print(0xff)
+print(-0xf)
+print(-0xfab)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number)))))
+
+================================================================================
+float decimal numbers
+================================================================================
+
+print(3.1416)
+print(314.16e-2)
+print(31416.e-4)
+print(.31416E1)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number)))))
+
+================================================================================
+float hexadecimal numbers
+================================================================================
+
+print(0x0.1E)
+print(0xBEBADA.)
+print(0xA23p-4)
+print(0X1.921FB54442D18P+1)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (number)))))
+
+================================================================================
+short strings
+================================================================================
+
+print('')
+print("")
+print('"You\'re a wizard, Harry!"')
+print("\"I'm a what?\"")
+print('"Did you put your name into the Goblet of Fire, Harry?" -- Dumbledore asked calmly.')
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (string))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (string))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (string))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (string))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (string)))))
+
+================================================================================
+long strings
+================================================================================
+
+print([[
+Does a thing.
+
+USAGE:
+thing [FLAGS]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+]])
+print([=[
+Write-Information
+  [-MessageData] <Object>
+  [[-Tags] <String[]>]
+  [<CommonParameters>]
+]=])
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (string))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (string)))))
+
+================================================================================
+function definitions
+================================================================================
+
+print(function() end)
+
+print(function(x) return x % 2 == 0 end)
+print(function(a, b) return a + b end)
+
+print(function(...) return {...} end)
+print(function(func, ...) return func(...) end)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (function_definition))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (function_definition
+          parameters: (parameter_list
+            name: (identifier))
+          body: (block
+            (return_statement
+              (expression_list
+                (binary_expression
+                  left: (binary_expression
+                    left: (variable
+                      name: (identifier))
+                    right: (number))
+                  right: (number)))))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (function_definition
+          parameters: (parameter_list
+            name: (identifier)
+            name: (identifier))
+          body: (block
+            (return_statement
+              (expression_list
+                (binary_expression
+                  left: (variable
+                    name: (identifier))
+                  right: (variable
+                    name: (identifier))))))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (function_definition
+          parameters: (parameter_list
+            (vararg_expression))
+          body: (block
+            (return_statement
+              (expression_list
+                (table
+                  (field_list
+                    (field
+                      value: (vararg_expression)))))))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (function_definition
+          parameters: (parameter_list
+            name: (identifier)
+            (vararg_expression))
+          body: (block
+            (return_statement
+              (expression_list
+                (call
+                  function: (variable
+                    name: (identifier))
+                  arguments: (argument_list
+                    (expression_list
+                      (vararg_expression))))))))))))
+
+================================================================================
+variable accesses
+================================================================================
+
+print(_VERSION)
+print(_G._VERSION)
+print(_G["_VERSION"])
+print(_G._G._G._VERSION)
+print(_G["_G"]["_G"]["_VERSION"])
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (variable
+          name: (identifier)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (variable
+          table: (identifier)
+          field: (identifier)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (variable
+          table: (identifier)
+          field: (string)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (variable
+          table: (variable
+            table: (variable
+              table: (identifier)
+              field: (identifier))
+            field: (identifier))
+          field: (identifier)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (variable
+          table: (variable
+            table: (variable
+              table: (identifier)
+              field: (string))
+            field: (string))
+          field: (string))))))
+
+================================================================================
+function calls
+================================================================================
+
+print(type(_G))
+print(type'')
+print(type"")
+print(type[[]])
+print(type{})
+
+print(io.output())
+print(io.output():read())
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (call
+          function: (variable
+            name: (identifier))
+          arguments: (argument_list
+            (expression_list
+              (variable
+                name: (identifier))))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (call
+          function: (variable
+            name: (identifier))
+          arguments: (argument_list
+            (string))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (call
+          function: (variable
+            name: (identifier))
+          arguments: (argument_list
+            (string))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (call
+          function: (variable
+            name: (identifier))
+          arguments: (argument_list
+            (string))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (call
+          function: (variable
+            name: (identifier))
+          arguments: (argument_list
+            (table))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (call
+          function: (variable
+            table: (identifier)
+            field: (identifier))
+          arguments: (argument_list)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (call
+          function: (variable
+            table: (call
+              function: (variable
+                table: (identifier)
+                field: (identifier))
+              arguments: (argument_list))
+            method: (identifier))
+          arguments: (argument_list))))))
+
+================================================================================
+tables
+================================================================================
+
+print({
+  "x",
+  "y";
+  {},
+  rawlen"four"
+})
+print({
+  [54] = _VERSION,
+  ["version"] = _VERSION,
+  [_VERSION] = 54,
+  _VERSION = 54,
+})
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (table
+          (field_list
+            (field
+              value: (string))
+            (field
+              value: (string))
+            (field
+              value: (table))
+            (field
+              value: (call
+                function: (variable
+                  name: (identifier))
+                arguments: (argument_list
+                  (string)))))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (table
+          (field_list
+            (field
+              key: (number)
+              value: (variable
+                name: (identifier)))
+            (field
+              key: (string)
+              value: (variable
+                name: (identifier)))
+            (field
+              key: (variable
+                name: (identifier))
+              value: (number))
+            (field
+              key: (identifier)
+              value: (number))))))))
+
+================================================================================
+unary expressions
+================================================================================
+
+print(not true)
+print(#"four")
+print(-#"-five")
+print(~0)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (unary_expression
+          argument: (true)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (unary_expression
+          argument: (string)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (unary_expression
+          argument: (unary_expression
+            argument: (string))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (unary_expression
+          argument: (number))))))
+
+================================================================================
+binary expressions
+================================================================================
+
+print(1*2 + 4/2)
+print(5^2 % 5)
+print(5 - -5 == 0 and 1 or 0)
+
+--------------------------------------------------------------------------------
+
+(chunk
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (binary_expression
+          left: (binary_expression
+            left: (number)
+            right: (number))
+          right: (binary_expression
+            left: (number)
+            right: (number))))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (binary_expression
+          left: (binary_expression
+            left: (number)
+            right: (number))
+          right: (number)))))
+  (call
+    function: (variable
+      name: (identifier))
+    arguments: (argument_list
+      (expression_list
+        (binary_expression
+          left: (binary_expression
+            left: (binary_expression
+              left: (binary_expression
+                left: (number)
+                right: (number))
+              right: (number))
+            right: (number))
+          right: (number))))))

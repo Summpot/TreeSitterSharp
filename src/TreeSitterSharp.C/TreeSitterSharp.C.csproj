@@ -9,15 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="libtree-sitter-c" />
-    <PackageReference Include="GitVersion.MsBuild">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="tree-sitter-c" Version="*" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TreeSitterSharp\TreeSitterSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\native\tree-sitter-c\tree-sitter-c.cproj" />
   </ItemGroup>
 
 </Project>

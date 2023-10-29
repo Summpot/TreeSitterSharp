@@ -1,0 +1,35 @@
+{
+  "name": "tree-sitter-lua",
+  "version": "2.1.3",
+  "description": "Lua grammar for tree-sitter.",
+  "main": "bindings/node",
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "lua"
+  ],
+  "repository": "https://github.com/Azganoth/tree-sitter-lua",
+  "author": "Ademir José Ferreira Júnior <ademirj.ferreirajunior@gmail.com> (https://github.com/Azganoth)",
+  "license": "MIT",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build --debug",
+    "test": "tree-sitter test",
+    "format": "prettier --write .",
+    "lint": "prettier --check ."
+  },
+  "dependencies": {
+    "nan": "^2.15.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.6",
+    "prettier": "^2.6.2"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.lua",
+      "file-types": [
+        "lua"
+      ]
+    }
+  ]
+}

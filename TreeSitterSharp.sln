@@ -26,9 +26,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Lua", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.C.Tests", "tests\TreeSitterSharp.C.Tests\TreeSitterSharp.C.Tests.csproj", "{2109968E-BA8C-45CF-9A5F-582A9214E7A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Json", "src\TreeSitterSharp.Json\TreeSitterSharp.Json.csproj", "{D58314E0-74AD-41D6-8FF1-A653E6BBDB98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Json", "src\TreeSitterSharp.Json\TreeSitterSharp.Json.csproj", "{D58314E0-74AD-41D6-8FF1-A653E6BBDB98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.Json.Tests", "tests\TreeSitterSharp.Json.Tests\TreeSitterSharp.Json.Tests.csproj", "{9CD39ADD-A840-48AF-8A16-5CF16631DE00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Json.Tests", "tests\TreeSitterSharp.Json.Tests\TreeSitterSharp.Json.Tests.csproj", "{9CD39ADD-A840-48AF-8A16-5CF16631DE00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

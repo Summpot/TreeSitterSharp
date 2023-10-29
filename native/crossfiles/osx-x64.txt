@@ -1,5 +1,0 @@
-[target_machine]
-system = 'macos'
-cpu_family = 'amd64'
-cpu = 'amd64'
-endian = 'little'

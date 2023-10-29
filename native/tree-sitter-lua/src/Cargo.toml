@@ -1,0 +1,30 @@
+[package]
+name = "tree-sitter-lua"
+version = "0.0.1"
+description = "Lua grammar for the tree-sitter parsing library"
+authors = [
+    "Ademir José Ferreira Júnior <ademirj.ferreirajunior@gmail.com>",
+]
+license = "MIT"
+readme = "bindings/rust/README.md"
+keywords = ["incremental", "parsing", "lua"]
+categories = ["parsing", "text-editors"]
+repository = "https://github.com/Azganoth/tree-sitter-lua"
+edition = "2018"
+
+build = "bindings/rust/build.rs"
+include = [
+  "bindings/rust/*",
+  "grammar.js",
+  "queries/*",
+  "src/*",
+]
+
+[lib]
+path = "bindings/rust/lib.rs"
+
+[dependencies]
+tree-sitter = "~0.20"
+
+[build-dependencies]
+cc = "1.0"

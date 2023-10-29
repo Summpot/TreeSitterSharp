@@ -5,63 +5,13 @@ on:
     tags: [ "v*" ]
 
 jobs:
-  build-native:
-    strategy:
-      matrix:
-        os:
-          [ ubuntu-latest, macos-latest, windows-latest ]
-    runs-on: ${{ matrix.os }}
-
+  build:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: 'true'
           fetch-depth: 0
-
-      - name: Install .NET Sdk
-        uses: actions/setup-dotnet@v3
-        with:
-          global-json-file: global.json
-  
-      - name: Install gitversions
-        run: |
-          dotnet tool install --global GitVersion.Tool
-
-      - uses: nuget/setup-nuget@v1
-        with:
-          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-          nuget-version: 'latest'
-
-      - name: Install ninja meson
-        run: pip3 install ninja meson
-
-      - uses: ilammy/msvc-dev-cmd@v1
-        if: ${{ matrix.os == 'windows-latest' }}
-
-
-      - name: Build tree-sitter
-        run: |
-          ./build.ps1 -Pack
-        shell: pwsh
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Nupkgs
-          path: "*.nupkg"
-
-  build-managed:
-    needs: build-native
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: 'true'
-          fetch-depth: 0
-      
-      - uses: actions/download-artifact@v3
-        with:
-          name: Nupkgs
-          path: ./native/nupkgs
 
       - name: Install .NET Sdk
         uses: actions/setup-dotnet@v3
@@ -78,20 +28,3 @@ jobs:
         with:
           name: Artifacts
           path: "artifacts-dotnet-releaser"
-
-  push:
-    needs: build-managed
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: Nupkgs
-
-      - uses: nuget/setup-nuget@v1
-        with:
-          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-          nuget-version: 'latest'
-      
-      - name: Run nuget push
-        run: Get-ChildItem -Filter *.nupkg | Foreach-Object { nuget push $_.FullName -Source https://api.nuget.org/v3/index.json}
-        shell: pwsh

@@ -1,0 +1,6 @@
+<Project Sdk="Vezel.Zig.Sdk">
+    <ItemGroup>
+        <IncludeDirectory Include="src/src"></IncludeDirectory>
+        <Compile Include="src/src/parser.c"></Compile>
+    </ItemGroup>
+</Project>

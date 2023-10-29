@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <CompilerMode>C</CompilerMode>
+    <DefaultSources>false</DefaultSources>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>..\..\nupkgs</PackageOutputPath>
+    <UpdateAssemblyInfo>false</UpdateAssemblyInfo>
+    <UpdateVersionProperties>true</UpdateVersionProperties>
+  </PropertyGroup>
+</Project>
