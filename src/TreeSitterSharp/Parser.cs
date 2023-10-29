@@ -11,8 +11,25 @@ using TreeSitterSharp.Native;
 namespace TreeSitterSharp;
 public unsafe class Parser
 {
-    private TsParser* _internalParser;
+    private TsParser* _parser;
     private Language? _language;
+
+
+
+    public Parser(Language language)
+    {
+        static void* NewMalloc(nuint byteCount) => NativeMemory.Alloc(byteCount);
+        static void* NewCalloc(nuint count, nuint size) => NativeMemory.AllocZeroed(count * size);
+        static void* NewRealloc(void* ptr, nuint byteCount) => NativeMemory.Realloc(ptr, byteCount);
+        static void NewFree(void* ptr) => NativeMemory.Free(ptr);
+        Ts.set_allocator(&NewMalloc, &NewCalloc, &NewRealloc, &NewFree);
+        _parser = Ts.parser_new();
+        Language = language;
+    }
+    ~Parser()
+    {
+        Ts.parser_delete(_parser);
+    }
 
     public Language? Language
     {
@@ -22,28 +39,9 @@ public unsafe class Parser
             _language = value;
             if (_language is not null)
             {
-                Ts.parser_set_language(_internalParser, _language.ToUnmanaged());
+                Ts.parser_set_language(_parser, _language.ToUnmanaged());
             }
         }
-    }
-
-    public static Parser Create(Language? language = null)
-    {
-        static void* NewMalloc(nuint byteCount) => NativeMemory.Alloc(byteCount);
-        static void* NewCalloc(nuint count, nuint size) => NativeMemory.AllocZeroed(count * size);
-        static void* NewRealloc(void* ptr, nuint byteCount) => NativeMemory.Realloc(ptr, byteCount);
-        static void NewFree(void* ptr) => NativeMemory.Free(ptr);
-        Ts.set_allocator(&NewMalloc, &NewCalloc, &NewRealloc, &NewFree);
-        var parser = new Parser() { _internalParser = Ts.parser_new() };
-        if (language is not null)
-        {
-            parser.Language = language;
-        }
-        return parser;
-    }
-    ~Parser()
-    {
-        Ts.parser_delete(_internalParser);
     }
 
     public Tree Parse(string code)
@@ -52,7 +50,7 @@ public unsafe class Parser
         {
             throw new Exception("Language can't be null");
         }
-        return new Tree(Ts.parser_parse_string(_internalParser, null, code, (uint)code.Length), _language);
+        return new Tree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
     }
 
     public Tree Parse(Span<byte> code, Encoding encoding)
@@ -62,7 +60,7 @@ public unsafe class Parser
             throw new Exception("Language can't be null");
         }
         byte[] bytes = Encoding.UTF8.GetBytes(encoding.GetString(code));
-        return new Tree(Ts.parser_parse_string_encoding(_internalParser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8), _language);
+        return new Tree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
     }
 
 

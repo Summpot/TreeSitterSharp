@@ -9,7 +9,7 @@ public class CParserTests
     [Fact]
     public void PrintTree()
     {
-        var parser = Parser.Create(CLanguageProvider.GetLanguage());
+        var parser = new CParser();
         string code = """
             #include <stdio.h>
             
@@ -30,8 +30,9 @@ public class CParserTests
 
 
         var tree = parser.Parse(code);
-        Node rootNode = tree.Root;
-
-        Assert.Equal(expected, rootNode.GetSExpression());
+        var treeCursor = new TreeCursor(tree.Root);
+        var a = treeCursor.GotoFirstChild();
+        //var b = treeCursor.GotoFirstChild();
+        Assert.Equal(expected, tree.Root.GetSExpression());
     }
 }

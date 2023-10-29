@@ -53,7 +53,7 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_parser_set_timeout_micros", ExactSpelling = true)]
-    public static extern void parser_set_timeout_micros(TsParser* self, 
+    public static extern void parser_set_timeout_micros(TsParser* self,
         [NativeTypeName("uint64_t")] ulong timeout_micros);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_timeout_micros",
@@ -300,7 +300,7 @@ public static unsafe partial class Ts
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_eq",
         ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte node_eq(TsNode self, TsNode other);
+    public static extern bool node_eq(TsNode self, TsNode other);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_new",
         ExactSpelling = true)]
@@ -308,88 +308,85 @@ public static unsafe partial class Ts
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_delete",
         ExactSpelling = true)]
-    public static extern void tree_cursor_delete(TsTreeCursor* self);
+    public static extern void tree_cursor_delete(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_reset",
         ExactSpelling = true)]
-    public static extern void tree_cursor_reset(TsTreeCursor* self, TsNode node);
+    public static extern void tree_cursor_reset(in TsTreeCursor self, TsNode node);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_reset_to",
         ExactSpelling = true)]
-    public static extern void tree_cursor_reset_to(TsTreeCursor* dst,
-        [NativeTypeName("const TsTreeCursor *")] TsTreeCursor* src);
+    public static extern void tree_cursor_reset_to(in TsTreeCursor dst,
+        in TsTreeCursor src);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_current_node", ExactSpelling = true)]
-    public static extern TsNode tree_cursor_current_node([NativeTypeName("const TsTreeCursor *")] TsTreeCursor* self);
+    public static extern TsNode tree_cursor_current_node(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_current_field_name", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
     public static extern string tree_cursor_current_field_name(
-        [NativeTypeName("const TsTreeCursor *")] TsTreeCursor* self);
+        in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_current_field_id", ExactSpelling = true)]
     [return: NativeTypeName("TSFieldId")]
-    public static extern ushort tree_cursor_current_field_id(
-        [NativeTypeName("const TsTreeCursor *")] TsTreeCursor* self);
+    public static extern ushort tree_cursor_current_field_id(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_goto_parent",
         ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte tree_cursor_goto_parent(TsTreeCursor* self);
+    public static extern bool tree_cursor_goto_parent(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_next_sibling", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte tree_cursor_goto_next_sibling(TsTreeCursor* self);
+    public static extern bool tree_cursor_goto_next_sibling(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_previous_sibling", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte tree_cursor_goto_previous_sibling(TsTreeCursor* self);
+    public static extern bool tree_cursor_goto_previous_sibling(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_first_child", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte tree_cursor_goto_first_child(TsTreeCursor* self);
+    public static extern bool tree_cursor_goto_first_child(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_last_child", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte tree_cursor_goto_last_child(TsTreeCursor* self);
+    public static extern bool tree_cursor_goto_last_child(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_descendant", ExactSpelling = true)]
-    public static extern void tree_cursor_goto_descendant(TsTreeCursor* self,
-        [NativeTypeName("uint32_t")] uint goal_descendant_index);
+    public static extern void tree_cursor_goto_descendant(in TsTreeCursor self, uint goal_descendant_index);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_current_descendant_index", ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
     public static extern uint tree_cursor_current_descendant_index(
-        [NativeTypeName("const TsTreeCursor *")] TsTreeCursor* self);
+        in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_current_depth", ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
-    public static extern uint tree_cursor_current_depth([NativeTypeName("const TsTreeCursor *")] TsTreeCursor* self);
+    public static extern uint tree_cursor_current_depth(in TsTreeCursor self);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_first_child_for_byte", ExactSpelling = true)]
     [return: NativeTypeName("int64_t")]
-    public static extern long tree_cursor_goto_first_child_for_byte(TsTreeCursor* self,
-        [NativeTypeName("uint32_t")] uint goal_byte);
+    public static extern long tree_cursor_goto_first_child_for_byte(in TsTreeCursor self, uint goal_byte);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_first_child_for_point", ExactSpelling = true)]
     [return: NativeTypeName("int64_t")]
-    public static extern long tree_cursor_goto_first_child_for_point(TsTreeCursor* self, TsPoint goal_point);
+    public static extern long tree_cursor_goto_first_child_for_point(in TsTreeCursor self, TsPoint goal_point);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_copy",
         ExactSpelling = true)]
-    public static extern TsTreeCursor tree_cursor_copy([NativeTypeName("const TsTreeCursor *")] TsTreeCursor* cursor);
+    public static extern TsTreeCursor tree_cursor_copy(in TsTreeCursor cursor);
 
     [DllImport("libtree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_new",
         ExactSpelling = true)]
