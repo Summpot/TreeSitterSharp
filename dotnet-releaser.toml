@@ -1,3 +1,4 @@
+artifacts_folder = "nupkgs"
 [msbuild]
 project = "TreeSitterSharp.sln"
 [github]
