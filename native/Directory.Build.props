@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <CompilerMode>C</CompilerMode>
     <DefaultSources>false</DefaultSources>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
