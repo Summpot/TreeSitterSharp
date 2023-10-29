@@ -1,5 +1,10 @@
 <Project>
   <PropertyGroup>
+    <Product>$(AssemblyName).runtime.$(RuntimeIdentifier)</Product>
+    <Authors>Summpot</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <CompilerMode>C</CompilerMode>
     <DefaultSources>false</DefaultSources>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
