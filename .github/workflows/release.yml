@@ -6,7 +6,27 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        rid:
+          [
+            linux-x64,
+            linux-arm64,
+            osx-arm64,
+            osx-x64,
+            win-arm64,
+            win-x64,
+            win-x86,
+          ]
+        include:
+          - { os: ubuntu-latest, rid: linux-x64 }
+          - { os: ubuntu-latest, rid: linux-arm64 }
+          - { os: macos-latest, rid: osx-arm64 }
+          - { os: macos-latest, rid: osx-x64 }
+          - { os: windows-latest, rid: win-arm64 }
+          - { os: windows-latest, rid: win-x64 }
+          - { os: windows-latest, rid: win-x86 }
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -20,8 +40,7 @@ jobs:
       
       - name: Do release
         run: |
-          dotnet tool install --global dotnet-releaser
-          dotnet-releaser run --nuget-token "${{secrets.NUGET_API_KEY}}" --github-token "${{secrets.GITHUB_TOKEN}}" ./dotnet-releaser.toml --force
+          dotnet pack -p:RuntimeIdentifier=${{ matrix.rid }}
   
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
