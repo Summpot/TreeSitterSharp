@@ -24,7 +24,7 @@ jobs:
       - name: Do release
         run: |
           dotnet tool install --global dotnet-releaser
-          dotnet-releaser build ./dotnet-releaser.toml
+          dotnet-releaser build ./dotnet-releaser.toml --force
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3

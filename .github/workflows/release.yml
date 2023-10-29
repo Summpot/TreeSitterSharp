@@ -21,7 +21,7 @@ jobs:
       - name: Do release
         run: |
           dotnet tool install --global dotnet-releaser
-          dotnet-releaser run --nuget-token "${{secrets.NUGET_API_KEY}}" --github-token "${{secrets.GITHUB_TOKEN}}" ./dotnet-releaser.toml
+          dotnet-releaser run --nuget-token "${{secrets.NUGET_API_KEY}}" --github-token "${{secrets.GITHUB_TOKEN}}" ./dotnet-releaser.toml --force
   
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
