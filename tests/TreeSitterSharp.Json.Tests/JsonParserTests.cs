@@ -8,7 +8,7 @@ public class JsonParserTests
     [Fact]
     public void BasicParsing()
     {
-        var parser = Parser.Create(JsonLanguageProvider.GetLanguage());
+        var parser = new JsonParser();
         string code = "[1, null]";
         var tree = parser.Parse(code);
         Node rootNode = tree.Root;
@@ -28,7 +28,7 @@ public class JsonParserTests
     [Fact]
     public void PrintTree()
     {
-        var parser = Parser.Create(JsonLanguageProvider.GetLanguage());
+        var parser = new JsonParser();
         string code = "[1, null]";
         var tree = parser.Parse(code);
         Node rootNode = tree.Root;
