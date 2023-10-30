@@ -2,37 +2,37 @@
     "runtimes": {
         "linux-arm64": {
             "tree-sitter-json": {
-                "tree-sitter-json.runtime.linux-arm64": "0.0.1"
+                "tree-sitter-json.runtime.linux-arm64": "0.4.12.0"
             }
         },
         "linux-x64": {
             "tree-sitter-json": {
-                "tree-sitter-json.runtime.linux-x64": "0.0.1"
+                "tree-sitter-json.runtime.linux-x64": "0.4.12.0"
             }
         },
         "osx-arm64": {
             "tree-sitter-json": {
-                "tree-sitter-json.runtime.osx-arm64": "0.0.1"
+                "tree-sitter-json.runtime.osx-arm64": "0.4.12.0"
             }
         },
         "osx-x64": {
             "tree-sitter-json": {
-                "tree-sitter-json.runtime.osx-x64": "0.0.1"
+                "tree-sitter-json.runtime.osx-x64": "0.4.12.0"
             }
         },
         "win-arm64": {
             "tree-sitter-json": {
-                "tree-sitter-json.runtime.win-arm64": "0.0.1"
+                "tree-sitter-json.runtime.win-arm64": "0.4.12.0"
             }
         },
         "win-x64": {
             "tree-sitter-json": {
-                "tree-sitter-json.runtime.win-x64": "0.0.1"
+                "tree-sitter-json.runtime.win-x64": "0.4.12.0"
             }
         },
         "win-x86": {
             "tree-sitter-json": {
-                "tree-sitter-json.runtime.win-x86": "0.0.1"
+                "tree-sitter-json.runtime.win-x86": "0.4.12.0"
             }
         }
     }

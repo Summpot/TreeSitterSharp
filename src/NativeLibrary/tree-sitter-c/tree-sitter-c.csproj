@@ -21,7 +21,7 @@
           string filePath = FilePath;
           string newVersion = NewVersion;
           string content = System.IO.File.ReadAllText(filePath);
-          content = System.Text.RegularExpressions.Regex.Replace(content, @"(""\s*version""\s*:\s*"")(\d+\.\d+\.\d+)(""\s*,)", "$1" + newVersion + "$3");
+          content = System.Text.RegularExpressions.Regex.Replace(content, @"(\d+\.\d+\.\d+)", newVersion);
           System.IO.File.WriteAllText(filePath, content);
         ]]>
       </Code>
@@ -29,7 +29,7 @@
     </UsingTask>
 
     <Target Name="UpdateRuntimeJsonVersion" BeforeTargets="Build">
-        <ReplaceVersionInJson FilePath="runtime.json" NewVersion="$(AssemblyVersion)" />
+        <ReplaceVersionInJson FilePath="runtime.json" NewVersion="$(Version)" />
         <ItemGroup>
             <None Include="runtime.json">
                 <Link>%(Filename)%(Extension)</Link>
