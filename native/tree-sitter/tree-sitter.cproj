@@ -1,4 +1,7 @@
 <Project Sdk="Vezel.Zig.Sdk">
+    <PropertyGroup>
+        <OutputPath>..\..\src\NativeLibrary\tree-sitter\bin\$(Configuration)\$(RuntimeIdedntifier)</OutputPath>
+    </PropertyGroup>
     <ItemGroup>
         <IncludeDirectory Include="src/lib/include"></IncludeDirectory>
         <IncludeDirectory Include="src/lib/src"></IncludeDirectory>

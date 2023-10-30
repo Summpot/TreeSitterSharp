@@ -1,4 +1,7 @@
 <Project Sdk="Vezel.Zig.Sdk">
+    <PropertyGroup>
+        <OutputPath>..\..\src\NativeLibrary\tree-sitter-lua\bin\$(Configuration)\$(RuntimeIdedntifier)</OutputPath>
+    </PropertyGroup>
     <ItemGroup>
         <IncludeDirectory Include="src/src"></IncludeDirectory>
         <Compile Include="src/src/parser.c"></Compile>

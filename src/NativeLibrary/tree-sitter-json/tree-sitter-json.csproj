@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <IsPackable>true</IsPackable>
+        <PackageId>$(AssemblyName)</PackageId>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="runtime.json">
+            <Link>%(Filename)%(Extension)</Link>
+            <Pack>true</Pack>
+        </None>
+    </ItemGroup>
+</Project>

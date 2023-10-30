@@ -1,13 +1,7 @@
 <Project>
   <PropertyGroup>
-    <Product>$(AssemblyName).runtime.$(RuntimeIdentifier)</Product>
-    <Authors>Summpot</Authors>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <CompilerMode>C</CompilerMode>
     <DefaultSources>false</DefaultSources>
-    <PackageOutputPath>..\..\nupkgs</PackageOutputPath>
     <UpdateAssemblyInfo>false</UpdateAssemblyInfo>
     <UpdateVersionProperties>true</UpdateVersionProperties>
   </PropertyGroup>

@@ -11,7 +11,4 @@
   <ItemGroup>
     <PackageReference Include="tree-sitter" Version="*" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\native\tree-sitter\tree-sitter.cproj" />
-  </ItemGroup>
 </Project>

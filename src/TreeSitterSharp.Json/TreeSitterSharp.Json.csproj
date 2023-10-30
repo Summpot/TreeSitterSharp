@@ -15,9 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\TreeSitterSharp\TreeSitterSharp.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\native\tree-sitter-json\tree-sitter-json.cproj" />
-  </ItemGroup>
-
 </Project>
