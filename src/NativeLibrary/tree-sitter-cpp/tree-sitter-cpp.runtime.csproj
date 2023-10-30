@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.Build.NoTargets">
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>true</IsPackable>
-        <PackageId>$(AssemblyName).$(RuntimeIdentifier)</PackageId>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageId>$(AssemblyName).$(RuntimeIdentifier)</PackageId>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
+  </PropertyGroup>
   <Target Name="BuildNative" BeforeTargets="Build">
-    <MSBuild Projects="..\..\..\native\tree-sitter-cpp\tree-sitter-cpp.cproj" Targets="Restore;Build">
+    <MSBuild Projects="..\..\..\native\tree-sitter-cpp\tree-sitter-cpp.cproj"
+      Targets="Restore;Build" Properties="RuntimeIdentifier=$(RuntimeIdentifier)">
     </MSBuild>
     <ItemGroup>
       <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">

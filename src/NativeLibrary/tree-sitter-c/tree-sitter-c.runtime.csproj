@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <Target Name="BuildNative" BeforeTargets="Build">
-    <MSBuild Projects="..\..\..\native\tree-sitter-c\tree-sitter-c.cproj" Targets="Restore;Build">
+    <MSBuild Projects="..\..\..\native\tree-sitter-c\tree-sitter-c.cproj" Targets="Restore;Build"
+      Properties="RuntimeIdentifier=$(RuntimeIdentifier)">
     </MSBuild>
     <ItemGroup>
       <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">

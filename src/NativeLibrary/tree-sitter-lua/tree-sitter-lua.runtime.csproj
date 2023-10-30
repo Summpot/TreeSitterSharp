@@ -7,7 +7,8 @@
     <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
   </PropertyGroup>
   <Target Name="BuildNative" BeforeTargets="Build">
-    <MSBuild Projects="..\..\..\native\tree-sitter-lua\tree-sitter-lua.cproj" Targets="Restore;Build">
+    <MSBuild Projects="..\..\..\native\tree-sitter-lua\tree-sitter-lua.cproj"
+      Targets="Restore;Build" Properties="RuntimeIdentifier=$(RuntimeIdentifier)">
     </MSBuild>
     <ItemGroup>
       <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">
