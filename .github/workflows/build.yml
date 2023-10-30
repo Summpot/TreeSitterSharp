@@ -43,7 +43,7 @@ jobs:
 
       - name: Do pack
         run: |
-          dotnet pack src\NativeLibrary\NativeLibrary.runtime.csproj -p:RuntimeIdentifier=${{ matrix.rid }}
+          dotnet pack src/NativeLibrary/NativeLibrary.runtime.csproj -p:RuntimeIdentifier=${{ matrix.rid }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
