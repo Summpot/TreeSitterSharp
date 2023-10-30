@@ -7,35 +7,13 @@
         <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
     </PropertyGroup>
 
-    <UsingTask
-        TaskName="ReplaceVersionInJson"
-        TaskFactory="RoslynCodeTaskFactory"
-        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-        <ParameterGroup>
-            <FilePath ParameterType="System.String" Required="true" />
-            <NewVersion ParameterType="System.String" Required="true" />
-        </ParameterGroup>
-        <Task>
-            <Code Type="Fragment" Language="cs">
-        <![CDATA[
-          string filePath = FilePath;
-          string newVersion = NewVersion;
-          string content = System.IO.File.ReadAllText(filePath);
-          content = System.Text.RegularExpressions.Regex.Replace(content, @"(\d+\.\d+\.\d+)", newVersion);
-          System.IO.File.WriteAllText(filePath, content);
-        ]]>
-      </Code>
-        </Task>
-    </UsingTask>
-
-    <Target Name="UpdateRuntimeJsonVersion" BeforeTargets="Build">
-        <ReplaceVersionInJson FilePath="runtime.json" NewVersion="$(Version)" />
-        <ItemGroup>
-            <None Include="runtime.json">
-                <Link>%(Filename)%(Extension)</Link>
-                <Pack>true</Pack>
-                <PackagePath>\</PackagePath>
-            </None>
-        </ItemGroup>
-    </Target>
+    <ItemGroup>
+        <PackageReference Include="tree-sitter-cpp.runtime.linux-arm64" Version="*"></PackageReference>
+        <PackageReference Include="tree-sitter-cpp.runtime.linux-x64" Version="*"></PackageReference>
+        <PackageReference Include="tree-sitter-cpp.runtime.osx-x64" Version="*"></PackageReference>
+        <PackageReference Include="tree-sitter-cpp.runtime.osx-arm64" Version="*"></PackageReference>
+        <PackageReference Include="tree-sitter-cpp.runtime.win-arm64" Version="*"></PackageReference>
+        <PackageReference Include="tree-sitter-cpp.runtime.win-x64" Version="*"></PackageReference>
+        <PackageReference Include="tree-sitter-cpp.runtime.win-x86" Version="*"></PackageReference>
+    </ItemGroup>
 </Project>

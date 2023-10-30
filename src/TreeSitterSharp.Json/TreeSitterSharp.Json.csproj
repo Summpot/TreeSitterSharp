@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="libtree-sitter-json" Version="*" />
+    <PackageReference Include="tree-sitter-json" Version="*" />
   </ItemGroup>
 
   <ItemGroup>

@@ -76,7 +76,6 @@ jobs:
         run: |
           Get-ChildItem ./nupkgs -Filter *.nupkg | %{ dotnet nuget push $_.FullName -k ${{secrets.NUGET_API_KEY}} }
         shell: pwsh
-          
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
