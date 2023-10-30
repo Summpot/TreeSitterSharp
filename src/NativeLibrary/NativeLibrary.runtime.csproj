@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.Build.Traversal">
     <ItemGroup>
+        <ProjectReference Include="..\..\native\native.csproj" />
         <ProjectReference Include="tree-sitter\tree-sitter.runtime.csproj" />
         <ProjectReference Include="tree-sitter-c\tree-sitter-c.runtime.csproj" />
         <ProjectReference Include="tree-sitter-cpp\tree-sitter-cpp.runtime.csproj" />

@@ -6,16 +6,11 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
   </PropertyGroup>
-  <Target Name="BuildNative" BeforeTargets="Build">
-    <MSBuild Projects="..\..\..\native\tree-sitter-lua\tree-sitter-lua.cproj"
-      Targets="Restore;Build" Properties="RuntimeIdentifier=$(RuntimeIdentifier)">
-    </MSBuild>
-    <ItemGroup>
-      <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">
-        <Link>%(Filename)%(Extension)</Link>
-        <Pack>true</Pack>
-        <PackagePath>runtimes\$(RuntimeIdentifier)\native</PackagePath>
-      </None>
-    </ItemGroup>
-  </Target>
+  <ItemGroup>
+    <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">
+      <Link>%(Filename)%(Extension)</Link>
+      <Pack>true</Pack>
+      <PackagePath>runtimes\$(RuntimeIdentifier)\native</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
