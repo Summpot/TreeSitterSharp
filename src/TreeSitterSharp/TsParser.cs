@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class Parser
+public unsafe class TsParser
 {
-    private TsParser* _parser;
-    private Language? _language;
+    private Native.TsParser* _parser;
+    private TsLanguage? _language;
 
 
 
-    public Parser(Language language)
+    public TsParser(TsLanguage language)
     {
         static void* NewMalloc(nuint byteCount) => NativeMemory.Alloc(byteCount);
         static void* NewCalloc(nuint count, nuint size) => NativeMemory.AllocZeroed(count * size);
@@ -26,12 +26,12 @@ public unsafe class Parser
         _parser = Ts.parser_new();
         Language = language;
     }
-    ~Parser()
+    ~TsParser()
     {
         Ts.parser_delete(_parser);
     }
 
-    public Language? Language
+    public TsLanguage? Language
     {
         get => _language;
         set
@@ -44,23 +44,23 @@ public unsafe class Parser
         }
     }
 
-    public Tree Parse(string code)
+    public TsTree Parse(string code)
     {
         if (_language is null)
         {
             throw new Exception("Language can't be null");
         }
-        return new Tree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
+        return new TsTree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
     }
 
-    public Tree Parse(Span<byte> code, Encoding encoding)
+    public TsTree Parse(Span<byte> code, Encoding encoding)
     {
         if (_language is null)
         {
             throw new Exception("Language can't be null");
         }
         byte[] bytes = Encoding.UTF8.GetBytes(encoding.GetString(code));
-        return new Tree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
+        return new TsTree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
     }
 
 

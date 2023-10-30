@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TreeSitterSharp.C;
-public class CParser : Parser
+public class CParser : TsParser
 {
     public CParser() : base(CLanguageProvider.GetLanguage())
     {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TreeSitterSharp.Json;
-public class JsonParser : Parser
+public class JsonParser : TsParser
 {
     public JsonParser() : base(JsonLanguageProvider.GetLanguage())
     {

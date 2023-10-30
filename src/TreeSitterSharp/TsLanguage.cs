@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class Language
+public unsafe class TsLanguage
 {
-    private TsLanguage* _language;
+    private Native.TsLanguage* _language;
 
-    public Language(TsLanguage* language)
+    public TsLanguage(Native.TsLanguage* language)
     {
         _language = language;
     }
 
-    public TsLanguage* ToUnmanaged()
+    public Native.TsLanguage* ToUnmanaged()
     {
         return _language;
     }

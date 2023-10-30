@@ -1,26 +1,26 @@
 ﻿using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public class TreeCursor
+public class TsTreeCursor
 {
-    private readonly TsTreeCursor _treeCursor;
-    private readonly TsNode _node;
+    private readonly Native.TsTreeCursor _treeCursor;
+    private readonly Native.TsNode _node;
 
-    public TreeCursor(Node node)
+    public TsTreeCursor(TsNode node)
     {
         _node = node.ToUnmanaged();
         _treeCursor = Ts.tree_cursor_new(_node);
     }
 
-    private TreeCursor(TsTreeCursor treeCursor) => _treeCursor = treeCursor;
+    private TsTreeCursor(Native.TsTreeCursor treeCursor) => _treeCursor = treeCursor;
 
-    ~TreeCursor()
+    ~TsTreeCursor()
     {
         Ts.tree_cursor_delete(_treeCursor);
     }
 
     public uint CurrentDepth => Ts.tree_cursor_current_depth(in _treeCursor);
-    public Node CurrentNode => new(Ts.tree_cursor_current_node(in _treeCursor));
+    public TsNode CurrentNode => new(Ts.tree_cursor_current_node(in _treeCursor));
     public string CurrentFieldName => Ts.tree_cursor_current_field_name(in _treeCursor);
     public ushort CurrentFieldId => Ts.tree_cursor_current_field_id(in _treeCursor);
     public uint CurrentDescendantIndex => Ts.tree_cursor_current_descendant_index(in _treeCursor);
@@ -39,13 +39,13 @@ public class TreeCursor
         Ts.tree_cursor_reset(_treeCursor, _node);
     }
 
-    public void ResetTo(TreeCursor dst)
+    public void ResetTo(TsTreeCursor dst)
     {
         Ts.tree_cursor_reset_to(dst._treeCursor, _treeCursor);
     }
 
-    public TreeCursor Copy()
+    public TsTreeCursor Copy()
     {
-        return new TreeCursor(Ts.tree_cursor_copy(_treeCursor));
+        return new TsTreeCursor(Ts.tree_cursor_copy(_treeCursor));
     }
 }

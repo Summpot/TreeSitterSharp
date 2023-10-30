@@ -30,9 +30,8 @@ public class CParserTests
 
 
         var tree = parser.Parse(code);
-        var treeCursor = new TreeCursor(tree.Root);
+        var treeCursor = new TsTreeCursor(tree.Root);
         var a = treeCursor.GotoFirstChild();
-        //var b = treeCursor.GotoFirstChild();
         Assert.Equal(expected, tree.Root.GetSExpression());
     }
 }

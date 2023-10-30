@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace TreeSitterSharp;
 public interface ILanguageProvider
 {
-    static abstract Language GetLanguage();
+    static abstract TsLanguage GetLanguage();
 }

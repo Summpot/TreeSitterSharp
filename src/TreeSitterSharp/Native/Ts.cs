@@ -139,10 +139,8 @@ public static unsafe partial class Ts
     [return: NativeTypeName("const TsLanguage *")]
     public static extern TsLanguage* node_language(TsNode self);
 
-    [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_grammar_type",
-        ExactSpelling = true)]
-    [return: NativeTypeName("const char *")]
-    public static extern string node_grammar_type(TsNode self);
+    [LibraryImport("tree-sitter", EntryPoint = "ts_node_grammar_type", StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(ConstantStringMarshaller))]
+    public static partial string node_grammar_type(TsNode self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_grammar_symbol",
         ExactSpelling = true)]
@@ -171,21 +169,18 @@ public static unsafe partial class Ts
         StringMarshallingCustomType = typeof(StringMarshaller))]
     public static partial string node_string(TsNode self);
 
-    [LibraryImport("tree-sitter", EntryPoint = "ts_node_is_null")]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static partial bool node_is_null(TsNode self);
+    [DllImport("tree-sitter", EntryPoint = "ts_node_is_null")]
+    public static extern bool node_is_null(TsNode self);
 
-    [LibraryImport("tree-sitter", EntryPoint = "ts_node_is_named")]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static partial bool node_is_named(TsNode self);
+    [DllImport("tree-sitter", EntryPoint = "ts_node_is_named")]
+    public static extern bool node_is_named(TsNode self);
 
-    [LibraryImport("tree-sitter", EntryPoint = "ts_node_is_missing")]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static partial bool node_is_missing(TsNode self);
+    [DllImport("tree-sitter", EntryPoint = "ts_node_is_missing")]
+    public static extern bool node_is_missing(TsNode self);
 
-    [LibraryImport("tree-sitter", EntryPoint = "ts_node_is_extra")]
+    [DllImport("tree-sitter", EntryPoint = "ts_node_is_extra")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static partial bool node_is_extra(TsNode self);
+    public static extern bool node_is_extra(TsNode self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_has_changes",
         ExactSpelling = true)]
@@ -220,10 +215,9 @@ public static unsafe partial class Ts
         ExactSpelling = true)]
     public static extern TsNode node_child(TsNode self, [NativeTypeName("uint32_t")] uint child_index);
 
-    [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
-        EntryPoint = "ts_node_field_name_for_child", ExactSpelling = true)]
-    [return: NativeTypeName("const char *")]
-    public static extern string node_field_name_for_child(TsNode self, [NativeTypeName("uint32_t")] uint child_index);
+    [LibraryImport("tree-sitter", EntryPoint = "ts_node_field_name_for_child", StringMarshalling = StringMarshalling.Custom,
+        StringMarshallingCustomType = typeof(StringMarshaller))]
+    public static partial string node_field_name_for_child(TsNode self, [NativeTypeName("uint32_t")] uint child_index);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_child_count",
         ExactSpelling = true)]
