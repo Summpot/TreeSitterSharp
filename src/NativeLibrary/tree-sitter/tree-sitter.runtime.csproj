@@ -1,21 +1,20 @@
 <Project Sdk="Microsoft.Build.NoTargets">
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>true</IsPackable>
-        <PackageId>$(AssemblyName).$(RuntimeIdentifier)</PackageId>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
-    </PropertyGroup>
-
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageId>$(AssemblyName).$(RuntimeIdentifier)</PackageId>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
+  </PropertyGroup>
+  <Target Name="BuildNative" BeforeTargets="Build">
+    <MSBuild Projects="..\..\..\native\tree-sitter\tree-sitter.cproj">
+    </MSBuild>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\native\tree-sitter\tree-sitter.cproj"></ProjectReference>
+      <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">
+        <Link>%(Filename)%(Extension)</Link>
+        <Pack>true</Pack>
+        <PackagePath>runtimes\$(RuntimeIdentifier)\native</PackagePath>
+      </None>
     </ItemGroup>
-
-    <ItemGroup>
-        <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">
-            <Link>%(Filename)%(Extension)</Link>
-            <Pack>true</Pack>
-            <PackagePath>runtimes\$(RuntimeIdentifier)\native</PackagePath>
-        </None>
-    </ItemGroup>
+  </Target>
 </Project>
