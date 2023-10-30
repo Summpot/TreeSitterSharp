@@ -7,10 +7,35 @@
         <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
     </PropertyGroup>
 
-    <ItemGroup>
-        <None Include="runtime.json">
-            <Link>%(Filename)%(Extension)</Link>
-            <Pack>true</Pack>
-        </None>
-    </ItemGroup>
+    <UsingTask
+        TaskName="ReplaceVersionInJson"
+        TaskFactory="RoslynCodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+        <ParameterGroup>
+            <FilePath ParameterType="System.String" Required="true" />
+            <NewVersion ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          string filePath = FilePath;
+          string newVersion = NewVersion;
+          string content = System.IO.File.ReadAllText(filePath);
+          content = System.Text.RegularExpressions.Regex.Replace(content, @"(""\s*version""\s*:\s*"")(\d+\.\d+\.\d+)(""\s*,)", "$1" + newVersion + "$3");
+          System.IO.File.WriteAllText(filePath, content);
+        ]]>
+      </Code>
+        </Task>
+    </UsingTask>
+
+    <Target Name="UpdateRuntimeJsonVersion" BeforeTargets="Build">
+        <ReplaceVersionInJson FilePath="runtime.json" NewVersion="$(AssemblyVersion)" />
+        <ItemGroup>
+            <None Include="runtime.json">
+                <Link>%(Filename)%(Extension)</Link>
+                <Pack>true</Pack>
+                <PackagePath>\</PackagePath>
+            </None>
+        </ItemGroup>
+    </Target>
 </Project>

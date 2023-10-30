@@ -8,7 +8,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build-runtime:
+  build-runtime-package:
     strategy:
       matrix:
         rid:
@@ -24,11 +24,11 @@ jobs:
         include:
           - { os: ubuntu-latest, rid: linux-x64 }
           - { os: ubuntu-latest, rid: linux-arm64 }
-          - { os: macos-latest, rid: osx-arm64 }
-          - { os: macos-latest, rid: osx-x64 }
-          - { os: windows-latest, rid: win-arm64 }
-          - { os: windows-latest, rid: win-x64 }
-          - { os: windows-latest, rid: win-x86 }
+          - { os: ubuntu-latest, rid: osx-arm64 }
+          - { os: ubuntu-latest, rid: osx-x64 }
+          - { os: ubuntu-latest, rid: win-arm64 }
+          - { os: ubuntu-latest, rid: win-x64 }
+          - { os: ubuntu-latest, rid: win-x86 }
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -44,7 +44,36 @@ jobs:
       - name: Do pack
         run: |
           dotnet build native/native.csproj -p:Configuration=Release -p:RuntimeIdentifier=${{ matrix.rid }}
-          dotnet pack src/NativeLibrary/NativeLibrary.runtime.csproj -p:Configuration=Release -p:RuntimeIdentifier=${{ matrix.rid }}
+          dotnet pack src/NativeLibrary/NativeLibrary.runtime.csproj -p:RuntimeIdentifier=${{ matrix.rid }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Artifacts
+          path: "nupkgs"
+
+  build-main-package:
+    needs: build-runtime-package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install .NET Sdk
+        uses: actions/setup-dotnet@v3
+        with:
+          global-json-file: global.json
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: Artifacts
+          path: "nupkgs"
+
+      - name: Do pack
+        run: |
+          dotnet pack src/NativeLibrary/NativeLibrary.csproj
+          dotnet pack
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
