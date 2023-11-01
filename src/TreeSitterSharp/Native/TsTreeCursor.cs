@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public unsafe partial struct TsTreeCursor
+public unsafe struct TsTreeCursor
 {
     public TsTree* tree;
 

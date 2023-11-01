@@ -17,7 +17,7 @@ public partial struct TsParseAction
     [NativeTypeName("uint8_t")]
     public byte type;
 
-    public partial struct _shift_e__Struct
+    public struct _shift_e__Struct
     {
         [NativeTypeName("uint8_t")]
         public byte type;
@@ -32,7 +32,7 @@ public partial struct TsParseAction
         public byte repetition;
     }
 
-    public partial struct _reduce_e__Struct
+    public struct _reduce_e__Struct
     {
         [NativeTypeName("uint8_t")]
         public byte type;

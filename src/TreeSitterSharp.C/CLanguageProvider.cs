@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp.C;
 internal class CLanguageProvider : ILanguageProvider
 {
     [DllImport("tree-sitter-c", EntryPoint = "tree_sitter_c", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    private static extern unsafe Native.TsLanguage* tree_sitter_c();
+    private static extern unsafe TsLanguage* tree_sitter_c();
 
-    public static unsafe TsLanguage GetLanguage()
+    public static unsafe Language GetLanguage()
     {
-        return new TsLanguage(tree_sitter_c());
+        return new Language(tree_sitter_c());
     }
 
 }

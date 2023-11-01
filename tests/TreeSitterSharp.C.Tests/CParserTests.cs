@@ -1,7 +1,3 @@
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
-using TreeSitterSharp.Native;
-
 namespace TreeSitterSharp.C.Tests;
 
 public class CParserTests
@@ -30,7 +26,7 @@ public class CParserTests
 
 
         var tree = parser.Parse(code);
-        var treeCursor = new TsTreeCursor(tree.Root);
+        var treeCursor = new TreeCursor(tree.Root);
         var a = treeCursor.GotoFirstChild();
         Assert.Equal(expected, tree.Root.GetSExpression());
     }

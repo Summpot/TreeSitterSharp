@@ -16,7 +16,7 @@ public static unsafe partial class Ts
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_language",
         ExactSpelling = true)]
     [return: NativeTypeName("const TsLanguage *")]
-    public static extern TsLanguage* parser_language([NativeTypeName("const TsParser *")] TsParser* self);
+    public static extern TsLanguage* parser_language([NativeTypeName("const Parser *")] TsParser* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_set_language",
         ExactSpelling = true)]
@@ -32,12 +32,12 @@ public static unsafe partial class Ts
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_included_ranges",
         ExactSpelling = true)]
     [return: NativeTypeName("const TsRange *")]
-    public static extern TsRange* parser_included_ranges([NativeTypeName("const TsParser *")] TsParser* self,
+    public static extern TsRange* parser_included_ranges([NativeTypeName("const Parser *")] TsParser* self,
         [NativeTypeName("uint32_t *")] uint* count);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_parse",
         ExactSpelling = true)]
-    public static extern TsTree* parser_parse(TsParser* self, [NativeTypeName("const TsTree *")] TsTree* old_tree,
+    public static extern TsTree* parser_parse(TsParser* self, [NativeTypeName("const Tree *")] TsTree* old_tree,
         TsInput input);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_parse_string",
@@ -59,7 +59,7 @@ public static unsafe partial class Ts
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_timeout_micros",
         ExactSpelling = true)]
     [return: NativeTypeName("uint64_t")]
-    public static extern ulong parser_timeout_micros([NativeTypeName("const TsParser *")] TsParser* self);
+    public static extern ulong parser_timeout_micros([NativeTypeName("const Parser *")] TsParser* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_parser_set_cancellation_flag", ExactSpelling = true)]
@@ -69,7 +69,7 @@ public static unsafe partial class Ts
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_parser_cancellation_flag", ExactSpelling = true)]
     [return: NativeTypeName("const size_t *")]
-    public static extern nuint* parser_cancellation_flag([NativeTypeName("const TsParser *")] TsParser* self);
+    public static extern nuint* parser_cancellation_flag([NativeTypeName("const Parser *")] TsParser* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_set_logger",
         ExactSpelling = true)]
@@ -77,7 +77,7 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_logger",
         ExactSpelling = true)]
-    public static extern TsLogger parser_logger([NativeTypeName("const TsParser *")] TsParser* self);
+    public static extern TsLogger parser_logger([NativeTypeName("const Parser *")] TsParser* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_parser_print_dot_graphs",
         ExactSpelling = true)]
@@ -85,7 +85,7 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_copy",
         ExactSpelling = true)]
-    public static extern TsTree* tree_copy([NativeTypeName("const TsTree *")] TsTree* self);
+    public static extern TsTree* tree_copy([NativeTypeName("const Tree *")] TsTree* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_delete",
         ExactSpelling = true)]
@@ -97,17 +97,17 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_root_node_with_offset", ExactSpelling = true)]
-    public static extern TsNode tree_root_node_with_offset([NativeTypeName("const TsTree *")] TsTree* self,
-        [NativeTypeName("uint32_t")] uint offset_bytes, TsPoint offset_extent);
+    public static extern TsNode tree_root_node_with_offset([NativeTypeName("const Tree *")] TsTree* self,
+        [NativeTypeName("uint32_t")] uint offset_bytes, Point offset_extent);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_language",
         ExactSpelling = true)]
     [return: NativeTypeName("const TsLanguage *")]
-    public static extern TsLanguage* tree_language([NativeTypeName("const TsTree *")] TsTree* self);
+    public static extern TsLanguage* tree_language([NativeTypeName("const Tree *")] TsTree* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_included_ranges",
         ExactSpelling = true)]
-    public static extern TsRange* tree_included_ranges([NativeTypeName("const TsTree *")] TsTree* self,
+    public static extern TsRange* tree_included_ranges([NativeTypeName("const Tree *")] TsTree* self,
         [NativeTypeName("uint32_t *")] uint* length);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_edit",
@@ -116,13 +116,13 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_get_changed_ranges",
         ExactSpelling = true)]
-    public static extern TsRange* tree_get_changed_ranges([NativeTypeName("const TsTree *")] TsTree* old_tree,
-        [NativeTypeName("const TsTree *")] TsTree* new_tree, [NativeTypeName("uint32_t *")] uint* length);
+    public static extern TsRange* tree_get_changed_ranges([NativeTypeName("const Tree *")] TsTree* old_tree,
+        [NativeTypeName("const Tree *")] TsTree* new_tree, [NativeTypeName("uint32_t *")] uint* length);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_print_dot_graph",
         ExactSpelling = true)]
     public static extern void
-        tree_print_dot_graph([NativeTypeName("const TsTree *")] TsTree* self, int file_descriptor);
+        tree_print_dot_graph([NativeTypeName("const Tree *")] TsTree* self, int file_descriptor);
 
     [LibraryImport("tree-sitter", EntryPoint = "ts_node_type", StringMarshalling = StringMarshalling.Custom,
         StringMarshallingCustomType = typeof(ConstantStringMarshaller))]
@@ -154,7 +154,7 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_start_point",
         ExactSpelling = true)]
-    public static extern TsPoint node_start_point(TsNode self);
+    public static extern Point node_start_point(TsNode self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_end_byte",
         ExactSpelling = true)]
@@ -163,7 +163,7 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_end_point",
         ExactSpelling = true)]
-    public static extern TsPoint node_end_point(TsNode self);
+    public static extern Point node_end_point(TsNode self);
 
     [LibraryImport("tree-sitter", EntryPoint = "ts_node_string", StringMarshalling = StringMarshalling.Custom,
         StringMarshallingCustomType = typeof(StringMarshaller))]
@@ -276,7 +276,7 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_node_descendant_for_point_range", ExactSpelling = true)]
-    public static extern TsNode node_descendant_for_point_range(TsNode self, TsPoint start, TsPoint end);
+    public static extern TsNode node_descendant_for_point_range(TsNode self, Point start, Point end);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_node_named_descendant_for_byte_range", ExactSpelling = true)]
@@ -285,7 +285,7 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_node_named_descendant_for_point_range", ExactSpelling = true)]
-    public static extern TsNode node_named_descendant_for_point_range(TsNode self, TsPoint start, TsPoint end);
+    public static extern TsNode node_named_descendant_for_point_range(TsNode self, Point start, Point end);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_node_edit",
         ExactSpelling = true)]
@@ -376,7 +376,7 @@ public static unsafe partial class Ts
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_tree_cursor_goto_first_child_for_point", ExactSpelling = true)]
     [return: NativeTypeName("int64_t")]
-    public static extern long tree_cursor_goto_first_child_for_point(in TsTreeCursor self, TsPoint goal_point);
+    public static extern long tree_cursor_goto_first_child_for_point(in TsTreeCursor self, Point goal_point);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_tree_cursor_copy",
         ExactSpelling = true)]
@@ -395,64 +395,64 @@ public static unsafe partial class Ts
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_pattern_count",
         ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
-    public static extern uint query_pattern_count([NativeTypeName("const TsQuery *")] TsQuery* self);
+    public static extern uint query_pattern_count([NativeTypeName("const Query *")] TsQuery* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_capture_count",
         ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
-    public static extern uint query_capture_count([NativeTypeName("const TsQuery *")] TsQuery* self);
+    public static extern uint query_capture_count([NativeTypeName("const Query *")] TsQuery* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_string_count",
         ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
-    public static extern uint query_string_count([NativeTypeName("const TsQuery *")] TsQuery* self);
+    public static extern uint query_string_count([NativeTypeName("const Query *")] TsQuery* self);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_start_byte_for_pattern", ExactSpelling = true)]
     [return: NativeTypeName("uint32_t")]
-    public static extern uint query_start_byte_for_pattern([NativeTypeName("const TsQuery *")] TsQuery* self,
+    public static extern uint query_start_byte_for_pattern([NativeTypeName("const Query *")] TsQuery* self,
         [NativeTypeName("uint32_t")] uint pattern_index);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_predicates_for_pattern", ExactSpelling = true)]
     [return: NativeTypeName("const TsQueryPredicateStep *")]
     public static extern TsQueryPredicateStep* query_predicates_for_pattern(
-        [NativeTypeName("const TsQuery *")] TsQuery* self, [NativeTypeName("uint32_t")] uint pattern_index,
+        [NativeTypeName("const Query *")] TsQuery* self, [NativeTypeName("uint32_t")] uint pattern_index,
         [NativeTypeName("uint32_t *")] uint* step_count);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_is_pattern_rooted",
         ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte query_is_pattern_rooted([NativeTypeName("const TsQuery *")] TsQuery* self,
+    public static extern byte query_is_pattern_rooted([NativeTypeName("const Query *")] TsQuery* self,
         [NativeTypeName("uint32_t")] uint pattern_index);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_is_pattern_non_local", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte query_is_pattern_non_local([NativeTypeName("const TsQuery *")] TsQuery* self,
+    public static extern byte query_is_pattern_non_local([NativeTypeName("const Query *")] TsQuery* self,
         [NativeTypeName("uint32_t")] uint pattern_index);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_is_pattern_guaranteed_at_step", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte query_is_pattern_guaranteed_at_step([NativeTypeName("const TsQuery *")] TsQuery* self,
+    public static extern byte query_is_pattern_guaranteed_at_step([NativeTypeName("const Query *")] TsQuery* self,
         [NativeTypeName("uint32_t")] uint byte_offset);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_capture_name_for_id", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern string query_capture_name_for_id([NativeTypeName("const TsQuery *")] TsQuery* self,
+    public static extern string query_capture_name_for_id([NativeTypeName("const Query *")] TsQuery* self,
         [NativeTypeName("uint32_t")] uint index, [NativeTypeName("uint32_t *")] uint* length);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_capture_quantifier_for_id", ExactSpelling = true)]
-    public static extern TsQuantifier query_capture_quantifier_for_id([NativeTypeName("const TsQuery *")] TsQuery* self,
+    public static extern TsQuantifier query_capture_quantifier_for_id([NativeTypeName("const Query *")] TsQuery* self,
         [NativeTypeName("uint32_t")] uint pattern_index, [NativeTypeName("uint32_t")] uint capture_index);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_string_value_for_id", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
-    public static extern string query_string_value_for_id([NativeTypeName("const TsQuery *")] TsQuery* self,
+    public static extern string query_string_value_for_id([NativeTypeName("const Query *")] TsQuery* self,
         [NativeTypeName("uint32_t")] uint index, [NativeTypeName("uint32_t *")] uint* length);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_disable_capture",
@@ -474,7 +474,7 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_cursor_exec",
         ExactSpelling = true)]
-    public static extern void query_cursor_exec(TsQueryCursor* self, [NativeTypeName("const TsQuery *")] TsQuery* query,
+    public static extern void query_cursor_exec(TsQueryCursor* self, [NativeTypeName("const Query *")] TsQuery* query,
         TsNode node);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
@@ -500,12 +500,12 @@ public static unsafe partial class Ts
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_cursor_set_point_range", ExactSpelling = true)]
-    public static extern void query_cursor_set_point_range(TsQueryCursor* self, TsPoint start_point, TsPoint end_point);
+    public static extern void query_cursor_set_point_range(TsQueryCursor* self, Point start_point, Point end_point);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ts_query_cursor_next_match",
         ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte query_cursor_next_match(TsQueryCursor* self, TsQueryMatch* match);
+    public static extern bool query_cursor_next_match(TsQueryCursor* self, TsQueryMatch* match);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_cursor_remove_match", ExactSpelling = true)]

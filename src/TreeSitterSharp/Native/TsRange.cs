@@ -1,10 +1,10 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsRange
+public struct TsRange
 {
-    public TsPoint start_point;
+    public Point start_point;
 
-    public TsPoint end_point;
+    public Point end_point;
     
     public uint start_byte;
     

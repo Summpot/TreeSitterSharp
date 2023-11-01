@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public unsafe partial struct TsLogger
+public unsafe struct TsLogger
 {
     public void* payload;
 

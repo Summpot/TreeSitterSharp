@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsLexMode
+public struct TsLexMode
 {
     [NativeTypeName("uint16_t")]
     public ushort lex_state;

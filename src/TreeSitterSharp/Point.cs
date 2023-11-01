@@ -1,5 +1,5 @@
 ﻿namespace TreeSitterSharp;
-public struct TsPoint
+public struct Point
 {
     public uint Row;
 

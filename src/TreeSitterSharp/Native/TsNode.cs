@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public unsafe partial struct TsNode
+public unsafe struct TsNode
 {
     [NativeTypeName("uint32_t[4]")]
     public fixed uint context[4];
@@ -8,6 +8,6 @@ public unsafe partial struct TsNode
     [NativeTypeName("const void *")]
     public void* id;
 
-    [NativeTypeName("const TsTree *")]
+    [NativeTypeName("const Tree *")]
     public TsTree* tree;
 }

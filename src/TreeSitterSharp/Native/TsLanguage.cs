@@ -89,7 +89,7 @@ public unsafe partial struct TsLanguage
     [NativeTypeName("const TSStateId *")]
     public ushort* primary_state_ids;
 
-    public unsafe partial struct _external_scanner_e__Struct
+    public struct _external_scanner_e__Struct
     {
         [NativeTypeName("const bool *")]
         public bool* states;

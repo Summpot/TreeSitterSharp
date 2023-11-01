@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TreeSitterSharp;
+﻿namespace TreeSitterSharp;
 public interface ILanguageProvider
 {
-    static abstract TsLanguage GetLanguage();
+    static abstract Language GetLanguage();
 }

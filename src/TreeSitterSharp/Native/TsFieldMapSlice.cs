@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsFieldMapSlice
+public struct TsFieldMapSlice
 {
     [NativeTypeName("uint16_t")]
     public ushort index;

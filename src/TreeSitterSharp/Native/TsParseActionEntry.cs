@@ -12,7 +12,7 @@ public partial struct TsParseActionEntry
     [NativeTypeName("__AnonymousRecord_parser_L83_C3")]
     public EntryEStruct entry;
 
-    public partial struct EntryEStruct
+    public struct EntryEStruct
     {
         [NativeTypeName("uint8_t")]
         public byte Count;

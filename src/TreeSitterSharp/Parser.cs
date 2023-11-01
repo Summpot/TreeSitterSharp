@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Text;
-using System.Text.Unicode;
-using System.Threading.Tasks;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class TsParser
+public unsafe class Parser : INativeObject<TsParser>
 {
-    private Native.TsParser* _parser;
-    private TsLanguage? _language;
+    private TsParser* _parser;
+    private Language? _language;
 
 
 
-    public TsParser(TsLanguage language)
+    public Parser(Language language)
     {
         static void* NewMalloc(nuint byteCount) => NativeMemory.Alloc(byteCount);
         static void* NewCalloc(nuint count, nuint size) => NativeMemory.AllocZeroed(count * size);
@@ -26,12 +20,15 @@ public unsafe class TsParser
         _parser = Ts.parser_new();
         Language = language;
     }
-    ~TsParser()
+
+    ~Parser()
     {
         Ts.parser_delete(_parser);
     }
 
-    public TsLanguage? Language
+    public TsParser* ToUnmanaged() => _parser;
+
+    public Language? Language
     {
         get => _language;
         set
@@ -44,23 +41,23 @@ public unsafe class TsParser
         }
     }
 
-    public TsTree Parse(string code)
+    public Tree Parse(string code)
     {
         if (_language is null)
         {
             throw new Exception("Language can't be null");
         }
-        return new TsTree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
+        return new Tree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
     }
 
-    public TsTree Parse(Span<byte> code, Encoding encoding)
+    public Tree Parse(Span<byte> code, Encoding encoding)
     {
         if (_language is null)
         {
             throw new Exception("Language can't be null");
         }
         byte[] bytes = Encoding.UTF8.GetBytes(encoding.GetString(code));
-        return new TsTree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
+        return new Tree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
     }
 
 

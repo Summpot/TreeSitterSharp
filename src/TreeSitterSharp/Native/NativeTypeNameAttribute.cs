@@ -1,12 +1,11 @@
-using System;
 using System.Diagnostics;
 
 namespace TreeSitterSharp.Native;
 
 /// <summary>Defines the type of a member as it was used in the native signature.</summary>
-[AttributeUsage(AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.ReturnValue, AllowMultiple = false, Inherited = true)]
+[AttributeUsage(AttributeTargets.Struct | AttributeTargets.Enum | AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.ReturnValue)]
 [Conditional("DEBUG")]
-internal sealed partial class NativeTypeNameAttribute : Attribute
+internal sealed class NativeTypeNameAttribute : Attribute
 {
     private readonly string _name;
 

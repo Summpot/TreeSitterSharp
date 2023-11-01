@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsSymbolMetadata
+public struct TsSymbolMetadata
 {
     [NativeTypeName("bool")]
     public byte Visible;

@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsQueryPredicateStep
+public struct TsQueryPredicateStep
 {
     public TsQueryPredicateStepType Type;
 

@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsQueryCapture
+public struct TsQueryCapture
 {
     public TsNode Node;
 

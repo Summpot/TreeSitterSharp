@@ -1,5 +1,5 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsParser
+public struct TsParser
 {
 }

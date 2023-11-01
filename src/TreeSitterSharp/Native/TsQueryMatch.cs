@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public unsafe partial struct TsQueryMatch
+public unsafe struct TsQueryMatch
 {
     [NativeTypeName("uint32_t")]
     public uint Id;

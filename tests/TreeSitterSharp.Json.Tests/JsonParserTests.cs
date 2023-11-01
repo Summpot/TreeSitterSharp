@@ -1,6 +1,3 @@
-using System.Xml.Linq;
-using TreeSitterSharp.Native;
-
 namespace TreeSitterSharp.Json.Tests;
 
 public class JsonParserTests
@@ -11,9 +8,9 @@ public class JsonParserTests
         var parser = new JsonParser();
         string code = "[1, null]";
         var tree = parser.Parse(code);
-        TsNode rootNode = tree.Root;
-        TsNode arrayNode = rootNode.GetNamedChild(0);
-        TsNode numberNode = arrayNode.GetNamedChild(0);
+        Node rootNode = tree.Root;
+        Node arrayNode = rootNode.GetNamedChild(0);
+        Node numberNode = arrayNode.GetNamedChild(0);
 
         Assert.Equal("document", rootNode.Type);
         Assert.Equal("array", arrayNode.Type);
@@ -31,7 +28,7 @@ public class JsonParserTests
         var parser = new JsonParser();
         string code = "[1, null]";
         var tree = parser.Parse(code);
-        TsNode rootNode = tree.Root;
+        Node rootNode = tree.Root;
 
         string expected = """
             (document (array (number) (null)))

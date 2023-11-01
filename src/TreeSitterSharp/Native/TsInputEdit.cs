@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsInputEdit
+public struct TsInputEdit
 {
     [NativeTypeName("uint32_t")]
     public uint start_byte;
@@ -11,9 +11,9 @@ public partial struct TsInputEdit
     [NativeTypeName("uint32_t")]
     public uint new_end_byte;
 
-    public TsPoint start_point;
+    public Point start_point;
 
-    public TsPoint old_end_point;
+    public Point old_end_point;
 
-    public TsPoint new_end_point;
+    public Point new_end_point;
 }

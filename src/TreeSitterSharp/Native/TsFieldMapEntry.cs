@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public partial struct TsFieldMapEntry
+public struct TsFieldMapEntry
 {
     [NativeTypeName("TSFieldId")]
     public ushort field_id;

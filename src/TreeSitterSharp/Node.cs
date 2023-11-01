@@ -1,31 +1,31 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Immutable;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class TsNode
+public unsafe class Node
 {
-    private readonly Native.TsNode _node;
+    private readonly TsNode _node;
 
-    internal TsNode(Native.TsNode node)
+    internal Node(TsNode node)
     {
         _node = node;
-        Tree = new TsTree(_node.tree);
+        Tree = new Tree(_node.tree);
     }
 
-    public TsTree Tree { get; }
+    public Tree Tree { get; }
     public nint Id => (nint)_node.id;
     public string Type => Ts.node_type(_node);
     public ushort Symbol => Ts.node_symbol(_node);
-    public TsLanguage Language => new(Ts.node_language(_node));
+    public Language Language => new(Ts.node_language(_node));
     public string GrammarType => Ts.node_grammar_type(_node);
     public ushort GrammarSymbol => Ts.node_grammar_symbol(_node);
     public uint StartByte => Ts.node_start_byte(_node);
     public uint EndByte => Ts.node_end_byte(_node);
-    public TsPoint StartPoint => Ts.node_start_point(_node);
-    public TsPoint EndPoint => Ts.node_end_point(_node);
+    public Point StartPoint => Ts.node_start_point(_node);
+    public Point EndPoint => Ts.node_end_point(_node);
     public uint ChildCount => Ts.node_child_count(_node);
     public uint NamedChildCount => Ts.node_named_child_count(_node);
-    public TsNode? PreviousSibling
+    public Node? PreviousSibling
     {
         get
         {
@@ -34,7 +34,7 @@ public unsafe class TsNode
         }
     }
 
-    public TsNode? NextSibling
+    public Node? NextSibling
     {
         get
         {
@@ -43,7 +43,7 @@ public unsafe class TsNode
         }
     }
 
-    public TsNode? PreviousNamedSibling
+    public Node? PreviousNamedSibling
     {
         get
         {
@@ -52,7 +52,7 @@ public unsafe class TsNode
         }
     }
 
-    public TsNode? NextNamedSibling
+    public Node? NextNamedSibling
     {
         get
         {
@@ -61,7 +61,7 @@ public unsafe class TsNode
         }
     }
 
-    public TsNode? Parent
+    public Node? Parent
     {
         get
         {
@@ -75,21 +75,29 @@ public unsafe class TsNode
     public bool IsExtra => Ts.node_is_extra(_node);
     public bool IsNull => Ts.node_is_null(_node);
 
-    public TsNode GetChildByFieldName(string fieldName)
+    public ImmutableArray<Node> Children => GetChildren().ToImmutableArray();
+    public ImmutableArray<Node> NamedChildren => GetNamedChildren().ToImmutableArray();
+
+    public Node GetChildByFieldName(string fieldName)
     {
-        return new TsNode(Ts.node_child_by_field_name(_node, fieldName, (uint)fieldName.Length));
+        return new Node(Ts.node_child_by_field_name(_node, fieldName, (uint)fieldName.Length));
     }
 
-    public TsNode GetChildByFieldId(ushort fieldId) => new(Ts.node_child_by_field_id(_node, fieldId));
+    public Node GetChildByFieldId(ushort fieldId) => new(Ts.node_child_by_field_id(_node, fieldId));
 
     public string GetFieldNameForChild(uint childIndex) => Ts.node_field_name_for_child(_node, childIndex);
 
-    public TsNode GetNamedChild(uint index)
+    public Node GetNamedChild(uint index)
     {
-        return new TsNode(Ts.node_named_child(_node, index));
+        return new Node(Ts.node_named_child(_node, index));
     }
 
-    public IEnumerable<TsNode> GetNamedChildren()
+    public Node GetChild(uint index)
+    {
+        return new Node(Ts.node_child(_node, index));
+    }
+
+    private IEnumerable<Node> GetNamedChildren()
     {
         for (uint i = 0; i < NamedChildCount; i++)
         {
@@ -97,7 +105,7 @@ public unsafe class TsNode
         }
     }
 
-    public IEnumerable<TsNode> GetChildren()
+    private IEnumerable<Node> GetChildren()
     {
         for (uint i = 0; i < ChildCount; i++)
         {
@@ -105,12 +113,7 @@ public unsafe class TsNode
         }
     }
 
-    public TsNode GetChild(uint index)
-    {
-        return new TsNode(Ts.node_child(_node, index));
-    }
-
-    public Native.TsNode ToUnmanaged()
+    public TsNode ToUnmanaged()
     {
         return _node;
     }
@@ -120,7 +123,7 @@ public unsafe class TsNode
         return Ts.node_string(_node);
     }
 
-    protected bool Equals(TsNode other) => Ts.node_eq(_node, other._node);
+    protected bool Equals(Node other) => Ts.node_eq(_node, other._node);
 
     public override bool Equals(object? obj)
     {
@@ -134,12 +137,12 @@ public unsafe class TsNode
             return true;
         }
 
-        if (obj.GetType() != this.GetType())
+        if (obj.GetType() != GetType())
         {
             return false;
         }
 
-        return Equals((TsNode)obj);
+        return Equals((Node)obj);
     }
 
     public override int GetHashCode() => _node.GetHashCode();

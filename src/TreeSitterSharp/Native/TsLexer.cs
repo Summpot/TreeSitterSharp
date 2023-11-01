@@ -1,6 +1,6 @@
 namespace TreeSitterSharp.Native;
 
-public unsafe partial struct TsLexer
+public unsafe struct TsLexer
 {
     [NativeTypeName("int32_t")]
     public int lookahead;
