@@ -9,16 +9,16 @@ using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
 
-public unsafe class TreeSitterQueryCursor
+public unsafe class QueryCursor
 {
     private TsQueryCursor* _queryCursor;
 
-    public TreeSitterQueryCursor()
+    public QueryCursor()
     {
         _queryCursor = Ts.query_cursor_new();
     }
 
-    public void Execute(Query query, TreeSitterSyntaxNode node)
+    public void Execute(Query query, SyntaxNode node)
     {
         Ts.query_cursor_exec(_queryCursor, (query as INativeObject<TsQuery>).ToUnmanaged(), node.ToUnmanaged());
     }

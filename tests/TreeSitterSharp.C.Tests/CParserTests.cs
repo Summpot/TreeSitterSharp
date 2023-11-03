@@ -26,7 +26,7 @@ public class CParserTests
 
 
         var tree = parser.Parse(code);
-        var treeCursor = new TreeSitterSyntaxTreeCursor(tree.Root);
+        var treeCursor = new SyntaxTreeCursor(tree.Root);
         var a = treeCursor.GotoFirstChild();
         Assert.Equal(expected, tree.Root.GetSExpression());
     }
@@ -51,7 +51,7 @@ public class CParserTests
 
         var tree = parser.Parse(code);
 
-        var cursor = new TreeSitterQueryCursor();
+        var cursor = new QueryCursor();
 
         cursor.Execute(Query.Create(tree.Language, "(preproc_include)", out var errorOffset, out var error), tree.Root);
 

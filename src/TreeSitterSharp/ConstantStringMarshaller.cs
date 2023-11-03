@@ -20,6 +20,6 @@ internal static unsafe class ConstantStringMarshaller
     /// <param name="unmanaged">The memory allocated for the unmanaged string.</param>
     public static void Free(byte* unmanaged)
     {
-
+        // We shouldn't free constant string.
     }
 }

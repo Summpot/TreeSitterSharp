@@ -8,9 +8,9 @@ public class JsonParserTests
         var parser = new JsonParser();
         string code = "[1, null]";
         var tree = parser.Parse(code);
-        TreeSitterSyntaxNode rootNode = tree.Root;
-        TreeSitterSyntaxNode arrayNode = rootNode.GetNamedChild(0);
-        TreeSitterSyntaxNode numberNode = arrayNode.GetNamedChild(0);
+        SyntaxNode rootNode = tree.Root;
+        SyntaxNode arrayNode = rootNode.GetNamedChild(0);
+        SyntaxNode numberNode = arrayNode.GetNamedChild(0);
 
         Assert.Equal("document", rootNode.Type);
         Assert.Equal("array", arrayNode.Type);
@@ -28,7 +28,7 @@ public class JsonParserTests
         var parser = new JsonParser();
         string code = "[1, null]";
         var tree = parser.Parse(code);
-        TreeSitterSyntaxNode rootNode = tree.Root;
+        SyntaxNode rootNode = tree.Root;
 
         string expected = """
             (document (array (number) (null)))

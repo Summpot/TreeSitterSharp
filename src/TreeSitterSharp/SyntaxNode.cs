@@ -2,17 +2,17 @@
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class TreeSitterSyntaxNode
+public unsafe class SyntaxNode
 {
     private readonly TsNode _node;
 
-    internal TreeSitterSyntaxNode(TsNode node)
+    internal SyntaxNode(TsNode node)
     {
         _node = node;
-        Tree = new TreeSitterSyntaxTree(_node.tree);
+        Tree = new SyntaxTree(_node.tree);
     }
 
-    public TreeSitterSyntaxTree Tree { get; }
+    public SyntaxTree Tree { get; }
 
     public nint Id => (nint)_node.id;
 
@@ -29,7 +29,7 @@ public unsafe class TreeSitterSyntaxNode
     public Point EndPoint => Ts.node_end_point(_node);
     public uint ChildCount => Ts.node_child_count(_node);
     public uint NamedChildCount => Ts.node_named_child_count(_node);
-    public TreeSitterSyntaxNode? PreviousSibling
+    public SyntaxNode? PreviousSibling
     {
         get
         {
@@ -38,7 +38,7 @@ public unsafe class TreeSitterSyntaxNode
         }
     }
 
-    public TreeSitterSyntaxNode? NextSibling
+    public SyntaxNode? NextSibling
     {
         get
         {
@@ -47,7 +47,7 @@ public unsafe class TreeSitterSyntaxNode
         }
     }
 
-    public TreeSitterSyntaxNode? PreviousNamedSibling
+    public SyntaxNode? PreviousNamedSibling
     {
         get
         {
@@ -56,7 +56,7 @@ public unsafe class TreeSitterSyntaxNode
         }
     }
 
-    public TreeSitterSyntaxNode? NextNamedSibling
+    public SyntaxNode? NextNamedSibling
     {
         get
         {
@@ -65,7 +65,7 @@ public unsafe class TreeSitterSyntaxNode
         }
     }
 
-    public TreeSitterSyntaxNode? Parent
+    public SyntaxNode? Parent
     {
         get
         {
@@ -79,29 +79,29 @@ public unsafe class TreeSitterSyntaxNode
     public bool IsExtra => Ts.node_is_extra(_node);
     public bool IsNull => Ts.node_is_null(_node);
 
-    public ImmutableArray<TreeSitterSyntaxNode> Children => GetChildren().ToImmutableArray();
-    public ImmutableArray<TreeSitterSyntaxNode> NamedChildren => GetNamedChildren().ToImmutableArray();
+    public ImmutableArray<SyntaxNode> Children => GetChildren().ToImmutableArray();
+    public ImmutableArray<SyntaxNode> NamedChildren => GetNamedChildren().ToImmutableArray();
 
-    public TreeSitterSyntaxNode GetChildByFieldName(string fieldName)
+    public SyntaxNode GetChildByFieldName(string fieldName)
     {
         return new(Ts.node_child_by_field_name(_node, fieldName, (uint)fieldName.Length));
     }
 
-    public TreeSitterSyntaxNode GetChildByFieldId(ushort fieldId) => new(Ts.node_child_by_field_id(_node, fieldId));
+    public SyntaxNode GetChildByFieldId(ushort fieldId) => new(Ts.node_child_by_field_id(_node, fieldId));
 
     public string GetFieldNameForChild(uint childIndex) => Ts.node_field_name_for_child(_node, childIndex);
 
-    public TreeSitterSyntaxNode GetNamedChild(uint index)
+    public SyntaxNode GetNamedChild(uint index)
     {
         return new(Ts.node_named_child(_node, index));
     }
 
-    public TreeSitterSyntaxNode GetChild(uint index)
+    public SyntaxNode GetChild(uint index)
     {
         return new(Ts.node_child(_node, index));
     }
 
-    private IEnumerable<TreeSitterSyntaxNode> GetNamedChildren()
+    private IEnumerable<SyntaxNode> GetNamedChildren()
     {
         for (uint i = 0; i < NamedChildCount; i++)
         {
@@ -109,7 +109,7 @@ public unsafe class TreeSitterSyntaxNode
         }
     }
 
-    private IEnumerable<TreeSitterSyntaxNode> GetChildren()
+    private IEnumerable<SyntaxNode> GetChildren()
     {
         for (uint i = 0; i < ChildCount; i++)
         {
@@ -127,7 +127,7 @@ public unsafe class TreeSitterSyntaxNode
         return Ts.node_string(_node);
     }
 
-    protected bool Equals(TreeSitterSyntaxNode other) => Ts.node_eq(_node, other._node);
+    protected bool Equals(SyntaxNode other) => Ts.node_eq(_node, other._node);
 
     public override bool Equals(object? obj)
     {
@@ -146,7 +146,7 @@ public unsafe class TreeSitterSyntaxNode
             return false;
         }
 
-        return Equals((TreeSitterSyntaxNode)obj);
+        return Equals((SyntaxNode)obj);
     }
 
     public override int GetHashCode() => _node.GetHashCode();
