@@ -1,20 +1,20 @@
 ﻿using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public class SyntaxTreeCursor
+public class TreeSitterSyntaxTreeCursor
 {
     private readonly TsTreeCursor _treeCursor;
     private readonly TsNode _node;
 
-    public SyntaxTreeCursor(TreeSitterSyntaxNode node)
+    public TreeSitterSyntaxTreeCursor(TreeSitterSyntaxNode node)
     {
         _node = node.ToUnmanaged();
         _treeCursor = Ts.tree_cursor_new(_node);
     }
 
-    private SyntaxTreeCursor(TsTreeCursor treeCursor) => _treeCursor = treeCursor;
+    private TreeSitterSyntaxTreeCursor(TsTreeCursor treeCursor) => _treeCursor = treeCursor;
 
-    ~SyntaxTreeCursor()
+    ~TreeSitterSyntaxTreeCursor()
     {
         Ts.tree_cursor_delete(_treeCursor);
     }
@@ -39,13 +39,13 @@ public class SyntaxTreeCursor
         Ts.tree_cursor_reset(_treeCursor, _node);
     }
 
-    public void ResetTo(SyntaxTreeCursor dst)
+    public void ResetTo(TreeSitterSyntaxTreeCursor dst)
     {
         Ts.tree_cursor_reset_to(dst._treeCursor, _treeCursor);
     }
 
-    public SyntaxTreeCursor Copy()
+    public TreeSitterSyntaxTreeCursor Copy()
     {
-        return new SyntaxTreeCursor(Ts.tree_cursor_copy(_treeCursor));
+        return new TreeSitterSyntaxTreeCursor(Ts.tree_cursor_copy(_treeCursor));
     }
 }

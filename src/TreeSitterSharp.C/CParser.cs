@@ -1,5 +1,5 @@
 ﻿namespace TreeSitterSharp.C;
-public class CParser : TreeSitterSyntaxParser
+public class CParser : TreeSitterParser
 {
     public CParser() : base(CLanguageProvider.GetLanguage())
     {

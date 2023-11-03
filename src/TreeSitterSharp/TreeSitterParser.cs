@@ -3,14 +3,14 @@ using System.Text;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class TreeSitterSyntaxParser : INativeObject<TsParser>
+public unsafe class TreeSitterParser : INativeObject<TsParser>
 {
     private TsParser* _parser;
     private Language? _language;
 
 
 
-    public TreeSitterSyntaxParser(Language language)
+    public TreeSitterParser(Language language)
     {
         static void* NewMalloc(nuint byteCount) => NativeMemory.Alloc(byteCount);
         static void* NewCalloc(nuint count, nuint size) => NativeMemory.AllocZeroed(count * size);
@@ -21,7 +21,7 @@ public unsafe class TreeSitterSyntaxParser : INativeObject<TsParser>
         Language = language;
     }
 
-    ~TreeSitterSyntaxParser()
+    ~TreeSitterParser()
     {
         Ts.parser_delete(_parser);
     }

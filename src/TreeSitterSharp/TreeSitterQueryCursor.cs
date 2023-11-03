@@ -9,11 +9,11 @@ using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
 
-public unsafe class QueryCursor
+public unsafe class TreeSitterQueryCursor
 {
     private TsQueryCursor* _queryCursor;
 
-    public QueryCursor()
+    public TreeSitterQueryCursor()
     {
         _queryCursor = Ts.query_cursor_new();
     }
