@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using Microsoft.CodeAnalysis;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
