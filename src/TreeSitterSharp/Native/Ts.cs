@@ -515,7 +515,7 @@ public static unsafe partial class Ts
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,
         EntryPoint = "ts_query_cursor_next_capture", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte query_cursor_next_capture(TsQueryCursor* self, TsQueryMatch* match,
+    public static extern bool query_cursor_next_capture(TsQueryCursor* self, TsQueryMatch* match,
         [NativeTypeName("uint32_t *")] uint* capture_index);
 
     [DllImport("tree-sitter", CallingConvention = CallingConvention.Cdecl,

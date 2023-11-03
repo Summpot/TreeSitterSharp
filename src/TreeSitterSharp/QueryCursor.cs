@@ -9,7 +9,7 @@ using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
 
-internal unsafe class QueryCursor
+public unsafe class QueryCursor
 {
     private TsQueryCursor* _queryCursor;
 
@@ -18,7 +18,7 @@ internal unsafe class QueryCursor
         _queryCursor = Ts.query_cursor_new();
     }
 
-    public void Execute(Query query, Node node)
+    public void Execute(Query query, TreeSitterSyntaxNode node)
     {
         Ts.query_cursor_exec(_queryCursor, (query as INativeObject<TsQuery>).ToUnmanaged(), node.ToUnmanaged());
     }
@@ -28,6 +28,16 @@ internal unsafe class QueryCursor
         TsQueryMatch match;
         bool succeed = Ts.query_cursor_next_match(_queryCursor, &match);
         queryMatch = succeed ? new QueryMatch(&match) : null;
+        return succeed;
+    }
+
+    public bool NextCapture([MaybeNullWhen(false)] out QueryMatch queryMatch, out uint captureIndex)
+    {
+        TsQueryMatch match;
+        uint index;
+        bool succeed = Ts.query_cursor_next_capture(_queryCursor, &match, &index);
+        queryMatch = succeed ? new QueryMatch(&match) : null;
+        captureIndex = index;
         return succeed;
     }
 }

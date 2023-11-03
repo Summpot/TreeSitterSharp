@@ -3,14 +3,14 @@ using System.Text;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class Parser : INativeObject<TsParser>
+public unsafe class TreeSitterSyntaxParser : INativeObject<TsParser>
 {
     private TsParser* _parser;
     private Language? _language;
 
 
 
-    public Parser(Language language)
+    public TreeSitterSyntaxParser(Language language)
     {
         static void* NewMalloc(nuint byteCount) => NativeMemory.Alloc(byteCount);
         static void* NewCalloc(nuint count, nuint size) => NativeMemory.AllocZeroed(count * size);
@@ -21,7 +21,7 @@ public unsafe class Parser : INativeObject<TsParser>
         Language = language;
     }
 
-    ~Parser()
+    ~TreeSitterSyntaxParser()
     {
         Ts.parser_delete(_parser);
     }
@@ -41,23 +41,23 @@ public unsafe class Parser : INativeObject<TsParser>
         }
     }
 
-    public Tree Parse(string code)
+    public TreeSitterSyntaxTree Parse(string code)
     {
         if (_language is null)
         {
             throw new Exception("Language can't be null");
         }
-        return new Tree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
+        return new TreeSitterSyntaxTree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
     }
 
-    public Tree Parse(Span<byte> code, Encoding encoding)
+    public TreeSitterSyntaxTree Parse(Span<byte> code, Encoding encoding)
     {
         if (_language is null)
         {
             throw new Exception("Language can't be null");
         }
         byte[] bytes = Encoding.UTF8.GetBytes(encoding.GetString(code));
-        return new Tree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
+        return new TreeSitterSyntaxTree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
     }
 
 

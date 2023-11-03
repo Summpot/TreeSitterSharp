@@ -1,21 +1,26 @@
 ﻿using System.Collections.Immutable;
+using Microsoft.CodeAnalysis;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class Node
+public unsafe class TreeSitterSyntaxNode
 {
     private readonly TsNode _node;
 
-    internal Node(TsNode node)
+    internal TreeSitterSyntaxNode(TsNode node)
     {
         _node = node;
-        Tree = new Tree(_node.tree);
+        Tree = new TreeSitterSyntaxTree(_node.tree);
     }
 
-    public Tree Tree { get; }
+    public TreeSitterSyntaxTree Tree { get; }
+
     public nint Id => (nint)_node.id;
+
     public string Type => Ts.node_type(_node);
+
     public ushort Symbol => Ts.node_symbol(_node);
+
     public Language Language => new(Ts.node_language(_node));
     public string GrammarType => Ts.node_grammar_type(_node);
     public ushort GrammarSymbol => Ts.node_grammar_symbol(_node);
@@ -25,7 +30,7 @@ public unsafe class Node
     public Point EndPoint => Ts.node_end_point(_node);
     public uint ChildCount => Ts.node_child_count(_node);
     public uint NamedChildCount => Ts.node_named_child_count(_node);
-    public Node? PreviousSibling
+    public TreeSitterSyntaxNode? PreviousSibling
     {
         get
         {
@@ -34,7 +39,7 @@ public unsafe class Node
         }
     }
 
-    public Node? NextSibling
+    public TreeSitterSyntaxNode? NextSibling
     {
         get
         {
@@ -43,7 +48,7 @@ public unsafe class Node
         }
     }
 
-    public Node? PreviousNamedSibling
+    public TreeSitterSyntaxNode? PreviousNamedSibling
     {
         get
         {
@@ -52,7 +57,7 @@ public unsafe class Node
         }
     }
 
-    public Node? NextNamedSibling
+    public TreeSitterSyntaxNode? NextNamedSibling
     {
         get
         {
@@ -61,7 +66,7 @@ public unsafe class Node
         }
     }
 
-    public Node? Parent
+    public TreeSitterSyntaxNode? Parent
     {
         get
         {
@@ -75,29 +80,29 @@ public unsafe class Node
     public bool IsExtra => Ts.node_is_extra(_node);
     public bool IsNull => Ts.node_is_null(_node);
 
-    public ImmutableArray<Node> Children => GetChildren().ToImmutableArray();
-    public ImmutableArray<Node> NamedChildren => GetNamedChildren().ToImmutableArray();
+    public ImmutableArray<TreeSitterSyntaxNode> Children => GetChildren().ToImmutableArray();
+    public ImmutableArray<TreeSitterSyntaxNode> NamedChildren => GetNamedChildren().ToImmutableArray();
 
-    public Node GetChildByFieldName(string fieldName)
+    public TreeSitterSyntaxNode GetChildByFieldName(string fieldName)
     {
-        return new Node(Ts.node_child_by_field_name(_node, fieldName, (uint)fieldName.Length));
+        return new(Ts.node_child_by_field_name(_node, fieldName, (uint)fieldName.Length));
     }
 
-    public Node GetChildByFieldId(ushort fieldId) => new(Ts.node_child_by_field_id(_node, fieldId));
+    public TreeSitterSyntaxNode GetChildByFieldId(ushort fieldId) => new(Ts.node_child_by_field_id(_node, fieldId));
 
     public string GetFieldNameForChild(uint childIndex) => Ts.node_field_name_for_child(_node, childIndex);
 
-    public Node GetNamedChild(uint index)
+    public TreeSitterSyntaxNode GetNamedChild(uint index)
     {
-        return new Node(Ts.node_named_child(_node, index));
+        return new(Ts.node_named_child(_node, index));
     }
 
-    public Node GetChild(uint index)
+    public TreeSitterSyntaxNode GetChild(uint index)
     {
-        return new Node(Ts.node_child(_node, index));
+        return new(Ts.node_child(_node, index));
     }
 
-    private IEnumerable<Node> GetNamedChildren()
+    private IEnumerable<TreeSitterSyntaxNode> GetNamedChildren()
     {
         for (uint i = 0; i < NamedChildCount; i++)
         {
@@ -105,7 +110,7 @@ public unsafe class Node
         }
     }
 
-    private IEnumerable<Node> GetChildren()
+    private IEnumerable<TreeSitterSyntaxNode> GetChildren()
     {
         for (uint i = 0; i < ChildCount; i++)
         {
@@ -123,7 +128,7 @@ public unsafe class Node
         return Ts.node_string(_node);
     }
 
-    protected bool Equals(Node other) => Ts.node_eq(_node, other._node);
+    protected bool Equals(TreeSitterSyntaxNode other) => Ts.node_eq(_node, other._node);
 
     public override bool Equals(object? obj)
     {
@@ -142,7 +147,7 @@ public unsafe class Node
             return false;
         }
 
-        return Equals((Node)obj);
+        return Equals((TreeSitterSyntaxNode)obj);
     }
 
     public override int GetHashCode() => _node.GetHashCode();

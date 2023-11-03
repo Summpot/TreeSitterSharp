@@ -2,7 +2,7 @@
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-internal unsafe class Query : INativeObject<TsQuery>
+public unsafe class Query : INativeObject<TsQuery>
 {
     private TsQuery* _query;
 
@@ -14,8 +14,10 @@ internal unsafe class Query : INativeObject<TsQuery>
 
     TsQuery* INativeObject<TsQuery>.ToUnmanaged() => _query;
 
-    public static Query Create(Language language, string source, ref uint errorOffset, ref TsQueryError error)
+    public static Query Create(Language language, string source, out uint errorOffset, out TsQueryError error)
     {
+        errorOffset = default;
+        error = default;
         return new Query
         {
             _query = Ts.query_new(language.ToUnmanaged(), source, (uint)source.Length, (uint*)Unsafe.AsPointer(ref errorOffset),
