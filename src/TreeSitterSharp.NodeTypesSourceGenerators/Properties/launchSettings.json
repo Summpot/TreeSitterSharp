@@ -1,0 +1,8 @@
+{
+    "profiles": {
+        "DebugGenerateNodeTypes": {
+            "commandName": "DebugRoslynComponent",
+            "targetProject": "..\\TreeSitterSharp.C\\TreeSitterSharp.C.csproj"
+        }
+    }
+}

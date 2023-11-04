@@ -4,9 +4,9 @@ using TreeSitterSharp.Native;
 namespace TreeSitterSharp;
 public unsafe class SyntaxTree
 {
-    private readonly TsTree* _tree;
+    protected readonly TsTree* _tree;
 
-    public SyntaxTree(TsTree* tree)
+    protected internal SyntaxTree(TsTree* tree)
     {
         _tree = tree;
     }
@@ -20,5 +20,5 @@ public unsafe class SyntaxTree
 
     public Language Language => new(Ts.tree_language(_tree));
 
-    public SyntaxNode Root => new(Ts.tree_root_node(_tree));
+    public virtual SyntaxNode Root => new(Ts.tree_root_node(_tree));
 }

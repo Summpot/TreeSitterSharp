@@ -1,8 +1,3 @@
 ﻿
 namespace TreeSitterSharp.Json;
-public class JsonParser : Parser
-{
-    public JsonParser() : base(JsonLanguageProvider.GetLanguage())
-    {
-    }
-}
+public class JsonParser() : Parser(JsonLanguageProvider.GetLanguage());

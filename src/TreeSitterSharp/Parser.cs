@@ -3,12 +3,10 @@ using System.Text;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class Parser : INativeObject<TsParser>
+public unsafe class Parser: INativeObject<TsParser>
 {
-    private TsParser* _parser;
+    protected TsParser* _parser;
     private Language? _language;
-
-
 
     public Parser(Language language)
     {
@@ -41,24 +39,14 @@ public unsafe class Parser : INativeObject<TsParser>
         }
     }
 
-    public SyntaxTree Parse(string code)
+    public virtual SyntaxTree Parse(string code)
     {
-        if (_language is null)
-        {
-            throw new Exception("Language can't be null");
-        }
         return new SyntaxTree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
     }
 
-    public SyntaxTree Parse(Span<byte> code, Encoding encoding)
+    public virtual SyntaxTree Parse(Span<byte> code, Encoding encoding)
     {
-        if (_language is null)
-        {
-            throw new Exception("Language can't be null");
-        }
         byte[] bytes = Encoding.UTF8.GetBytes(encoding.GetString(code));
         return new SyntaxTree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
     }
-
-
 }

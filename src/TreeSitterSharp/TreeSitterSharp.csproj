@@ -11,4 +11,8 @@
   <ItemGroup>
     <PackageReference Include="tree-sitter" Version="*" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TreeSitterSharp.C"></InternalsVisibleTo>
+  </ItemGroup>
 </Project>

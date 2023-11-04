@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Json", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Json.Tests", "tests\TreeSitterSharp.Json.Tests\TreeSitterSharp.Json.Tests.csproj", "{9CD39ADD-A840-48AF-8A16-5CF16631DE00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.NodeTypesSourceGenerators", "src\TreeSitterSharp.NodeTypesSourceGenerators\TreeSitterSharp.NodeTypesSourceGenerators.csproj", "{0B76D02A-39E8-482F-A3F6-6BD22358A496}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{9CD39ADD-A840-48AF-8A16-5CF16631DE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CD39ADD-A840-48AF-8A16-5CF16631DE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CD39ADD-A840-48AF-8A16-5CF16631DE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B76D02A-39E8-482F-A3F6-6BD22358A496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B76D02A-39E8-482F-A3F6-6BD22358A496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B76D02A-39E8-482F-A3F6-6BD22358A496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B76D02A-39E8-482F-A3F6-6BD22358A496}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

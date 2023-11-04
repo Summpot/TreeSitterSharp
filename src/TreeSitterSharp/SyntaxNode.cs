@@ -4,9 +4,9 @@ using TreeSitterSharp.Native;
 namespace TreeSitterSharp;
 public unsafe class SyntaxNode
 {
-    private readonly TsNode _node;
+    protected readonly TsNode _node;
 
-    internal SyntaxNode(TsNode node)
+    protected internal SyntaxNode(TsNode node)
     {
         _node = node;
         Tree = new SyntaxTree(_node.tree);
@@ -21,7 +21,7 @@ public unsafe class SyntaxNode
     public ushort Symbol => Ts.node_symbol(_node);
 
     public Language Language => new(Ts.node_language(_node));
-    public string GrammarType => Ts.node_grammar_type(_node);
+    public virtual string GrammarType => Ts.node_grammar_type(_node);
     public ushort GrammarSymbol => Ts.node_grammar_symbol(_node);
     public uint StartByte => Ts.node_start_byte(_node);
     public uint EndByte => Ts.node_end_byte(_node);
