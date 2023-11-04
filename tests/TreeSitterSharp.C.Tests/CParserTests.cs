@@ -26,8 +26,7 @@ public class CParserTests
 
 
         var tree = parser.Parse(code);
-        var treeCursor = new SyntaxTreeCursor(tree.Root);
-        var a = treeCursor.GotoFirstChild();
+        
         Assert.Equal(expected, tree.Root.GetSExpression());
     }
 
