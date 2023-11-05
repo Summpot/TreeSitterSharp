@@ -1,7 +1,7 @@
 ﻿using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class Language:INativeObject<TsLanguage>
+public unsafe class Language:INativeConvertible<TsLanguage>
 {
     private TsLanguage* _language;
 

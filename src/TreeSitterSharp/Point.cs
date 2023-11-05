@@ -1,4 +1,8 @@
-﻿namespace TreeSitterSharp;
+﻿using System.Diagnostics;
+
+namespace TreeSitterSharp;
+
+[DebuggerDisplay("({Row},{Column})")]
 public struct Point
 {
     public uint Row;

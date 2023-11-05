@@ -2,23 +2,25 @@
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class SyntaxNode
+public abstract unsafe class SyntaxNode<TSyntaxTree, TSelf> : ISyntaxNode<TSyntaxTree, TSelf>
+    where TSelf : SyntaxNode<TSyntaxTree, TSelf>, ISyntaxNodeCreation<TSyntaxTree, TSelf>
+    where TSyntaxTree : SyntaxTree<TSelf, TSyntaxTree>, ISyntaxTreeCreation<TSelf, TSyntaxTree>
 {
     protected readonly TsNode _node;
 
     protected internal SyntaxNode(TsNode node)
     {
         _node = node;
-        Tree = new SyntaxTree(_node.tree);
+        Tree = TSyntaxTree.Create(_node.tree);
     }
 
-    public SyntaxTree Tree { get; }
+    public TSyntaxTree Tree { get; }
 
     public nint Id => (nint)_node.id;
 
-    public string Type => Ts.node_type(_node);
+    public string NodeType => Ts.node_type(_node);
 
-    public ushort Symbol => Ts.node_symbol(_node);
+    public ushort NodeSymbol => Ts.node_symbol(_node);
 
     public Language Language => new(Ts.node_language(_node));
     public virtual string GrammarType => Ts.node_grammar_type(_node);
@@ -29,48 +31,48 @@ public unsafe class SyntaxNode
     public Point EndPoint => Ts.node_end_point(_node);
     public uint ChildCount => Ts.node_child_count(_node);
     public uint NamedChildCount => Ts.node_named_child_count(_node);
-    public SyntaxNode? PreviousSibling
+    public TSelf? PreviousSibling
     {
         get
         {
             var node = Ts.node_prev_sibling(_node);
-            return Ts.node_is_null(node) ? null : new(node);
+            return Ts.node_is_null(node) ? null : TSelf.Create(node);
         }
     }
 
-    public SyntaxNode? NextSibling
+    public TSelf? NextSibling
     {
         get
         {
             var node = Ts.node_next_sibling(_node);
-            return Ts.node_is_null(node) ? null : new(node);
+            return Ts.node_is_null(node) ? null : TSelf.Create(node);
         }
     }
 
-    public SyntaxNode? PreviousNamedSibling
+    public TSelf? PreviousNamedSibling
     {
         get
         {
             var node = Ts.node_prev_named_sibling(_node);
-            return Ts.node_is_null(node) ? null : new(node);
+            return Ts.node_is_null(node) ? null : TSelf.Create(node);
         }
     }
 
-    public SyntaxNode? NextNamedSibling
+    public TSelf? NextNamedSibling
     {
         get
         {
             var node = Ts.node_next_named_sibling(_node);
-            return Ts.node_is_null(node) ? null : new(node);
+            return Ts.node_is_null(node) ? null : TSelf.Create(node);
         }
     }
 
-    public SyntaxNode? Parent
+    public TSelf? Parent
     {
         get
         {
             var node = Ts.node_parent(_node);
-            return Ts.node_is_null(node) ? null : new(node);
+            return Ts.node_is_null(node) ? null : TSelf.Create(node);
         }
     }
 
@@ -79,29 +81,29 @@ public unsafe class SyntaxNode
     public bool IsExtra => Ts.node_is_extra(_node);
     public bool IsNull => Ts.node_is_null(_node);
 
-    public ImmutableArray<SyntaxNode> Children => GetChildren().ToImmutableArray();
-    public ImmutableArray<SyntaxNode> NamedChildren => GetNamedChildren().ToImmutableArray();
+    public ImmutableArray<TSelf> Children => GetChildren().ToImmutableArray();
+    public ImmutableArray<TSelf> NamedChildren => GetNamedChildren().ToImmutableArray();
 
-    public SyntaxNode GetChildByFieldName(string fieldName)
+    public TSelf GetChildByFieldName(string fieldName)
     {
-        return new(Ts.node_child_by_field_name(_node, fieldName, (uint)fieldName.Length));
+        return TSelf.Create(Ts.node_child_by_field_name(_node, fieldName, (uint)fieldName.Length));
     }
 
-    public SyntaxNode GetChildByFieldId(ushort fieldId) => new(Ts.node_child_by_field_id(_node, fieldId));
+    public TSelf GetChildByFieldId(ushort fieldId) => TSelf.Create(Ts.node_child_by_field_id(_node, fieldId));
 
     public string GetFieldNameForChild(uint childIndex) => Ts.node_field_name_for_child(_node, childIndex);
 
-    public SyntaxNode GetNamedChild(uint index)
+    public TSelf GetNamedChild(uint index)
     {
-        return new(Ts.node_named_child(_node, index));
+        return TSelf.Create(Ts.node_named_child(_node, index));
     }
 
-    public SyntaxNode GetChild(uint index)
+    public TSelf GetChild(uint index)
     {
-        return new(Ts.node_child(_node, index));
+        return TSelf.Create(Ts.node_child(_node, index));
     }
 
-    private IEnumerable<SyntaxNode> GetNamedChildren()
+    private IEnumerable<TSelf> GetNamedChildren()
     {
         for (uint i = 0; i < NamedChildCount; i++)
         {
@@ -109,7 +111,7 @@ public unsafe class SyntaxNode
         }
     }
 
-    private IEnumerable<SyntaxNode> GetChildren()
+    private IEnumerable<TSelf> GetChildren()
     {
         for (uint i = 0; i < ChildCount; i++)
         {
@@ -127,7 +129,7 @@ public unsafe class SyntaxNode
         return Ts.node_string(_node);
     }
 
-    protected bool Equals(SyntaxNode other) => Ts.node_eq(_node, other._node);
+    protected bool Equals(TSelf other) => Ts.node_eq(_node, other._node);
 
     public override bool Equals(object? obj)
     {
@@ -146,7 +148,7 @@ public unsafe class SyntaxNode
             return false;
         }
 
-        return Equals((SyntaxNode)obj);
+        return Equals((TSelf)obj);
     }
 
     public override int GetHashCode() => _node.GetHashCode();

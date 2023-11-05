@@ -3,12 +3,17 @@ using System.Text;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp;
-public unsafe class Parser: INativeObject<TsParser>
+
+public abstract unsafe class Parser<TSyntaxTree, TSyntaxNode, TSelf> : INativeConvertible<TsParser>,
+    IParser<TSyntaxTree, TSyntaxNode, TSelf>
+    where TSelf : Parser<TSyntaxTree, TSyntaxNode, TSelf>
+    where TSyntaxNode : ISyntaxNode<TSyntaxTree, TSyntaxNode>
+    where TSyntaxTree : SyntaxTree<TSyntaxNode, TSyntaxTree>
 {
     protected TsParser* _parser;
     private Language? _language;
 
-    public Parser(Language language)
+    protected Parser(Language language)
     {
         static void* NewMalloc(nuint byteCount) => NativeMemory.Alloc(byteCount);
         static void* NewCalloc(nuint count, nuint size) => NativeMemory.AllocZeroed(count * size);
@@ -39,14 +44,11 @@ public unsafe class Parser: INativeObject<TsParser>
         }
     }
 
-    public virtual SyntaxTree Parse(string code)
-    {
-        return new SyntaxTree(Ts.parser_parse_string(_parser, null, code, (uint)code.Length));
-    }
+    public TSyntaxTree Parse(string code) => Parse(Encoding.UTF8.GetBytes(code));
 
-    public virtual SyntaxTree Parse(Span<byte> code, Encoding encoding)
-    {
-        byte[] bytes = Encoding.UTF8.GetBytes(encoding.GetString(code));
-        return new SyntaxTree(Ts.parser_parse_string_encoding(_parser, null, bytes, (uint)bytes.Length, TsInputEncoding.TSInputEncodingUTF8));
-    }
+    public abstract TSyntaxTree Parse(Span<byte> code);
+
+    protected TsTree* ParseCore(Span<byte> code) =>
+        Ts.parser_parse_string_encoding(_parser, null, code.ToArray(), (uint)code.Length,
+            TsInputEncoding.TSInputEncodingUTF8);
 }
