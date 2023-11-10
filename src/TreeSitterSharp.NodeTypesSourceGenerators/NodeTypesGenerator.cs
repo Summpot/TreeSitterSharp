@@ -32,9 +32,9 @@ internal class NodeTypesGenerator : IIncrementalGenerator
             [AttributeUsage(AttributeTargets.Class)]
             public class LanguageNameAttribute : System.Attribute
             {
-                public LanguageNameAttribute(string name) => Name = name;
-
-                public string Name { get; set; }
+                public LanguageNameAttribute(string name)
+                {
+                }
             }
             
             """;
@@ -68,6 +68,7 @@ internal class NodeTypesGenerator : IIncrementalGenerator
 
                 var subtypeLookup = new Dictionary<string, Stack<string>>();
                 var grammarLookup = new Dictionary<string, string>();
+                var visitor = new NodeTypesVisitor(nodeTypesInfo);
                 foreach (NodeTypesInfo.NodeTypeInfo nodeTypeInfo in nodeTypesInfo)
                 {
                     if (nodeTypeInfo.Subtypes is { } subtypes)
@@ -94,7 +95,7 @@ internal class NodeTypesGenerator : IIncrementalGenerator
                                 Token(SyntaxKind.PartialKeyword))
                             .If(nodeTypeInfo.Type.StartsWith("_") || !subtypeLookup.ContainsKey(nodeTypeInfo.Type), _ =>
                                 _.AddBaseListTypes(
-                                    SimpleBaseType(IdentifierName("global::TreeSitterSharp.C.CSyntaxNode"))))
+                                    SimpleBaseType(IdentifierName($"global::TreeSitterSharp.{languageName}.{languageName}SyntaxNode"))))
                             .If(subtypeLookup.TryGetValue(nodeTypeInfo.Type, out var stack) && stack.Count > 0,
                                 _ => _.AddBaseListTypes(SimpleBaseType(IdentifierName(stack!.Pop().Pascalize()))))
                             .AddMembers(ConstructorDeclaration(className)

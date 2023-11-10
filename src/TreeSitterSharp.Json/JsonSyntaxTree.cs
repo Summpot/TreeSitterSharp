@@ -20,6 +20,17 @@ public class JsonSyntaxTree : SyntaxTree<JsonSyntaxNode, JsonSyntaxTree>, ISynta
         }
     }
 
-    public override JsonSyntaxNode Root { get; }
+    public override JsonSyntaxNode Root => Document;
+    public Document Document
+    {
+        get
+        {
+            unsafe
+            {
+                return new(Ts.tree_root_node(_tree));
+            }
+        }
+    }
+
     public static unsafe JsonSyntaxTree Create(TsTree* tree) => new(tree);
 }

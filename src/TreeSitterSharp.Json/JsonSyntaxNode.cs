@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using TreeSitterSharp.Native;
 
 namespace TreeSitterSharp.Json;
-public class JsonSyntaxNode : SyntaxNode<JsonSyntaxTree, JsonSyntaxNode>, ISyntaxNodeCreation<JsonSyntaxTree, JsonSyntaxNode>
+public partial class JsonSyntaxNode : SyntaxNode<JsonSyntaxTree, JsonSyntaxNode>, ISyntaxNodeCreation<JsonSyntaxTree, JsonSyntaxNode>
 {
     protected internal JsonSyntaxNode(TsNode node) : base(node)
     {
     }
 
-    public static JsonSyntaxNode Create(TsNode node) => new(node);
+    public static partial JsonSyntaxNode Create(TsNode node);
 }

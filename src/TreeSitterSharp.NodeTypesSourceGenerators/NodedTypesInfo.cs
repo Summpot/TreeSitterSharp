@@ -5,14 +5,8 @@ namespace TreeSitterSharp.NodeTypesSourceGenerators;
 
 public class NodeTypesInfo : List<NodeTypesInfo.NodeTypeInfo>
 {
-    public class NodeTypeInfo
+    public class NodeTypeInfo : SubtypeElement
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
-        [JsonPropertyName("named")]
-        public bool Named { get; set; }
-
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("subtypes")]
         public List<SubtypeElement>? Subtypes { get; set; }
@@ -44,6 +38,36 @@ public class NodeTypesInfo : List<NodeTypesInfo.NodeTypeInfo>
 
         [JsonPropertyName("named")]
         public bool Named { get; set; }
+
+        protected bool Equals(SubtypeElement other) => Type == other.Type && Named == other.Named;
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((SubtypeElement)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (Type.GetHashCode() * 397) ^ Named.GetHashCode();
+            }
+        }
     }
 }
 
