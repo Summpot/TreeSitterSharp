@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34004.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp", "src\TreeSitterSharp\TreeSitterSharp.csproj", "{C794DAB1-EF44-4236-BD00-46CF8738B17F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案项", "解决方案项", "{02BDF044-8ACA-46C0-9F5B-9DB5B5EF6EA7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{02BDF044-8ACA-46C0-9F5B-9DB5B5EF6EA7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Json", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.Json.Tests", "tests\TreeSitterSharp.Json.Tests\TreeSitterSharp.Json.Tests.csproj", "{9CD39ADD-A840-48AF-8A16-5CF16631DE00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeSitterSharp.NodeTypesSourceGenerators", "src\TreeSitterSharp.NodeTypesSourceGenerators\TreeSitterSharp.NodeTypesSourceGenerators.csproj", "{0B76D02A-39E8-482F-A3F6-6BD22358A496}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeSitterSharp.NodeTypesSourceGenerators", "src\TreeSitterSharp.NodeTypesSourceGenerators\TreeSitterSharp.NodeTypesSourceGenerators.csproj", "{0B76D02A-39E8-482F-A3F6-6BD22358A496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

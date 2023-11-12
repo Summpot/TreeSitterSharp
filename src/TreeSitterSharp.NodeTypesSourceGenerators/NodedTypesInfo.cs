@@ -1,37 +1,39 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
+using static TreeSitterSharp.NodeTypesSourceGenerators.NodeTypesInfo;
 
 namespace TreeSitterSharp.NodeTypesSourceGenerators;
 
-public class NodeTypesInfo : List<NodeTypesInfo.NodeTypeInfo>
+public partial class NodeTypesInfo : List<NodeTypeInfo>
 {
-    public class NodeTypeInfo : SubtypeElement
+    public partial class NodeTypeInfo : SubtypesInfo
     {
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonPropertyName("subtypes")]
-        public List<SubtypeElement>? Subtypes { get; set; }
-
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("fields")]
         public Dictionary<string, ChildrenInfo>? Fields { get; set; }
 
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonPropertyName("children")]
         public ChildrenInfo? Children { get; set; }
     }
-    public class ChildrenInfo
+    
+    public partial class SubtypesInfo : NodeTypeBasicInfo
+    {
+        [JsonPropertyName("subtypes")]
+        public List<NodeTypeBasicInfo>? Subtypes { get; set; }
+    }
+
+    public partial class ChildrenInfo
     {
         [JsonPropertyName("multiple")]
         public bool Multiple { get; set; }
 
         [JsonPropertyName("required")]
-        public bool ChildrenRequired { get; set; }
+        public bool Required { get; set; }
 
         [JsonPropertyName("types")]
-        public List<SubtypeElement>? Types { get; set; }
+        public List<NodeTypeBasicInfo>? Types { get; set; }
     }
-
-    public class SubtypeElement
+    
+    public partial class NodeTypeBasicInfo
     {
         [JsonPropertyName("type")]
         public string Type { get; set; }
@@ -39,7 +41,7 @@ public class NodeTypesInfo : List<NodeTypesInfo.NodeTypeInfo>
         [JsonPropertyName("named")]
         public bool Named { get; set; }
 
-        protected bool Equals(SubtypeElement other) => Type == other.Type && Named == other.Named;
+        protected bool Equals(NodeTypeBasicInfo other) => Type == other.Type && Named == other.Named;
 
         public override bool Equals(object? obj)
         {
@@ -53,20 +55,17 @@ public class NodeTypesInfo : List<NodeTypesInfo.NodeTypeInfo>
                 return true;
             }
 
-            if (obj.GetType() != this.GetType())
+            if (obj.GetType() != GetType())
             {
                 return false;
             }
 
-            return Equals((SubtypeElement)obj);
+            return Equals((NodeTypeBasicInfo)obj);
         }
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return (Type.GetHashCode() * 397) ^ Named.GetHashCode();
-            }
+            return HashCode.Combine(Type, Named);
         }
     }
 }

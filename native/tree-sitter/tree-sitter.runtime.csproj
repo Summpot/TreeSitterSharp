@@ -4,7 +4,7 @@
     <IsPackable>true</IsPackable>
     <PackageId>$(AssemblyName).$(RuntimeIdentifier)</PackageId>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <PackageOutputPath>..\..\..\nupkgs</PackageOutputPath>
+    <PackageOutputPath>..\..\nupkgs</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <None Include="bin\$(Configuration)\$(RuntimeIdentifier)\*">

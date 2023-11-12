@@ -13,6 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TreeSitterSharp.NodeTypesSourceGenerators\TreeSitterSharp.NodeTypesSourceGenerators.csproj" ReferenceOutputAsembly="false" OutputItemType="Analyzer" />
     <ProjectReference Include="..\TreeSitterSharp\TreeSitterSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="SourceItemGroup" />
+    <CompilerVisibleItemMetadata Include="NodeTypesSchema" MetadataName="FileName" />
+    <CompilerVisibleItemMetadata Include="NodeTypesSchema" MetadataName="Extension" />
+    <NodeTypesSchema Include="..\..\native\tree-sitter-cpp\src\src\node-types.json">
+      <Visible>false</Visible>
+    </NodeTypesSchema>
+    <AdditionalFiles Include="@(NodeTypesSchema)" SourceItemGroup="NodeTypesSchema" />
   </ItemGroup>
 </Project>

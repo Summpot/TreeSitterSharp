@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.Build.Traversal">
     <ItemGroup>
-        <ProjectReference Include="**\*.cproj" />
+        <ProjectReference Include="tree-sitter\tree-sitter.cproj" />
+        <ProjectReference Include="tree-sitter-c\tree-sitter-c.cproj" />
+        <ProjectReference Include="tree-sitter-cpp\tree-sitter-cpp.cproj" />
+        <ProjectReference Include="tree-sitter-lua\tree-sitter-lua.cproj" />
+        <ProjectReference Include="tree-sitter-json\tree-sitter-json.cproj" />
     </ItemGroup>
 </Project>

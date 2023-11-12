@@ -1,8 +1,20 @@
 {
     "profiles": {
-        "DebugGenerateNodeTypes": {
+        "DebugGenerateCNodeTypes": {
             "commandName": "DebugRoslynComponent",
             "targetProject": "..\\TreeSitterSharp.C\\TreeSitterSharp.C.csproj"
+        },
+        "DebugGenerateCppNodeTypes": {
+            "commandName": "DebugRoslynComponent",
+            "targetProject": "..\\TreeSitterSharp.Cpp\\TreeSitterSharp.Cpp.csproj"
+        },
+        "DebugGenerateJsonNodeTypes": {
+            "commandName": "DebugRoslynComponent",
+            "targetProject": "..\\TreeSitterSharp.Json\\TreeSitterSharp.Json.csproj"
+        },
+        "DebugGenerateLuaNodeTypes": {
+            "commandName": "DebugRoslynComponent",
+            "targetProject": "..\\TreeSitterSharp.Lua\\TreeSitterSharp.Lua.csproj"
         }
     }
 }
